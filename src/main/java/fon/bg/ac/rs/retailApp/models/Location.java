@@ -7,9 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+//import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "location")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,16 +19,16 @@ import javax.persistence.*;
 
 public class Location {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name="id")
-        private Integer id;
-        private String city;
-        private String address;
-        private String details;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+    private String city;
+    private String address;
+    private String details;
 
-        @ManyToOne
-        @JoinColumn(name="countryid", insertable=false, updatable=false)
-        private Country country;
-        private Integer countryid;
+    @ManyToOne
+    @JoinColumn(name = "countryid", insertable = false, updatable = false)
+    private Country country;
+    private Integer countryid;
 }
