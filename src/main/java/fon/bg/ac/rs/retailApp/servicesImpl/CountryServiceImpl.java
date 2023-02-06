@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CountryServiceImpl implements CountryService {
@@ -22,6 +23,11 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public Country saveCountry(Country country) {
         return countryRepository.save(country);
+    }
+
+    //Get Country By Id
+    public Optional<Country> findById(int id) {
+        return countryRepository.findById(id);
     }
 
 

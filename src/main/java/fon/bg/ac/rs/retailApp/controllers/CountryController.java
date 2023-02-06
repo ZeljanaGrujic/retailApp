@@ -5,10 +5,10 @@ import fon.bg.ac.rs.retailApp.servicesImpl.CountryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class CountryController {
@@ -33,4 +33,11 @@ public class CountryController {
         return "redirect:/countries";
     }
 
+    @RequestMapping(value = "/countries/findById/",params = {"id"}, method = RequestMethod.GET)
+    @ResponseBody
+    public Optional<Country> findById(@RequestParam ("id") Integer id) {
+        Optional<Country> country = countryServiceImpl.findById(id);
+        System.out.println(country);
+        return countryServiceImpl.findById(id);
+    }
 }
