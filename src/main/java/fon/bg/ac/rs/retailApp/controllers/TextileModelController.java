@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TextileModelController {
     @GetMapping("/textileModels")
-    public String getCountries() {
+    public String getTextileModels() {
         return "TextileModel";
     }
 }

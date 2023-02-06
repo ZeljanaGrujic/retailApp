@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class InvoiceBuyingController {
     @GetMapping("/invoicesBuying")
-    public String getCountries() {
+    public String getInvoicesBuying() {
         return "InvoiceBuying";
     }
 }
