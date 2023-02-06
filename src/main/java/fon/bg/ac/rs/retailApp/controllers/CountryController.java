@@ -33,11 +33,27 @@ public class CountryController {
         return "redirect:/countries";
     }
 
-    @RequestMapping(value = "/countries/findById/",params = {"id"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/countries/findById/", params = {"id"}, method = RequestMethod.GET)
     @ResponseBody
-    public Optional<Country> findById(@RequestParam ("id") Integer id) {
+    public Optional<Country> findById(@RequestParam("id") Integer id) {
         Optional<Country> country = countryServiceImpl.findById(id);
         System.out.println(country);
         return countryServiceImpl.findById(id);
+    }
+
+    @RequestMapping(value = "/countries/update", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String update(Country country) {
+        Country updatedCountry = countryServiceImpl.saveCountry(country);
+        System.out.println(updatedCountry.getId());
+        return "redirect:/countries";
+    }
+
+
+    @RequestMapping(value = "/countries/deleteById/", params = {"id"}, method = {RequestMethod.DELETE, RequestMethod.GET})
+    public String deleteById(@RequestParam("id") Integer id) {
+//        Optional<Country> country = countryServiceImpl.findById(id);
+//        System.out.println(country);
+        countryServiceImpl.deleteById(id);
+        return "redirect:/countries";
     }
 }

@@ -434,6 +434,44 @@
             </div>
             <!-- page start-->
             <h1> Lista lokacija vezanih za posao</h1>
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"
+                    data-whatever="@mdo">Dodaj lokaciju
+            </button>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Grad</th>
+                    <th>Adresa</th>
+                    <th>Detalji</th>
+                    <th>Okrug/drzava</th>
+                    <th>Izmeni</th>
+                    <th>Izbrisi</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="location:${locations}">
+                    <td th:text="${location.id}"></td>
+                    <td th:text="${location.city}"></td>
+                    <td th:text="${location.address}"></td>
+                    <td th:text="${location.details}"></td>
+                    <td th:text="${location.country.name}"></td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-primary" th:href="@{/locations/findById/(id=${location.id})}" id="editButton">Izmeni</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a id="deleteButton" class="btn btn-danger" th:href="@{/locations/deleteById/(id=${location.id})}">Izbrisi</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
             <!-- page end-->
         </section>
     </section>
@@ -451,6 +489,160 @@
     </div>
 </section>
 <!-- container section end -->
+
+
+
+<!-- nova forma za dodavanje drzave/regiona -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Dodaj lokaciju</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/locations/addNew}" method="post">
+
+                    <div class="form-group">
+                        <label for="idAdd" class="col-form-label">Id:</label>
+                        <input type="text" class="form-control" id="idAdd" name="id" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ddlCountryAdd" class="col-form-label">Country: </label>
+                        <select class="form-control" id="ddlCountryAdd" name="countryid">
+                            <option>Odaberi region/drzavu</option>
+                            <option th:each="country : ${countries}"
+                                    th:value="${country.id}"
+                                    th:text="${country.name}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="addressAdd" class="col-form-label">Adresa</label>
+                        <input type="text" class="form-control" id="addressAdd" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="cityAdd" class="col-form-label">Grad</label>
+                        <input type="text" class="form-control" id="cityAdd" name="city">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="detailsAdd" class="col-form-label">Detalji</label>
+                        <input type="text" class="form-control" id="detailsAdd" name="details">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Sacuvaj</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+            </div>
+
+            <!--            <div class="modal-footer">-->
+            <!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+            <!--                <button type="button" class="btn btn-primary">Send message</button>-->
+            <!--            </div>-->
+        </div>
+    </div>
+</div>
+
+
+<!-- editModal za izmenu drzave -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleEditModalLabel">Izmeni podatke</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/locations/update}" method="put">
+
+                    <div class="form-group">
+                        <label for="idEdit" class="col-form-label">Id</label>
+                        <input type="text" class="form-control" id="idEdit" name="id" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ddlCountryEdit" class="col-form-label">Country: </label>
+                        <select class="form-control" id="ddlCountryEdit" name="countryid">
+                            <option>Odaberi region/drzavu</option>
+                            <option th:each="country : ${countries}"
+                                    th:value="${country.id}"
+                                    th:text="${country.name}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="addressEdit" class="col-form-label">Adresa</label>
+                        <input type="text" class="form-control" id="addressEdit" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="cityEdit" class="col-form-label">Grad</label>
+                        <input type="text" class="form-control" id="cityEdit" name="city">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="detailsEdit" class="col-form-label">Detalji</label>
+                        <input type="text" class="form-control" id="detailsEdit" name="details">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Sacuvaj izmene</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+            </div>
+
+            <!--            <div class="modal-footer">-->
+            <!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+            <!--                <button type="button" class="btn btn-primary">Send message</button>-->
+            <!--            </div>-->
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Da li sigurno zelite da izbrisete ove podatke?</p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" id="confirmDeleteButton" href="">Izbrisi</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -459,6 +651,7 @@
 <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
 <!--custome script for all page-->
 <script src="js/scripts.js"></script>
+<script src="js/Location.js"></script>
 
 
 </body>

@@ -12,4 +12,6 @@ public interface CountryService {
     public Country saveCountry(Country country);
 
     public Optional<Country> findById(int id);
+
+    public void deleteById(int id);
 }

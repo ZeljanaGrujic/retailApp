@@ -3,11 +3,12 @@ $('document').ready(function() {
 	$('.table #editButton').on('click',function(event){
 		event.preventDefault();
 		var href= $(this).attr('href');
-		$.get(href, function(country, status){
-			$('#idEdit').val(country.id);
-			$('#nameEdit').val(country.name);
-			$('#capitalEdit').val(country.capital);
-			$('#codeEdit').val(country.code);
+		$.get(href, function(location, status){
+			$('#idEdit').val(location.id);
+			$('#ddlCountryEdit').val(location.countryid);
+			$('#addressEdit').val(location.address);
+			$('#cityEdit').val(location.city);
+			$('#detailsEdit').val(location.details);
 		});
 		$('#editModal').modal();
 	});

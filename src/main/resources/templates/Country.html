@@ -448,7 +448,8 @@
                     <th>Naziv</th>
                     <th>Glavni grad/Sediste okruga</th>
                     <th>Lokalna telefonska oblast</th>
-                    <th>Izmeni/izbrisi</th>
+                    <th>Izmeni</th>
+                    <th>Izbrisi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -459,7 +460,12 @@
                     <td th:text="${country.code}"></td>
                     <td>
                         <div class="btn-group">
-                            <a class="btn btn-primary" th:href="@{/countries/findById/(id=${country.id})}">Izmeni</a>
+                            <a class="btn btn-primary" th:href="@{/countries/findById/(id=${country.id})}" id="editButton">Izmeni</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a id="deleteButton" class="btn btn-danger" th:href="@{/countries/deleteById/(id=${country.id})}">Izbrisi</a>
                         </div>
                     </td>
                 </tr>
@@ -576,6 +582,27 @@
             <!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
             <!--                <button type="button" class="btn btn-primary">Send message</button>-->
             <!--            </div>-->
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Da li sigurno zelite da izbrisete ove podatke?</p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" id="confirmDeleteButton" href="">Izbrisi</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+            </div>
         </div>
     </div>
 </div>

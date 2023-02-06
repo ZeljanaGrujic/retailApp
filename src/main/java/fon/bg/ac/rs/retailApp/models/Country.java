@@ -2,9 +2,7 @@ package fon.bg.ac.rs.retailApp.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 //import javax.persistence.*;
 
@@ -34,4 +32,18 @@ public class Country {
 
     @OneToMany(mappedBy = "country")
     private List<Location> locations;
+
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", capital='" + capital + '\'' +
+                '}';
+
+        //da mi ne bi bacalo null pointer exception dok ne setujem lokacije vezane za ovu drzavu/region
+        //ovo ce overrajdovati lombokovu anotaciju @Data koja generise sve getere/setere , toString, hash, equals..
+    }
 }
