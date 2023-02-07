@@ -346,7 +346,7 @@
                         <li><a class="" th:href="@{/textileModels}">Odeca - modeli</a></li>
                         <li><a class="" th:href="@{/textileMakes}">Odeca - marke</a></li>
                         <li><a class="" th:href="@{/textileStatuses}">Odeca - status</a></li>
-                        <li><a class="" th:href="@{/orderedTextiles}">Odeca - narudzbine klijenata</a></li>
+<!--                        <li><a class="" th:href="@{/orderedTextiles}">Odeca - narudzbine klijenata</a></li>-->
                     </ul>
                 </li>
 
@@ -434,6 +434,44 @@
             </div>
             <!-- page start-->
             <h1> Podaci o statusu proizvoda</h1>
+
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"
+                    data-whatever="@mdo">Novi tip statusa
+            </button>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Opisni naziv statusa</th>
+                    <th>Detalji/svojstva</th>
+<!--                    <th>Izmeni</th>-->
+<!--                    <th>Izbrisi</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="textileStatus:${textileStatuses}">
+                    <td th:text="${textileStatus.id}"></td>
+                    <td th:text="${textileStatus.description}"></td>
+                    <td th:text="${textileStatus.details}"></td>
+<!--                    <td>-->
+<!--                        <div class="btn-group">-->
+<!--                            <a class="btn btn-primary" th:href="@{/textileModels/findById/(id=${textileModel.id})}" id="editButton">Izmeni</a>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                        <div class="btn-group">-->
+<!--                            <a id="deleteButton" class="btn btn-danger" th:href="@{/textileModels/deleteById/(id=${textileModel.id})}">Izbrisi</a>-->
+<!--                        </div>-->
+<!--                    </td>-->
+                </tr>
+                </tbody>
+            </table>
+
+
+
+
             <!-- page end-->
         </section>
     </section>
@@ -451,6 +489,68 @@
     </div>
 </section>
 <!-- container section end -->
+
+
+
+<!-- nova forma za dodavanje drzave/regiona -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Dodaj novi tip statusa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/textileStatuses/addNew}" method="post">
+
+                    <!--                    <div class="form-group">-->
+                    <!--                        <label for="idAdd" class="col-form-label">Id:</label>-->
+                    <!--                        <input type="text" class="form-control" id="idAdd" name="id" disabled>-->
+                    <!--                    </div>-->
+
+                    <!--                    <div class="form-group">-->
+                    <!--                        <label for="ddlCountryAdd" class="col-form-label">Country: </label>-->
+                    <!--                        <select class="form-control" id="ddlCountryAdd" name="countryid">-->
+                    <!--                            <option>Odaberi region/drzavu</option>-->
+                    <!--                            <option th:each="country : ${countries}"-->
+                    <!--                                    th:value="${country.id}"-->
+                    <!--                                    th:text="${country.name}">-->
+                    <!--                            </option>-->
+                    <!--                        </select>-->
+                    <!--                    </div>-->
+
+                    <div class="form-group">
+                        <label for="descriptionAdd" class="col-form-label">Novi tip statusa</label>
+                        <input type="text" class="form-control" id="descriptionAdd" name="description">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="detailsAdd" class="col-form-label">Detalji</label>
+                        <input type="text-area" class="form-control" id="detailsAdd" name="details">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Sacuvaj</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+            </div>
+
+            <!--            <div class="modal-footer">-->
+            <!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+            <!--                <button type="button" class="btn btn-primary">Send message</button>-->
+            <!--            </div>-->
+        </div>
+    </div>
+</div>
+
+
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>

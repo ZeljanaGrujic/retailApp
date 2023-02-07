@@ -1,12 +1,15 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
 import fon.bg.ac.rs.retailApp.models.Country;
+import fon.bg.ac.rs.retailApp.models.Location;
 import fon.bg.ac.rs.retailApp.servicesImpl.CountryServiceImpl;
+import fon.bg.ac.rs.retailApp.servicesImpl.LocationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +19,9 @@ public class CountryController {
     @Autowired
     private CountryServiceImpl countryServiceImpl;
 
+    @Autowired
+    private LocationServiceImpl locationServiceImpl;
+
     @GetMapping("/countries")
     public String getCountries(Model model) {
 
@@ -23,6 +29,7 @@ public class CountryController {
         System.out.println(countries);
         model.addAttribute("countries", countries);
         //ovaj model saljem ka HTML stranici
+        fillLocations();
         return "Country";
     }
 
@@ -55,5 +62,25 @@ public class CountryController {
 //        System.out.println(country);
         countryServiceImpl.deleteById(id);
         return "redirect:/countries";
+    }
+
+    private void fillLocations() {
+        List<Country> countries = countryServiceImpl.getCountries();
+        List<Country> filledCountries = new ArrayList<>();
+        for (Country c : countries) {
+            List<Location> locations = locationServiceImpl.findByCountryid(c.getId());
+            if (!locations.isEmpty()) {
+                c.setLocations(locations);
+            }
+            filledCountries.add(c);
+        }
+        for (Country c : filledCountries) {
+            if (!c.getLocations().isEmpty()) {
+                System.out.println(c.getName());
+                System.out.println(c.getCode());
+                System.out.println(c.getLocations());
+                System.out.println("**********");
+            }
+        }
     }
 }

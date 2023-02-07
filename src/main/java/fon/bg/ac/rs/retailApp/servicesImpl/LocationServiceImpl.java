@@ -35,4 +35,10 @@ public class LocationServiceImpl implements LocationService {
     public void deleteById(int id) {
         locationRepository.deleteById(id);
     }
+
+    @Override
+    public List<Location> findByCountryid(int id) {
+        return locationRepository.findByCountryid(id);
+    }
+
 }

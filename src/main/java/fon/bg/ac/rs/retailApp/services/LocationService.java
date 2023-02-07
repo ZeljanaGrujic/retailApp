@@ -13,4 +13,6 @@ public interface LocationService {
     Optional<Location> findById(int id);
 
     void deleteById(int id);
+
+    List<Location> findByCountryid(int id);
 }

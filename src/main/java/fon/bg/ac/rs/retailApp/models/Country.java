@@ -42,8 +42,5 @@ public class Country {
                 ", name='" + name + '\'' +
                 ", capital='" + capital + '\'' +
                 '}';
-
-        //da mi ne bi bacalo null pointer exception dok ne setujem lokacije vezane za ovu drzavu/region
-        //ovo ce overrajdovati lombokovu anotaciju @Data koja generise sve getere/setere , toString, hash, equals..
     }
 }
