@@ -41,4 +41,5 @@ public class InvoiceBuying {
 
 
     private String specialRemarks;
+    private int totalCost;
 }

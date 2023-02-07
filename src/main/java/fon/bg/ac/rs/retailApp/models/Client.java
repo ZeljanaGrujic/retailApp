@@ -31,10 +31,10 @@ public class Client {
     private String details; //if someone owes something or similar...
 
 
-    @ManyToOne
-    @JoinColumn(name = "countryid", insertable = false, updatable = false)
-    private Country country;
-    private Integer countryid;
+//    @ManyToOne
+//    @JoinColumn(name = "countryid", insertable = false, updatable = false)
+//    private Country country;
+//    private Integer countryid;
 
     @ManyToOne
     @JoinColumn(name = "locationid", insertable = false, updatable = false)

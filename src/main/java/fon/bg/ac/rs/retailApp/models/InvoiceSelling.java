@@ -40,4 +40,5 @@ public class InvoiceSelling {
     private Integer clientid;
 
     private String specialRemarks;
+    private int totalCost;
 }

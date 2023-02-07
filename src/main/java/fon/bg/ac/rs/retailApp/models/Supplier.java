@@ -31,10 +31,10 @@ public class Supplier {
     private String details;
 
 
-    @ManyToOne
-    @JoinColumn(name = "countryid", insertable = false, updatable = false)
-    private Country country;
-    private Integer countryid;
+//    @ManyToOne
+//    @JoinColumn(name = "countryid", insertable = false, updatable = false)
+//    private Country country;
+//    private Integer countryid;
 
     @ManyToOne
     @JoinColumn(name = "locationid", insertable = false, updatable = false)
