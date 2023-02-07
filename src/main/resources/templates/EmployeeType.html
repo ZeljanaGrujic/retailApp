@@ -436,6 +436,52 @@
             </div>
             <!-- page start-->
             <h1> Vrste radnog angazovanja</h1>
+
+
+
+
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"
+                    data-whatever="@mdo">Novi tip zaposlenja
+            </button>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Naziv tipa zaposlenja</th>
+                    <th>Pogledaj detalje</th>
+                    <!--                    <th>Izmeni</th>-->
+                    <!--                    <th>Izbrisi</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="employeeType:${employeeTypes}">
+                    <td th:text="${employeeType.id}"></td>
+                    <td th:text="${employeeType.description}"></td>
+                    <!--                    <td th:text="${textileStatus.details}"></td>-->
+
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-success" id="detailsButton" th:href="@{/employeeTypes/findById/(id=${employeeType.id})}">Detalji</a>
+                        </div>
+                    </td>
+
+
+
+                    <!--                    <td>-->
+                    <!--                        <div class="btn-group">-->
+                    <!--                            <a class="btn btn-primary" th:href="@{/textileModels/findById/(id=${textileModel.id})}" id="editButton">Izmeni</a>-->
+                    <!--                        </div>-->
+                    <!--                    </td>-->
+                    <!--                    <td>-->
+                    <!--                        <div class="btn-group">-->
+                    <!--                            <a id="deleteButton" class="btn btn-danger" th:href="@{/textileModels/deleteById/(id=${textileModel.id})}">Izbrisi</a>-->
+                    <!--                        </div>-->
+                    <!--                    </td>-->
+                </tr>
+                </tbody>
+            </table>
             <!-- page end-->
         </section>
     </section>
@@ -453,6 +499,120 @@
     </div>
 </section>
 <!-- container section end -->
+
+
+<!-- nova forma za dodavanje drzave/regiona -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Dodaj novi tip statusa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/employeeTypes/addNew}" method="post">
+
+                    <!--                    <div class="form-group">-->
+                    <!--                        <label for="idAdd" class="col-form-label">Id:</label>-->
+                    <!--                        <input type="text" class="form-control" id="idAdd" name="id" disabled>-->
+                    <!--                    </div>-->
+
+                    <!--                    <div class="form-group">-->
+                    <!--                        <label for="ddlCountryAdd" class="col-form-label">Country: </label>-->
+                    <!--                        <select class="form-control" id="ddlCountryAdd" name="countryid">-->
+                    <!--                            <option>Odaberi region/drzavu</option>-->
+                    <!--                            <option th:each="country : ${countries}"-->
+                    <!--                                    th:value="${country.id}"-->
+                    <!--                                    th:text="${country.name}">-->
+                    <!--                            </option>-->
+                    <!--                        </select>-->
+                    <!--                    </div>-->
+
+                    <div class="form-group">
+                        <label for="descriptionAdd" class="col-form-label">Novi tip zaposlenja</label>
+                        <input type="text" class="form-control" id="descriptionAdd" name="description">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="detailsAdd" class="col-form-label">Detalji</label>
+                        <textarea type="text-area" class="form-control" id="detailsAdd" name="details"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Sacuvaj</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+            </div>
+
+            <!--            <div class="modal-footer">-->
+            <!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+            <!--                <button type="button" class="btn btn-primary">Send message</button>-->
+            <!--            </div>-->
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Detalji</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="col-form-label">Id:</label>
+                        <input type="text" class="form-control" id="idDetails" name="id" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Status:</label>
+                        <input type="text" class="form-control" id="descriptionDetails" name="description" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="detailsDetails" class="col-form-label">Dodatni detalji:</label>
+                        <textarea type="text" class="form-control" id="detailsDetails" name="details" required></textarea>
+                    </div>
+
+                    <!--                    <div class="form-group">-->
+                    <!--                        <label class="col-form-label">Last Updated By:</label>-->
+                    <!--                        <input type="text" class="form-control" id="lastModifiedByDetails" name="lastModifiedBy" readonly>-->
+                    <!--                    </div>-->
+
+                    <!--                    <div class="form-group">-->
+                    <!--                        <label class="col-form-label">Last Updated On:</label>-->
+                    <!--                        <input type="text" class="form-control" id="lastModifiedDateDetails" name="lastModifiedDate" readonly>-->
+                    <!--                    </div>-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -461,6 +621,7 @@
 <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
 <!--custome script for all page-->
 <script src="js/scripts.js"></script>
+<script src="js/EmployeeType.js"></script>
 
 
 </body>

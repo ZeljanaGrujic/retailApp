@@ -2,15 +2,16 @@ package fon.bg.ac.rs.retailApp.controllers;
 
 import fon.bg.ac.rs.retailApp.models.TextileModel;
 import fon.bg.ac.rs.retailApp.models.TextileStatus;
+import fon.bg.ac.rs.retailApp.models.TextileType;
 import fon.bg.ac.rs.retailApp.servicesImpl.TextileModelServiceImpl;
 import fon.bg.ac.rs.retailApp.servicesImpl.TextileStatusServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class TextileStatusController {
@@ -33,5 +34,13 @@ public class TextileStatusController {
         TextileStatus savedTextileStatus = textileStatusServiceImpl.saveTextileStatus(textileStatus);
         System.out.println(textileStatus.getId());
         return "redirect:/textileStatuses";
+    }
+
+    @RequestMapping(value = "/textileStatuses/findById/", params = {"id"}, method = RequestMethod.GET)
+    @ResponseBody
+    public Optional<TextileStatus> findById(@RequestParam("id") Integer id) {
+        Optional<TextileStatus> textileStatus = textileStatusServiceImpl.findById(id);
+        System.out.println(textileStatus);
+        return textileStatusServiceImpl.findById(id);
     }
 }

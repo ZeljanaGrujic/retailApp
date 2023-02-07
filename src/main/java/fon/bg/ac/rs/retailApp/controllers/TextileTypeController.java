@@ -1,6 +1,7 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
 import fon.bg.ac.rs.retailApp.models.Country;
+import fon.bg.ac.rs.retailApp.models.InvoiceStatus;
 import fon.bg.ac.rs.retailApp.models.Location;
 import fon.bg.ac.rs.retailApp.models.TextileType;
 import fon.bg.ac.rs.retailApp.repositories.TextileTypeRepository;
@@ -62,4 +63,5 @@ public class TextileTypeController {
         textileTypeServiceImpl.deleteById(id);
         return "redirect:/textileTypes";
     }
+
 }

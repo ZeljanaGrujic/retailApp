@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TextileStatusServiceImpl implements TextileStatusService {
@@ -22,5 +23,10 @@ public class TextileStatusServiceImpl implements TextileStatusService {
     @Override
     public TextileStatus saveTextileStatus(TextileStatus textileStatus) {
         return textileStatusRepository.save(textileStatus);
+    }
+
+    @Override
+    public Optional<TextileStatus> findById(int id) {
+        return textileStatusRepository.findById(id);
     }
 }
