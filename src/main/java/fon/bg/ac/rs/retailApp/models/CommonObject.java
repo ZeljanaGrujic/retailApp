@@ -16,7 +16,7 @@ import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class CommonObject extends Auditable<String> {
+public class CommonObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

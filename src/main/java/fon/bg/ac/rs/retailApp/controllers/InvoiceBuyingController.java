@@ -1,12 +1,79 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
+import fon.bg.ac.rs.retailApp.models.InvoiceBuying;
+import fon.bg.ac.rs.retailApp.models.InvoiceStatus;
+import fon.bg.ac.rs.retailApp.models.Location;
+import fon.bg.ac.rs.retailApp.models.Supplier;
+import fon.bg.ac.rs.retailApp.servicesImpl.InvoiceBuyingServiceImpl;
+import fon.bg.ac.rs.retailApp.servicesImpl.InvoiceStatusServiceImpl;
+import fon.bg.ac.rs.retailApp.servicesImpl.LocationServiceImpl;
+import fon.bg.ac.rs.retailApp.servicesImpl.SupplierServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class InvoiceBuyingController {
+
+    @Autowired
+    private SupplierServiceImpl supplierServiceImpl;
+
+    @Autowired
+    private InvoiceBuyingServiceImpl invoiceBuyingServiceImpl;
+
+    @Autowired
+    private InvoiceStatusServiceImpl invoiceStatusServiceImpl;
+
+
     @GetMapping("/invoicesBuying")
-    public String getInvoicesBuying() {
+    public String getInvoicesBuying(Model model) {
+
+        List<InvoiceBuying> invoiceBuyings = invoiceBuyingServiceImpl.getInvoicesBuying();
+        List<Supplier> suppliers=supplierServiceImpl.getSuppliers();
+        List<InvoiceStatus>invoiceStatuses=invoiceStatusServiceImpl.getInvoiceStatuses();
+        System.out.println(invoiceBuyings);
+        System.out.println(suppliers);
+        System.out.println(invoiceStatuses);
+        model.addAttribute("invoiceBuyings", invoiceBuyings);
+        model.addAttribute("suppliers", suppliers);
+        model.addAttribute("invoiceStatuses", invoiceStatuses);
+        //ovaj model saljem ka HTML stranici
         return "InvoiceBuying";
     }
+
+    @PostMapping("/invoicesBuying/addNew")
+    public String addBew(InvoiceBuying invoiceBuying) {
+        InvoiceBuying saved = invoiceBuyingServiceImpl.saveInvoiceBuying(invoiceBuying);
+        System.out.println(saved.getId());
+        return "redirect:/invoicesBuying";
+    }
+
+    @RequestMapping(value = "/invoicesBuying/findById/", params = {"id"}, method = RequestMethod.GET)
+    @ResponseBody
+    public Optional<InvoiceBuying> findById(@RequestParam("id") Integer id) {
+        Optional<InvoiceBuying> invoiceBuying = invoiceBuyingServiceImpl.findById(id);
+        System.out.println(invoiceBuying);
+        return invoiceBuyingServiceImpl.findById(id);
+    }
+
+    @RequestMapping(value = "/invoicesBuying/update", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String update(InvoiceBuying invoiceBuying) {
+        InvoiceBuying updated = invoiceBuyingServiceImpl.saveInvoiceBuying(invoiceBuying);
+        System.out.println(updated.getId());
+        return "redirect:/invoicesBuying";
+    }
+
+
+//    @RequestMapping(value = "/suppliers/deleteById/", params = {"id"}, method = {RequestMethod.DELETE, RequestMethod.GET})
+//    public String deleteById(@RequestParam("id") Integer id) {
+////        Optional<Location> location = locationServiceImpl.findById(id);
+////        System.out.println(country);
+//        supplierServiceImpl.deleteById(id);
+//        return "redirect:/suppliers";
+//    }
+
 }
