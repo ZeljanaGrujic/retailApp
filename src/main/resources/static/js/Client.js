@@ -15,18 +15,23 @@ $('document').ready(function() {
 		$('#editModal').modal();
 	});
 
-//	$('.table #detailsButton').on('click',function(event) {
-//		event.preventDefault();
-//		var href= $(this).attr('href');
-//		$.get(href, function(jobTitle, status){
-//			$('#idDetails').val(jobTitle.id);
-//			$('#descriptionDetails').val(jobTitle.description);
-//			$('#detailsDetails').val(jobTitle.details);
-////			$('#lastModifiedByDetails').val(country.lastModifiedBy);
-////			$('#lastModifiedDateDetails').val(country.lastModifiedDate.substr(0,19).replace("T", " "));
-//		});
-//		$('#detailsModal').modal();
-//	});
+	$('.table #detailsButton').on('click',function(event) {
+		event.preventDefault();
+		var href= $(this).attr('href');
+		$.get(href, function(client, status){
+				$('#idDetails').val(client.id);
+            	$('#nameDetails').val(client.name);
+           		$('#surnameDetails').val(client.surname);
+            	$('#emailDetails').val(client.email);
+            	$('#phoneDetails').val(client.phone);
+            	$('#cityDetails').val(client.location.city);
+            	$('#locationDetails').val(client.location.address);
+            	$('#detailsDetails').val(client.details);
+//			$('#lastModifiedByDetails').val(country.lastModifiedBy);
+//			$('#lastModifiedDateDetails').val(country.lastModifiedDate.substr(0,19).replace("T", " "));
+		});
+		$('#detailsModal').modal();
+	});
 
 	$('.table #deleteButton').on('click',function(event) {
 		event.preventDefault();

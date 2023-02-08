@@ -447,7 +447,7 @@
                     <th>Id</th>
                     <th>Ime</th>
                     <th>Prezime</th>
-                    <th>Mesto prebivalista</th>
+                    <th>Region/drzava</th>
                     <th>Izmeni</th>
                     <th>Pogledaj detalje</th>
                     <th>Izbrisi</th>
@@ -458,7 +458,7 @@
                     <td th:text="${client.id}"></td>
                     <td th:text="${client.name}"></td>
                     <td th:text="${client.surname}"></td>
-                    <td th:text="${client.location.address}"></td>
+                    <td th:text="${client.location.country.name}"></td>
                     <!--                    <td th:text="${jobTitle.details}"></td>-->
                     <td>
                         <div class="btn-group">
@@ -543,7 +543,7 @@
                                 <div class="form-group row">
                                     <label for="txtEmailAdd" class="col-sm-4 col-form-label">E-mail </label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="txtEmailAdd" name="email" placeholder="e-mail">
+                                        <input type="email" class="form-control" id="txtEmailAdd" name="email" placeholder="e-mail" multiple>
                                     </div>
                                 </div>
 
@@ -629,7 +629,7 @@
                                     <div class="form-group row">
                                         <label for="txtEmailEdit" class="col-sm-4 col-form-label">E-mail </label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="txtEmailEdit" name="email">
+                                            <input type="email" class="form-control" id="txtEmailEdit" name="email" multiple>
                                         </div>
                                     </div>
 
@@ -676,6 +676,90 @@
         </div>
     </form>
 </div>
+
+
+
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Detalji</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="col-form-label">Id:</label>
+                        <input type="text" class="form-control" id="idDetails" name="id" readonly>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="nameDetails" class="col-sm-4 col-form-label">Ime </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="nameDetails" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="surnameDetails" class="col-sm-4 col-form-label">Prezime </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="surnameDetails" name="surname">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="emailDetails" class="col-sm-4 col-form-label">E-mail </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="emailDetails" name="email">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="phoneDetails" class="col-sm-4 col-form-label">Kontakt telefon </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="phoneDetails" name="phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="cityDetails" class="col-sm-4 col-form-label">Grad </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="cityDetails" name="city">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="locationDetails" class="col-sm-4 col-form-label">Mesto prebivalista </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="locationDetails" name="address">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="detailsDetails" class="col-form-label">Dodatni detalji:</label>
+                        <textarea type="text" class="form-control" id="detailsDetails" name="details" required></textarea>
+                    </div>
+
+                    <!--                    <div class="form-group">-->
+                    <!--                        <label class="col-form-label">Last Updated By:</label>-->
+                    <!--                        <input type="text" class="form-control" id="lastModifiedByDetails" name="lastModifiedBy" readonly>-->
+                    <!--                    </div>-->
+
+                    <!--                    <div class="form-group">-->
+                    <!--                        <label class="col-form-label">Last Updated On:</label>-->
+                    <!--                        <input type="text" class="form-control" id="lastModifiedDateDetails" name="lastModifiedDate" readonly>-->
+                    <!--                    </div>-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 
 <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
     <div class="modal-dialog" role="document">

@@ -434,6 +434,52 @@
             </div>
             <!-- page start-->
             <h1> Lista dobavljaca</h1>
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"
+                    data-whatever="@mdo">Dodaj dobavljaca
+            </button>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Ime i prezime</th>
+                    <th>Naziv firme</th>
+                    <th>Region/drzava</th>
+                    <th>Izmeni</th>
+                    <th>Pogledaj detalje</th>
+                    <th>Izbrisi</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="supplier : ${suppliers}">
+                    <td th:text="${supplier.id}"></td>
+                    <td th:text="${supplier.fullName}"></td>
+                    <td th:text="${supplier.companyName}"></td>
+                    <td th:text="${supplier.location.country.name}"></td>
+                    <!--                    <td th:text="${jobTitle.details}"></td>-->
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-primary" th:href="@{/suppliers/findById/(id=${supplier.id})}" id="editButton">Izmeni</a>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-success" id="detailsButton" th:href="@{/suppliers/findById/(id=${supplier.id})}">Detalji</a>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="btn-group">
+                            <a id="deleteButton" class="btn btn-danger" th:href="@{/suppliers/deleteById/(id=${supplier.id})}">Izbrisi</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
             <!-- page end-->
         </section>
     </section>
@@ -451,6 +497,287 @@
     </div>
 </section>
 <!-- container section end -->
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form th:action="@{/suppliers/addNew}" method="post">
+        <div class="modal-dialog modal-lg" role="document" style="width:70%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Dodaj novog dobavljaca</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <table width="100%">
+                        <tr>
+                            <td width="50%">
+
+                                <div class="form-group row">
+                                    <label for="txtIdAdd" class="col-sm-4 col-form-label">Id: </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="txtIdAdd" name="id" placeholder="Id" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="txtNameAdd" class="col-sm-4 col-form-label">Ime i prezime</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="txtNameAdd" name="fullName" placeholder="Ime i prezime">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="txtCompanyNameAdd" class="col-sm-4 col-form-label">Naziv firme</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="txtCompanyNameAdd" name="companyName" placeholder="Firma">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="txtEmailAdd" class="col-sm-4 col-form-label">E-mail </label>
+                                    <div class="col-sm-6">
+                                        <input type="email" class="form-control" id="txtEmailAdd" name="email" placeholder="e-mail" multiple>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td width="50%" style="padding-left:10px">
+                                <div class="form-group row">
+                                    <label for="ddlLocationAdd" class="col-sm-4 col-form-label">Lokacija</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" id="ddlLocationAdd" name="locationid">
+                                            <option>Izaberi lokaciju</option>
+                                            <option th:each="location : ${locations}"
+                                                    th:value="${location.id}"
+                                                    th:text="${location.address}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="txtPhoneAdd" class="col-sm-4 col-form-label">Kontakt telefon </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="txtPhoneAdd" name="phone" placeholder="Kontakt telefon">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="txtDetailsAdd" class="col-sm-4 col-form-label">Detalji: </label>
+                                    <div class="col-sm-6">
+                                        <textarea type="text" class="form-control" id="txtDetailsAdd" name="details" placeholder="Detalji"></textarea>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Sacuvaj</button>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                    <!--                    <button type="submit" class="btn btn-primary">Save</button>-->
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form th:action="@{/suppliers/update}" method="put">
+        <div class="modal-dialog modal-lg" role="document" style="width:70%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleEditModalLabel">Izmeni</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <table width="100%">
+                            <tr>
+                                <td width="50%">
+
+                                    <div class="form-group row">
+                                        <label for="txtIdEdit" class="col-sm-4 col-form-label">Id: </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="txtIdEdit" name="id" placeholder="Id" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="txtNameEdit" class="col-sm-4 col-form-label">Ime i prezime</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="txtNameEdit" name="fullName" placeholder="Ime i prezime">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="txtCompanyNameEdit" class="col-sm-4 col-form-label">Naziv firme</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="txtCompanyNameEdit" name="companyName" placeholder="Firma">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="txtEmailEdit" class="col-sm-4 col-form-label">E-mail </label>
+                                        <div class="col-sm-6">
+                                            <input type="email" class="form-control" id="txtEmailEdit" name="email" multiple>
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td width="50%" style="padding-left:10px">
+                                    <div class="form-group row">
+                                        <label for="ddlLocationEdit" class="col-sm-4 col-form-label">Lokacija</label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" id="ddlLocationEdit" name="locationid">
+                                                <option>Izaberi lokaciju</option>
+                                                <option th:each="location : ${locations}"
+                                                        th:value="${location.id}"
+                                                        th:text="${location.address}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="txtPhoneEdit" class="col-sm-4 col-form-label">Kontakt telefon </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="txtPhoneEdit" name="phone">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="txtDetailsEdit" class="col-sm-4 col-form-label">Detalji: </label>
+                                        <div class="col-sm-6">
+                                            <textarea type="text" class="form-control" id="txtDetailsEdit" name="details" ></textarea>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Sacuvaj izmene</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                    <!--                    <button type="submit" class="btn btn-primary">Save</button>-->
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Detalji</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="col-form-label">Id:</label>
+                        <input type="text" class="form-control" id="idDetails" name="id" readonly>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="fullNameDetails" class="col-sm-4 col-form-label">Ime i prezime</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="fullNameDetails" name="fullName" placeholder="Ime i prezime">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="companyNameDetails" class="col-sm-4 col-form-label">Naziv firme</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="companyNameDetails" name="companyName" placeholder="Firma">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="emailDetails" class="col-sm-4 col-form-label">E-mail </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="emailDetails" name="email">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="phoneDetails" class="col-sm-4 col-form-label">Kontakt telefon </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="phoneDetails" name="phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="cityDetails" class="col-sm-4 col-form-label">Grad </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="cityDetails" name="city">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="locationDetails" class="col-sm-4 col-form-label">Mesto prebivalista </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="locationDetails" name="address">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="detailsDetails" class="col-form-label">Dodatni detalji:</label>
+                        <textarea type="text" class="form-control" id="detailsDetails" name="details" required></textarea>
+                    </div>
+
+                    <!--                    <div class="form-group">-->
+                    <!--                        <label class="col-form-label">Last Updated By:</label>-->
+                    <!--                        <input type="text" class="form-control" id="lastModifiedByDetails" name="lastModifiedBy" readonly>-->
+                    <!--                    </div>-->
+
+                    <!--                    <div class="form-group">-->
+                    <!--                        <label class="col-form-label">Last Updated On:</label>-->
+                    <!--                        <input type="text" class="form-control" id="lastModifiedDateDetails" name="lastModifiedDate" readonly>-->
+                    <!--                    </div>-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Brisanje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Da li sigurno zelite da izbrisete ove podatke?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-primary" id="confirmDeleteButton">Izbrisi</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -459,6 +786,7 @@
 <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
 <!--custome script for all page-->
 <script src="js/scripts.js"></script>
+<script src="js/Supplier.js"></script>
 
 
 </body>
