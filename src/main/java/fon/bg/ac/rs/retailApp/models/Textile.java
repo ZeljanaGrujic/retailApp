@@ -27,7 +27,7 @@ public class Textile {
     @Column(name = "id")
     private Integer id;
     private String uniqueCode;
-    private double piecePrice;
+    private int piecePrice;
     private String specialDescription;
     private int availableQuantity;
     private String photo;

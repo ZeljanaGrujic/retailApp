@@ -7,10 +7,7 @@ import java.util.Date;
 //import javax.persistence.ManyToOne;
 //import javax.persistence.Table;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -30,6 +27,8 @@ public class Employee extends Person {
     @JoinColumn(name = "employeetypeid", insertable = false, updatable = false)
     private EmployeeType employeeType;
     private Integer employeetypeid;
+
+    @Lob
     private String photo;
     private String username;
 

@@ -1,9 +1,7 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
-import fon.bg.ac.rs.retailApp.models.Client;
 import fon.bg.ac.rs.retailApp.models.Location;
 import fon.bg.ac.rs.retailApp.models.Supplier;
-import fon.bg.ac.rs.retailApp.servicesImpl.ClientServiceImpl;
 import fon.bg.ac.rs.retailApp.servicesImpl.LocationServiceImpl;
 import fon.bg.ac.rs.retailApp.servicesImpl.SupplierServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

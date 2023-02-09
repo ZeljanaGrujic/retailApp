@@ -1,9 +1,6 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
-import fon.bg.ac.rs.retailApp.models.TextileModel;
 import fon.bg.ac.rs.retailApp.models.TextileStatus;
-import fon.bg.ac.rs.retailApp.models.TextileType;
-import fon.bg.ac.rs.retailApp.servicesImpl.TextileModelServiceImpl;
 import fon.bg.ac.rs.retailApp.servicesImpl.TextileStatusServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

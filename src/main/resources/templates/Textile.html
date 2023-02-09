@@ -434,6 +434,58 @@
             </div>
             <!-- page start-->
             <h1> Lista proizvoda</h1>
+
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"
+                    data-whatever="@mdo">Novi proizvod
+            </button>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Kategorija</th>
+                    <th>Model</th>
+                    <th>Marka</th>
+                    <th>Jedinstveni serijski kod</th>
+                    <th>Status</th>
+                    <th>Dobavljac</th>
+                    <th>Izmeni</th>
+                    <th>Pogledaj detalje</th>
+                    <th>Izbrisi</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="textile : ${textiles}">
+                    <td th:text="${textile.id}"></td>
+                    <td th:text="${textile.textileType.description}"></td>
+                    <td th:text="${textile.textileModel.description}"></td>
+                    <td th:text="${textile.textleMake.description}"></td>
+                    <td th:text="${textile.uniqueCode}"></td>
+                    <td th:text="${textile.textileStatus.description}"></td>
+                    <td th:text="${textile.supplier.fullName}"></td>
+                    <!--                    <td th:text="${client.surname}"></td>-->
+                    <!--                    <td th:text="${jobTitle.details}"></td>-->
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-primary" th:href="@{/textiles/findById/(id=${textile.id})}" id="editButton">Izmeni</a>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-success" id="detailsButton" th:href="@{/textiles/findById/(id=${textile.id})}">Detalji</a>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="btn-group">
+                            <a id="deleteButton" class="btn btn-danger" th:href="@{/textiles/deleteById/(id=${textile.id})}">Izbrisi</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
             <!-- page end-->
         </section>
     </section>
@@ -451,6 +503,465 @@
     </div>
 </section>
 <!-- container section end -->
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form th:action="@{/textiles/addNew}" method="post">
+        <div class="modal-dialog modal-lg" role="document" style="width:70%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Dodaj novi proizvod</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <table width="100%">
+                        <tr>
+                            <td width="50%">
+
+                                <div class="form-group row">
+                                    <label for="txtIdAdd" class="col-sm-4 col-form-label">Id: </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="txtIdAdd" name="id" placeholder="Id" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="txtUniqueCodeAdd" class="col-sm-4 col-form-label">Jedinstveni kod serije</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="txtUniqueCodeAdd" name="uniqueCode" placeholder="Npr. G45Ted9Pp">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="ddlTypeAdd" class="col-sm-4 col-form-label">Kategorija proizvoda</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" id="ddlTypeAdd" name="textiletypeid">
+                                            <option>Izaberi kategoriju</option>
+                                            <option th:each="textileType : ${textileTypes}"
+                                                    th:value="${textileType.id}"
+                                                    th:text="${textileType.description}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="ddlModelAdd" class="col-sm-4 col-form-label">Model proizvoda</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" id="ddlModelAdd" name="textilemodelid">
+                                            <option>Izaberi model</option>
+                                            <option th:each="textileModel : ${textileModels}"
+                                                    th:value="${textileModel.id}"
+                                                    th:text="${textileModel.description}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="ddlMakeAdd" class="col-sm-4 col-form-label">Marka proizvoda</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" id="ddlMakeAdd" name="textilemakeid">
+                                            <option>Izaberi marku</option>
+                                            <option th:each="textileMake : ${textileMakes}"
+                                                    th:value="${textileMake.id}"
+                                                    th:text="${textileMake.description}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="ddlSupplierlAdd" class="col-sm-4 col-form-label">Dobavljac/proizvodjac</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" id="ddlSupplierlAdd" name="supplierid">
+                                            <option>Izaberi dobavljaca</option>
+                                            <option th:each="supplier : ${suppliers}"
+                                                    th:value="${supplier.id}"
+                                                    th:text="${supplier.fullName}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+<!--                                <div class="form-group row">-->
+<!--                                    <label for="flpImageAdd" class="col-sm-4 col-form-label">Izaberite sliku proizvoda: </label>-->
+<!--                                    <div class="col-sm-6">-->
+<!--                                        <input type="file" class="form-control-file" id="flpImageAdd" name="photo" placeholder="Slika">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+
+                            </td>
+                            <td width="50%" style="padding-left:10px">
+
+                                <div class="form-group row">
+                                    <label for="txtQuantityAdd" class="col-sm-4 col-form-label">Dostupna kolicina</label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" id="txtQuantityAdd" name="availableQuantity">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="txtPriceAdd" class="col-sm-4 col-form-label">Cena po komadu</label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" id="txtPriceAdd" name="piecePrice" placeholder="Cena po komadu">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="ddlStatusAdd" class="col-sm-4 col-form-label">Status</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" id="ddlStatusAdd" name="textilestatusid">
+                                            <option>Oznaci status</option>
+                                            <option th:each="textileStatus : ${textileStatuses}"
+                                                    th:value="${textileStatus.id}"
+                                                    th:text="${textileStatus.description}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label for="txtSpecDescriptionAdd" class="col-sm-4 col-form-label">Dodatni detalji:</label>
+                                    <div class="col-sm-6">
+                                        <textarea type="text" class="form-control" id="txtSpecDescriptionAdd" name="specialDescription"></textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label for="txtDateAdd" class="col-sm-4 col-form-label">Datum kupovine</label>
+                                    <div class="col-sm-6">
+                                        <input type="date" class="form-control" id="txtDateAdd" name="acquisitionDate">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="ddlEmployeeAdd" class="col-sm-4 col-form-label">Odgovorni zaposleni</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" id="ddlEmployeeAdd" name="employeeid">
+                                            <option>Odaberite odgovornog zaposlenog</option>
+                                            <option th:each="employee : ${employees}"
+                                                    th:value="${employee.id}"
+                                                    th:text="${employee.nickname}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Sacuvaj</button>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                    <!--                    <button type="submit" class="btn btn-primary">Save</button>-->
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form th:action="@{/textiles/update}" method="put">
+        <div class="modal-dialog modal-lg" role="document" style="width:70%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleEditModalLabel">Izmeni</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <table width="100%">
+                            <tr>
+                                <td width="50%">
+
+                                    <div class="form-group row">
+                                        <label for="txtIdEdit" class="col-sm-4 col-form-label">Id: </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="txtIdEdit" name="id" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="txtUniqueCodeEdit" class="col-sm-4 col-form-label">Jedinstveni kod serije</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="txtUniqueCodeEdit" name="uniqueCode" placeholder="Npr. G45Ted9Pp">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="ddlTypeEdit" class="col-sm-4 col-form-label">Kategorija proizvoda</label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" id="ddlTypeEdit" name="textiletypeid">
+                                                <option>Izaberi kategoriju</option>
+                                                <option th:each="textileType : ${textileTypes}"
+                                                        th:value="${textileType.id}"
+                                                        th:text="${textileType.description}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="ddlModelEdit" class="col-sm-4 col-form-label">Model proizvoda</label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" id="ddlModelEdit" name="textilemodelid">
+                                                <option>Izaberi model</option>
+                                                <option th:each="textileModel : ${textileModels}"
+                                                        th:value="${textileModel.id}"
+                                                        th:text="${textileModel.description}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="ddlMakeEdit" class="col-sm-4 col-form-label">Marka proizvoda</label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" id="ddlMakeEdit" name="textilemakeid">
+                                                <option>Izaberi marku</option>
+                                                <option th:each="textileMake : ${textileMakes}"
+                                                        th:value="${textileMake.id}"
+                                                        th:text="${textileMake.description}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="ddlSupplierlEdit" class="col-sm-4 col-form-label">Dobavljac/proizvodjac</label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" id="ddlSupplierlEdit" name="supplierid">
+                                                <option>Izaberi dobavljaca</option>
+                                                <option th:each="supplier : ${suppliers}"
+                                                        th:value="${supplier.id}"
+                                                        th:text="${supplier.fullName}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+<!--                                    <div class="form-group row">-->
+<!--                                        <label for="flpImageEdit" class="col-sm-4 col-form-label">Izaberite sliku proizvoda: </label>-->
+<!--                                        <div class="col-sm-6">-->
+<!--                                            <input type="file" class="form-control-file" id="flpImageEdit" name="photo" placeholder="Slika">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+                                </td>
+
+                                <td width="50%" style="padding-left:10px">
+
+                                    <div class="form-group row">
+                                        <label for="txtQuantityEdit" class="col-sm-4 col-form-label">Dostupna kolicina</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" class="form-control" id="txtQuantityEdit" name="availableQuantity">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="txtPriceEdit" class="col-sm-4 col-form-label">Cena po komadu</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" class="form-control" id="txtPriceEdit" name="piecePrice" placeholder="Cena po komadu">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="ddlStatusEdit" class="col-sm-4 col-form-label">Status</label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" id="ddlStatusEdit" name="textilestatusid">
+                                                <option>Oznaci status</option>
+                                                <option th:each="textileStatus : ${textileStatuses}"
+                                                        th:value="${textileStatus.id}"
+                                                        th:text="${textileStatus.description}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label for="txtSpecDescriptionEdit" class="col-sm-4 col-form-label">Dodatni detalji:</label>
+                                        <div class="col-sm-6">
+                                            <textarea type="text" class="form-control" id="txtSpecDescriptionEdit" name="specialDescription"></textarea>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label for="txtDateEdit" class="col-sm-4 col-form-label">Datum kupovine</label>
+                                        <div class="col-sm-6">
+                                            <input type="date" class="form-control" id="txtDateEdit" name="acquisitionDate">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="ddlEmployeeEdit" class="col-sm-4 col-form-label">Odgovorni zaposleni</label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" id="ddlEmployeeEdit" name="employeeid">
+                                                <option>Odaberite odgovornog zaposlenog</option>
+                                                <option th:each="employee : ${employees}"
+                                                        th:value="${employee.id}"
+                                                        th:text="${employee.nickname}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Sacuvaj izmene</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                    <!--                    <button type="submit" class="btn btn-primary">Save</button>-->
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Detalji</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="col-form-label">Id:</label>
+                        <input type="text" class="form-control" id="idDetails" name="id" readonly>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="quantityDetails" class="col-sm-4 col-form-label">Dostupna kolicina</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="quantityDetails" name="availableQuantity">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="statusTypeDetails" class="col-sm-4 col-form-label">Status</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="statusTypeDetails" name="description">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="statusMeaningDetails" class="col-sm-4 col-form-label">Status - detalji</label>
+                        <div class="col-sm-6">
+                            <textarea type="text" class="form-control" id="statusMeaningDetails" name="details"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="dateDetails" class="col-sm-4 col-form-label">Datum kupovine</label>
+                        <div class="col-sm-6">
+                            <input type="date" class="form-control" id="dateDetails" name="acquisitionDate">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="priceDetails" class="col-sm-4 col-form-label">Cena po komadu</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="priceDetails" name="piecePrice" placeholder="Cena po komadu">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="specialDescriptionDetails" class="col-sm-4 col-form-label">Dodatni detalji:</label>
+                        <div class="col-sm-6">
+                            <textarea type="text" class="form-control" id="specialDescriptionDetails" name="specialDescription"></textarea>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label for="supplierDetails" class="col-sm-4 col-form-label">Dobavljac</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="supplierDetails" name="fullName">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="companyDetails" class="col-sm-4 col-form-label">Firma dobavljaca</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="companyDetails" name="companyName">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneDetails" class="col-form-label">Kontakt telefon</label>
+                        <textarea type="text" class="form-control" id="phoneDetails" name="phone" required></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+<div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Brisanje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Da li sigurno zelite da izbrisete ove podatke?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-primary" id="confirmDeleteButton">Izbrisi</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -459,6 +970,7 @@
 <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
 <!--custome script for all page-->
 <script src="js/scripts.js"></script>
+<script src="js/Textile.js"></script>
 
 
 </body>

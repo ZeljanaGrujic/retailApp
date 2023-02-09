@@ -28,11 +28,11 @@ public class Person {
     private String firstname;
     private String lastname;
     private String nickname;
-    private String gender;
-    private String title;
+   // private String gender;
+    //    private String title;
     //    private String initials;
     private String jmbg;
-    private String maritalStatus;
+    //    private String maritalStatus;
     private String phone;
     private String email;
     private String photo;

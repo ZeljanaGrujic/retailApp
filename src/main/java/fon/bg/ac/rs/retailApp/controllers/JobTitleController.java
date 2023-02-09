@@ -1,9 +1,6 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
-import fon.bg.ac.rs.retailApp.models.EmployeeType;
 import fon.bg.ac.rs.retailApp.models.JobTitle;
-import fon.bg.ac.rs.retailApp.repositories.JobTitleRepository;
-import fon.bg.ac.rs.retailApp.servicesImpl.EmployeeTypeServiceImpl;
 import fon.bg.ac.rs.retailApp.servicesImpl.JobTitleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

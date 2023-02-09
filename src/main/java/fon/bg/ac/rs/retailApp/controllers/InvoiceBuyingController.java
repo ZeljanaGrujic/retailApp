@@ -2,11 +2,9 @@ package fon.bg.ac.rs.retailApp.controllers;
 
 import fon.bg.ac.rs.retailApp.models.InvoiceBuying;
 import fon.bg.ac.rs.retailApp.models.InvoiceStatus;
-import fon.bg.ac.rs.retailApp.models.Location;
 import fon.bg.ac.rs.retailApp.models.Supplier;
 import fon.bg.ac.rs.retailApp.servicesImpl.InvoiceBuyingServiceImpl;
 import fon.bg.ac.rs.retailApp.servicesImpl.InvoiceStatusServiceImpl;
-import fon.bg.ac.rs.retailApp.servicesImpl.LocationServiceImpl;
 import fon.bg.ac.rs.retailApp.servicesImpl.SupplierServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
