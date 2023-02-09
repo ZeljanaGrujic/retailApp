@@ -32,15 +32,15 @@ public class InvoiceSellingController {
     @GetMapping("/invoicesSelling")
     public String getInvoicesSelling(Model model) {
 
-        List<InvoiceSelling> invoices = invoiceSellingServiceImpl.getInvoicesSelling();
+        List<InvoiceSelling> invoiceSellings = invoiceSellingServiceImpl.getInvoicesSelling();
         List<Client> clients=clientServiceImpl.getClients();
-        List<InvoiceStatus>statuses=invoiceStatusServiceImpl.getInvoiceStatuses();
-        System.out.println(invoices);
+        List<InvoiceStatus>invoiceStatuses=invoiceStatusServiceImpl.getInvoiceStatuses();
+        System.out.println(invoiceSellings);
         System.out.println(clients);
-        System.out.println(statuses);
-        model.addAttribute("invoices", invoices);
+        System.out.println(invoiceStatuses);
+        model.addAttribute("invoiceSellings", invoiceSellings);
         model.addAttribute("clients", clients);
-        model.addAttribute("statuses", statuses);
+        model.addAttribute("invoiceStatuses", invoiceStatuses);
         //ovaj model saljem ka HTML stranici
         return "InvoiceSelling";
     }

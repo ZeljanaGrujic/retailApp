@@ -346,7 +346,7 @@
                         <li><a class="" th:href="@{/textileModels}">Odeca - modeli</a></li>
                         <li><a class="" th:href="@{/textileMakes}">Odeca - marke</a></li>
                         <li><a class="" th:href="@{/textileStatuses}">Odeca - status</a></li>
-<!--                        <li><a class="" th:href="@{/orderedTextiles}">Odeca - narudzbine klijenata</a></li>-->
+                        <!--                        <li><a class="" th:href="@{/orderedTextiles}">Odeca - narudzbine klijenata</a></li>-->
                     </ul>
                 </li>
 
@@ -434,7 +434,56 @@
             </div>
             <!-- page start-->
             <h1> Lista klijentskih faktura</h1>
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"
+                    data-whatever="@mdo"> Nova faktura
+            </button>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Datum kreiranja</th>
+                    <th>Status</th>
+                    <th>Dobavljac</th>
+                    <th>Izmeni</th>
+                    <th>Pogledaj detalje</th>
+                    <!--                    <th>Izbrisi</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="invoiceSelling : ${invoiceSellings}">
+                    <td th:text="${invoiceSelling.id}"></td>
+                    <td th:text="${invoiceSelling.invoiceDate}"></td>
+                    <td th:text="${invoiceSelling.invoiceStatus.description}"></td>
+                    <td th:text="${invoiceSelling.client.fullName}"></td>
+                    <!--                    <td th:text="${jobTitle.details}"></td>-->
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-primary" th:href="@{/invoicesSelling/findById/(id=${invoiceSelling.id})}"
+                               id="editButton">Izmeni</a>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-success" id="detailsButton"
+                               th:href="@{/invoicesSelling/findById/(id=${invoiceSelling.id})}">Detalji</a>
+                        </div>
+                    </td>
+
+                    <!--                    <td>-->
+                    <!--                        <div class="btn-group">-->
+                    <!--                            <a id="deleteButton" class="btn btn-danger" th:href="@{/suppliers/deleteById/(id=${supplier.id})}">Izbrisi</a>-->
+                    <!--                        </div>-->
+                    <!--                    </td>-->
+                </tr>
+                </tbody>
+            </table>
+
+
             <!-- page end-->
+
         </section>
     </section>
     <!--main content end-->
@@ -451,6 +500,296 @@
     </div>
 </section>
 <!-- container section end -->
+
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <form th:action="@{/invoicesSelling/addNew}" method="post">
+        <div class="modal-dialog modal-lg" role="document" style="width:70%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Dodaj novog klijenta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <table width="100%">
+                        <tr>
+                            <td width="50%">
+
+                                <!--                                <div class="form-group row">-->
+                                <!--                                    <label for="txtIdAdd" class="col-sm-4 col-form-label">Id: </label>-->
+                                <!--                                    <div class="col-sm-6">-->
+                                <!--                                        <input type="text" class="form-control" id="txtIdAdd" name="id" placeholder="Id" disabled>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+                                <div class="form-group row">
+                                    <label for="txtDateAdd" class="col-sm-4 col-form-label">Datum</label>
+                                    <div class="col-sm-6">
+                                        <input type="date" class="form-control" id="txtDateAdd" name="invoiceDate"
+                                               placeholder="FORMAT dd-MM-gggg HH:mm:ss">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label for="ddlSupplierAdd" class="col-sm-4 col-form-label">Klijent</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" id="ddlSupplierAdd" name="clientid">
+                                            <option>Klijent za koga se kreira narudzbina:</option>
+                                            <option th:each="client : ${clients}"
+                                                    th:value="${client.id}"
+                                                    th:text="${client.fullName}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="ddlStatusAdd" class="col-sm-4 col-form-label">Status</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" id="ddlStatusAdd" name="invoicestatusid">
+                                            <option>Oznacite status:</option>
+                                            <option th:each="invoiceStatus : ${invoiceStatuses}"
+                                                    th:value="${invoiceStatus.id}"
+                                                    th:text="${invoiceStatus.description}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                            </td>
+                            <td width="50%" style="padding-left:10px">
+
+                                <div class="form-group row">
+                                    <label for="txtSpecialRemarkAdd"
+                                           class="col-sm-4 col-form-label">Detalji/Napomena</label>
+                                    <div class="col-sm-6">
+                                        <textarea type="text" class="form-control" id="txtSpecialRemarkAdd"
+                                                  name="specialRemarks"
+                                                  placeholder="Unesite bitne informacije..."></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="txtTotalCostAdd" class="col-sm-4 col-form-label">Iznos</label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" id="txtTotalCostAdd" name="totalCost"
+                                               placeholder="Iznos"></input>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Sacuvaj</button>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                    <!--                    <button type="submit" class="btn btn-primary">Save</button>-->
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- editModal za izmenu drzave -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleEditModalLabel">Izmeni podatke</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/invoicesSelling/update}" method="put">
+
+                    <div class="form-group">
+                        <label for="idEdit" class="col-form-label">Id</label>
+                        <input type="text" class="form-control" id="idEdit" name="id" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateEdit" class="col-form-label">Datum</label>
+                        <input type="date" class="form-control" id="dateEdit" name="invoiceDate" placeholder="FORMAT dd-MM-gggg HH:mm:ss">
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="supplierEdit" class="col-sm-4 col-form-label">Klijent</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="supplierEdit" name="clientid">
+                                <option>Klijent za koga se kreira narudzbina:</option>
+                                <option th:each="client : ${clients}"
+                                        th:value="${client.id}"
+                                        th:text="${client.fullName}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="statusEdit" class="col-sm-4 col-form-label">Status</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="statusEdit" name="invoicestatusid">
+                                <option>Oznacite status:</option>
+                                <option th:each="invoiceStatus : ${invoiceStatuses}"
+                                        th:value="${invoiceStatus.id}"
+                                        th:text="${invoiceStatus.description}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="specialRemarksEdit" class="col-form-label">Detalji/Napomena</label>
+                        <textarea type="text" class="form-control" id="specialRemarksEdit"
+                                  name="specialRemarks"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="totalCostEdit" class="col-form-label">Iznos</label>
+                        <input type="number" class="form-control" id="totalCostEdit" name="totalCost">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Sacuvaj izmene</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+            </div>
+
+            <!--            <div class="modal-footer">-->
+            <!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+            <!--                <button type="button" class="btn btn-primary">Send message</button>-->
+            <!--            </div>-->
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Detalji</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table width="100%">
+                        <tr>
+                            <td width="50%">
+                                <!--                                <div class="form-group">-->
+                                <!--                                    <label class="col-form-label">Id:</label>-->
+                                <!--                                    <input type="text" class="form-control" id="idDetails" name="id" readonly>-->
+                                <!--                                </div>-->
+
+                                <div class="form-group row">
+                                    <label for="specialRemarkDetails"
+                                           class="col-sm-4 col-form-label">Napomena</label>
+                                    <div class="col-sm-6">
+                                        <textarea type="text" class="form-control" id="specialRemarkDetails"
+                                                  name="specialRemarks" placeholder="Detalji/Napomena.."></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="totalCostDetails" class="col-sm-4 col-form-label">Iznos</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="totalCostDetails" name="totalCost"
+                                               placeholder="Iznos..">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="supplierFullNameDetails"
+                                           class="col-sm-4 col-form-label">Klijent</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="supplierFullNameDetails"
+                                               name="fullName">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="phoneDetails" class="col-sm-4 col-form-label">Kontakt telefon </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="phoneDetails" name="phone">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="companyNameDetails" class="col-sm-4 col-form-label">Detalji
+                                        klijenta</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="companyNameDetails"
+                                               name="details">
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td width="50%" style="padding-left:5px">
+
+                                <div class="form-group row">
+                                    <label for="cityDetails" class="col-sm-4 col-form-label">Grad </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="cityDetails" name="city">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label for="addressDetails" class="col-sm-4 col-form-label">Adresa</label>
+                                    <div class="col-sm-6">
+                                        <textarea type="text" class="form-control" id="addressDetails"
+                                                  name="address"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="regionDetails" class="col-sm-4 col-form-label">Region/Drzava</label>
+                                    <div class="col-sm-6">
+                                        <textarea type="text" class="form-control" id="regionDetails"
+                                                  name="name"></textarea>
+                                    </div>
+                                </div>
+                            </td>
+
+
+                            <!--                    <div class="form-group">-->
+                            <!--                        <label class="col-form-label">Last Updated By:</label>-->
+                            <!--                        <input type="text" class="form-control" id="lastModifiedByDetails" name="lastModifiedBy" readonly>-->
+                            <!--                    </div>-->
+
+                            <!--                    <div class="form-group">-->
+                            <!--                        <label class="col-form-label">Last Updated On:</label>-->
+                            <!--                        <input type="text" class="form-control" id="lastModifiedDateDetails" name="lastModifiedDate" readonly>-->
+                            <!--                    </div>-->
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -459,6 +798,7 @@
 <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
 <!--custome script for all page-->
 <script src="js/scripts.js"></script>
+<script src="js/InvoiceSelling.js"></script>
 
 
 </body>

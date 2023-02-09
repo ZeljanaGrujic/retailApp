@@ -15,13 +15,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "textile_model")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
+//@NoArgsConstructor
+//@AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class TextileModel{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String description;
-    private String details;
+public class TextileModel extends CommonObject{
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Integer id;
+//    private String description;
+//    private String details;
 }

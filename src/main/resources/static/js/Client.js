@@ -1,12 +1,12 @@
 $('document').ready(function() {
 
-	$('#editButton').on('click',function(event){
+	$('.table #editButton').on('click',function(event){
 		event.preventDefault();
 		var href= $(this).attr('href');
 		$.get(href, function(client, status){
 			$('#txtIdEdit').val(client.id);
-			$('#txtNameEdit').val(client.name);
-			$('#txtSurnameEdit').val(client.surname);
+			$('#txtFullNameEdit').val(client.fullName);
+//			$('#txtSurnameEdit').val(client.surname);
 			$('#txtEmailEdit').val(client.email);
 			$('#ddlLocationEdit').val(client.locationid);
 			$('#txtPhoneEdit').val(client.phone);
@@ -20,8 +20,8 @@ $('document').ready(function() {
 		var href= $(this).attr('href');
 		$.get(href, function(client, status){
 				$('#idDetails').val(client.id);
-            	$('#nameDetails').val(client.name);
-           		$('#surnameDetails').val(client.surname);
+            	$('#fullNameDetails').val(client.fullName);
+//           		$('#surnameDetails').val(client.surname);
             	$('#emailDetails').val(client.email);
             	$('#phoneDetails').val(client.phone);
             	$('#cityDetails').val(client.location.city);

@@ -15,15 +15,16 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "invoice_status")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class InvoiceStatus {
+public class InvoiceStatus extends CommonObject{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String description;
-    private String details;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Integer id;
+//    private String description;
+//    private String details;
 
 }

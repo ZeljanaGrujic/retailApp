@@ -5,7 +5,9 @@ $('document').ready(function() {
 		var href= $(this).attr('href');
 		$.get(href, function(invoiceBuying, status){
 			$('#idEdit').val(invoiceBuying.id);
-			$('#dateEdit').val(invoiceBuying.invoiceDate);
+
+			var invoiceDate=invoiceBuying.invoiceDate.substr(0,10);
+			$('#dateEdit').val(invoiceDate);
 //			$('#txtSupplierEdit').val(invoiceBuying.supplier.fullName);
 			$('#supplierEdit').val(invoiceBuying.supplierid);
 			$('#statusEdit').val(invoiceBuying.invoicestatusid);

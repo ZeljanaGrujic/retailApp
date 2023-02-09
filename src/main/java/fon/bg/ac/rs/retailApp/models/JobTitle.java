@@ -15,15 +15,16 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "job_title")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
+//@NoArgsConstructor
+//@AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class JobTitle {
+public class JobTitle extends CommonObject{
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String description;
-    private String details;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Integer id;
+//    private String description;
+//    private String details;
 }

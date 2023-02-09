@@ -22,8 +22,8 @@ public class Client {
     @Column(name = "id")
     private int id;
 
-    private String name;
-    private String surname;
+    private String fullName;
+//    private String surname;
     private String phone;
     private String email;
 //    private String city;
