@@ -281,9 +281,9 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="img/avatar1_small.jpg">
+                                <img alt="" src="img/photos/available.jpg" width="20" height="20">
                             </span>
-                        <span class="username">Biljana Grujic</span>
+                        <span class="username" th:text="${#authentication.getPrincipal().getUsername()}">Gost</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
@@ -301,7 +301,7 @@
 <!--                            <a href="#"><i class="icon_chat_alt"></i> Chats</a>-->
 <!--                        </li>-->
                         <li>
-                            <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                            <a th:href="@{/logout}"><i class="icon_key_alt"></i> Odjavi se</a>
                         </li>
 <!--                        <li>-->
 <!--                            <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>-->
