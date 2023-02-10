@@ -34,4 +34,9 @@ public class TextileServiceImpl implements TextileService {
     public void deleteById(int id) {
         textileRepository.deleteById(id);
     }
+
+    @Override
+    public List<Textile> findByPurpose(String purpose) {
+        return textileRepository.findByPurpose(purpose);
+    }
 }

@@ -7,6 +7,7 @@ $('document').ready(function() {
 			$('#txtIdEdit').val(textile.id);
 			$('#txtUniqueCodeEdit').val(textile.uniqueCode);
 			$('#ddlTypeEdit').val(textile.textiletypeid);
+			$('#ddlUseEdit').val(textile.purpose);
 			$('#ddlModelEdit').val(textile.textilemodelid);
 			$('#ddlMakeEdit').val(textile.textilemakeid);
 			$('#ddlSupplierlEdit').val(textile.supplierid);

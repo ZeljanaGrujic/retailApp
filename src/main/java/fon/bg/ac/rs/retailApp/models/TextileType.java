@@ -17,8 +17,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "textile_type")
 @Data
 @EqualsAndHashCode(callSuper=false)
-//@NoArgsConstructor
-//@AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class TextileType extends CommonObject{
 //    @Id

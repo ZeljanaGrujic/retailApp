@@ -13,4 +13,5 @@ public interface TextileService {
     Optional<Textile> findById(int id);
 
     void deleteById(int id);
+    List<Textile> findByPurpose(String purpose);
 }

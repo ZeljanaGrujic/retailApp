@@ -31,6 +31,7 @@ public class Textile {
     private String specialDescription;
     private int availableQuantity;
     private String photo;
+    private String purpose;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date acquisitionDate; //date for when it arrived at our store
 
