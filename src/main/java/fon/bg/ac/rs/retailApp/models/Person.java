@@ -9,7 +9,8 @@ import java.util.Date;
 //import javax.persistence.ManyToOne;
 //import javax.persistence.MappedSuperclass;
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
+import javax.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;

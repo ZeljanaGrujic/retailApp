@@ -2,12 +2,9 @@ package fon.bg.ac.rs.retailApp.models;
 
 import java.util.Date;
 
-//import javax.persistence.Entity;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.ManyToOne;
-//import javax.persistence.Table;
+import javax.persistence.*;
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;

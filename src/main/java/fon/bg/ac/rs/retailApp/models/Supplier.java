@@ -1,8 +1,8 @@
 package fon.bg.ac.rs.retailApp.models;
 
-//import javax.persistence.*;
+import javax.persistence.*;
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
