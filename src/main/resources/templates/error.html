@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -9,7 +10,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>404 | Creative - Bootstrap 3 Responsive Admin Template</title>
+  <title>Greska</title>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,10 +40,28 @@
 
 <body>
   <div class="page-404">
-    <p class="text-404">404</p>
+    <p class="text-404">GRESKA!</p>
 
-    <h2>Aww Snap!</h2>
-    <p>Something went wrong or that page doesn’t exist yet. <br><a href="index.html">Return Home</a></p>
+    <h2>Ahhhh!</h2>
+    <p>Nesto nije kako treba, ili trazena stranica jos uvek ne postoji!.</p>
+    <p>Gde ste mozda pogresili:
+      <br>
+      0. Kredencijali prilikom prijavljivanja nisu tacni. Proverite korisnicko ime i/ili lozinku.
+      <br>
+      1.Ne mozete obrisati Region/Drzavu? Ovo necete moci da uradite ako postoji lokacija dodata u okviru te Drzave/Regiona.
+      <br>
+      1.1 Kako ovo da resimo? Ukoliko zelite da obrisete podatke o Drzavi/Regionu, pre toga obrisite sve lokacije za tu Drzavu/Region. Ovo se ne preporucuje.
+    <br>
+      2. Ne mozete obrisati kategoriju, marku ili model proizvoda? Ovo necete moci da uradite ako proizvod za koji ste postavili sve ove karakteristike.
+    <br>
+      2.1 Kako ovo da resimo? Ukoliko zelite da obrisete podatke o kategoriji, marki ili modelu morali biste da obrisete sve proizvode. Ovo NIKAKO nije preporucljivo.
+    <br>
+      3. Ne mozete da obrisete klijenta/dobavljaca? Ovo necete moci da uradite ako postoji proizvod ili faktura karakteristicna za njega.
+<br>
+      3.1 2.1 Kako ovo da resimo? Ukoliko zelite da obrisete podatke o klijentu/dobavljacu, morali biste da obrisete sve proizvode/fakture karakteristicne za njega. Ovo NIKAKO nije preporucljivo.
+    <br>
+    </p>
+    <a th:href="@{/login}">Povratak na pocetnu stranicu</a>
   </div>
   <div class="credits">
           <!--
@@ -51,7 +70,7 @@
             Licensing information: https://bootstrapmade.com/license/
             Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
           -->
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+<!--          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>-->
         </div>
 
 

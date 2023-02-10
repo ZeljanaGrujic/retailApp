@@ -23,6 +23,9 @@ public class MyUserDetailsServiceImpl implements UserDetailsService {
         //this user is user created from my model package
         //in spring security we are returning UserPrincipal
         //so we are going to build principal user with this our user
+        if(user==null){
+            throw new UsernameNotFoundException("Korisnik nije pronadjen");
+        }
 
         return new UserPrincipal(user);
     }
