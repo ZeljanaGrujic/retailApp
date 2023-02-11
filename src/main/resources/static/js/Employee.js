@@ -23,6 +23,7 @@ $('document').ready(function() {
 			$('#ddlJobTitleEdit').val(employee.jobtitleid);
 			$('#ddlLocationEdit').val(employee.locationid);
 			$('#ddlCountryEdit').val(employee.countryid);
+			$('#txtUsernameEdit').val(employee.username);
 			//$('#flpImageEdit').val(employee.photo);
 
 		});

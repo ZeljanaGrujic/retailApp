@@ -333,6 +333,8 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" th:href="@{/textiles}">Sva odeca</a></li>
+                        <li><a class="" th:href="@{/upperBodyTextiles}">Gornji delovi odece</a></li>
+                        <li><a class="" th:href="@{/lowerBodyTextiles}">Donji delovi odece</a></li>
                     </ul>
                 </li>
 
@@ -529,7 +531,7 @@
                                 <div class="form-group row">
                                     <label for="txtfullNameAdd" class="col-sm-4 col-form-label">Ime i prezime </label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="txtfullNameAdd" name="fullName" placeholder="Ime i prezime">
+                                        <input type="text" class="form-control" id="txtfullNameAdd" name="fullName" placeholder="Ime i prezime" required>
                                     </div>
                                 </div>
 <!--                                <div class="form-group row">-->
@@ -563,7 +565,7 @@
                                 <div class="form-group row">
                                     <label for="txtPhoneAdd" class="col-sm-4 col-form-label">Kontakt telefon </label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="txtPhoneAdd" name="phone" placeholder="Kontakt telefon">
+                                        <input type="text" class="form-control" id="txtPhoneAdd" name="phone" placeholder="Kontakt telefon" required>
                                     </div>
                                 </div>
 
@@ -615,7 +617,7 @@
                                     <div class="form-group row">
                                         <label for="txtFullNameEdit" class="col-sm-4 col-form-label">Ime i prezime </label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="txtFullNameEdit" name="fullName">
+                                            <input type="text" class="form-control" id="txtFullNameEdit" name="fullName" required>
                                         </div>
                                     </div>
 <!--                                    <div class="form-group row">-->
@@ -649,7 +651,7 @@
                                     <div class="form-group row">
                                         <label for="txtPhoneEdit" class="col-sm-4 col-form-label">Kontakt telefon </label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="txtPhoneEdit" name="phone">
+                                            <input type="text" class="form-control" id="txtPhoneEdit" name="phone" required>
                                         </div>
                                     </div>
 
@@ -698,7 +700,7 @@
                     <div class="form-group row">
                         <label for="fullNameDetails" class="col-sm-4 col-form-label">Ime i prezime </label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="fullNameDetails" name="fullName">
+                            <input type="text" class="form-control" id="fullNameDetails" name="fullName" readonly>
                         </div>
                     </div>
 <!--                    <div class="form-group row">-->
@@ -711,34 +713,34 @@
                     <div class="form-group row">
                         <label for="emailDetails" class="col-sm-4 col-form-label">E-mail </label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="emailDetails" name="email">
+                            <input type="text" class="form-control" id="emailDetails" name="email" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="phoneDetails" class="col-sm-4 col-form-label">Kontakt telefon </label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="phoneDetails" name="phone">
+                            <input type="text" class="form-control" id="phoneDetails" name="phone" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="cityDetails" class="col-sm-4 col-form-label">Grad </label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="cityDetails" name="city">
+                            <input type="text" class="form-control" id="cityDetails" name="city" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="locationDetails" class="col-sm-4 col-form-label">Mesto prebivalista </label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="locationDetails" name="address">
+                            <input type="text" class="form-control" id="locationDetails" name="address" readonly>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="detailsDetails" class="col-form-label">Dodatni detalji:</label>
-                        <textarea type="text" class="form-control" id="detailsDetails" name="details" required></textarea>
+                        <textarea type="text" class="form-control" id="detailsDetails" name="details" readonly></textarea>
                     </div>
 
                     <!--                    <div class="form-group">-->

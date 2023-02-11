@@ -82,4 +82,10 @@ public class EmployeeController {
         return "redirect:/employees";
     }
 
+    @RequestMapping(value = "/employees/assignUsername/",params = {"id"}, method = RequestMethod.GET)
+    public  String assignUsername(int id){
+        employeeServiceImpl.assignUsername(id);
+        return "redirect:/employees";
+    }
+
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,11 +98,61 @@ public class TextileController {
 
     private List<Textile> getUpperBodyTextiles(){
         List<Textile> upperBodyTextiles=textileServiceImpl.findByPurpose("Gornji deo");
-        return upperBodyTextiles;
+        List<Textile> textilesWithPicture= new ArrayList<>();
+
+        for (Textile t:upperBodyTextiles) {
+            if(t.getPhoto()!=null){
+                textilesWithPicture.add(t);
+            }
+        }
+        if(textilesWithPicture.isEmpty()){
+            textilesWithPicture=upperBodyTextiles;
+        }
+        return textilesWithPicture;
     }
 
     private List<Textile> getLowerBodyTextiles(){
         List<Textile> lowerBodyTextiles=textileServiceImpl.findByPurpose("Donji deo");
-        return lowerBodyTextiles;
+
+        List<Textile> textilesWithPicture= new ArrayList<>();
+
+        for (Textile t:lowerBodyTextiles) {
+            if(t.getPhoto()!=null){
+                textilesWithPicture.add(t);
+            }
+        }
+        if(textilesWithPicture.isEmpty()){
+            textilesWithPicture=lowerBodyTextiles;
+        }
+
+
+        return textilesWithPicture;
+    }
+
+
+    @GetMapping("/upperBodyTextiles")
+    public String getUpperBodyTextiles(Model model) {
+
+        List<Textile> textiles = getUpperBodyTextiles();
+//        System.out.println("GORNJI DELOVI");
+//        System.out.println(getUpperBodyTextiles());
+//        System.out.println("DONJI DELOVI");
+//        System.out.println(getLowerBodyTextiles());
+        model.addAttribute("textiles", textiles);
+        //ovaj model saljem ka HTML stranici
+        return "UpperBodyTextile";
+    }
+
+    @GetMapping("/lowerBodyTextiles")
+    public String getLowerBodyTextiles(Model model) {
+
+        List<Textile> textiles = getLowerBodyTextiles();
+//        System.out.println("GORNJI DELOVI");
+//        System.out.println(getUpperBodyTextiles());
+//        System.out.println("DONJI DELOVI");
+//        System.out.println(getLowerBodyTextiles());
+        model.addAttribute("textiles", textiles);
+        //ovaj model saljem ka HTML stranici
+        return "UpperBodyTextile";
     }
 }

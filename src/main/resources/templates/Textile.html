@@ -332,6 +332,8 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" th:href="@{/textiles}">Sva odeca</a></li>
+                        <li><a class="" th:href="@{/upperBodyTextiles}">Gornji delovi odece</a></li>
+                        <li><a class="" th:href="@{/lowerBodyTextiles}">Donji delovi odece</a></li>
                     </ul>
                 </li>
 
@@ -443,6 +445,7 @@
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Slika modela</th>
                     <th>Id</th>
                     <th>Kategorija</th>
                     <th>Model</th>
@@ -457,6 +460,11 @@
                 </thead>
                 <tbody>
                 <tr th:each="textile : ${textiles}">
+                    <td>
+                        <a id="photoButton" th:href="@{'/img/photos/' + ${textile.photo}}">
+                            <img th:src="@{'/img/photos/' + ${textile.photo}}" width="40" height="40">
+                        </a>
+                    </td>
                     <td th:text="${textile.id}"></td>
                     <td th:text="${textile.textileType.description}"></td>
                     <td th:text="${textile.textileModel.description}"></td>
@@ -529,7 +537,7 @@
                                 <div class="form-group row">
                                     <label for="txtUniqueCodeAdd" class="col-sm-4 col-form-label">Jedinstveni kod serije</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="txtUniqueCodeAdd" name="uniqueCode" placeholder="Npr. G45Ted9Pp">
+                                        <input type="text" class="form-control" id="txtUniqueCodeAdd" name="uniqueCode" placeholder="Npr. G45Ted9Pp" required>
                                     </div>
                                 </div>
 
@@ -663,6 +671,14 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group row">
+                                    <label for="flpImageAdd" class="col-sm-4 col-form-label">Dodaj sliku modela </label>
+                                    <div class="col-sm-6">
+                                        <input type="file" class="form-control-file" id="flpImageAdd" name="photo"
+                                               placeholder="Slika">
+                                    </div>
+                                </div>
+
 
                             </td>
                         </tr>
@@ -709,7 +725,7 @@
                                     <div class="form-group row">
                                         <label for="txtUniqueCodeEdit" class="col-sm-4 col-form-label">Jedinstveni kod serije</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="txtUniqueCodeEdit" name="uniqueCode" placeholder="Npr. G45Ted9Pp">
+                                            <input type="text" class="form-control" id="txtUniqueCodeEdit" name="uniqueCode" placeholder="Npr. G45Ted9Pp" required>
                                         </div>
                                     </div>
 
@@ -843,6 +859,15 @@
                                         </div>
                                     </div>
 
+
+                                    <div class="form-group row">
+                                        <label for="flpImageEdit" class="col-sm-4 col-form-label">Dodaj sliku modelag </label>
+                                        <div class="col-sm-6">
+                                            <input type="file" class="form-control-file" id="flpImageEdit" name="photo"
+                                                   placeholder="Slika">
+                                        </div>
+                                    </div>
+
                                 </td>
                             </tr>
                         </table>
@@ -886,42 +911,42 @@
                     <div class="form-group row">
                         <label for="quantityDetails" class="col-sm-4 col-form-label">Dostupna kolicina</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="quantityDetails" name="availableQuantity">
+                            <input type="text" class="form-control" id="quantityDetails" name="availableQuantity" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="statusTypeDetails" class="col-sm-4 col-form-label">Status</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="statusTypeDetails" name="description">
+                            <input type="text" class="form-control" id="statusTypeDetails" name="description" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="statusMeaningDetails" class="col-sm-4 col-form-label">Status - detalji</label>
                         <div class="col-sm-6">
-                            <textarea type="text" class="form-control" id="statusMeaningDetails" name="details"></textarea>
+                            <textarea type="text" class="form-control" id="statusMeaningDetails" name="details" readonly></textarea>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="dateDetails" class="col-sm-4 col-form-label">Datum kupovine</label>
                         <div class="col-sm-6">
-                            <input type="date" class="form-control" id="dateDetails" name="acquisitionDate">
+                            <input type="date" class="form-control" id="dateDetails" name="acquisitionDate" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="priceDetails" class="col-sm-4 col-form-label">Cena po komadu</label>
                         <div class="col-sm-6">
-                            <input type="number" class="form-control" id="priceDetails" name="piecePrice" placeholder="Cena po komadu">
+                            <input type="number" class="form-control" id="priceDetails" name="piecePrice" placeholder="Cena po komadu" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="specialDescriptionDetails" class="col-sm-4 col-form-label">Dodatni detalji:</label>
                         <div class="col-sm-6">
-                            <textarea type="text" class="form-control" id="specialDescriptionDetails" name="specialDescription"></textarea>
+                            <textarea type="text" class="form-control" id="specialDescriptionDetails" name="specialDescription" readonly></textarea>
                         </div>
                     </div>
 
@@ -930,20 +955,20 @@
                     <div class="form-group row">
                         <label for="supplierDetails" class="col-sm-4 col-form-label">Dobavljac</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="supplierDetails" name="fullName">
+                            <input type="text" class="form-control" id="supplierDetails" name="fullName" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="companyDetails" class="col-sm-4 col-form-label">Firma dobavljaca</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="companyDetails" name="companyName">
+                            <input type="text" class="form-control" id="companyDetails" name="companyName" readonly>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="phoneDetails" class="col-form-label">Kontakt telefon</label>
-                        <textarea type="text" class="form-control" id="phoneDetails" name="phone" required></textarea>
+                        <textarea type="text" class="form-control" id="phoneDetails" name="phone" readonly></textarea>
                     </div>
 
                 </div>
@@ -975,6 +1000,26 @@
             </div>
             <div class="modal-footer">
                 <a href="" class="btn btn-primary" id="confirmDeleteButton">Izbrisi</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="photoModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Slika</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="textilePhoto" src="" width="90%" height="90%">
+            </div>
+            <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
             </div>
         </div>

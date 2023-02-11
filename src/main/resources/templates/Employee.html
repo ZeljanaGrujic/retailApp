@@ -333,6 +333,8 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" th:href="@{/textiles}">Sva odeca</a></li>
+                        <li><a class="" th:href="@{/upperBodyTextiles}">Gornji delovi odece</a></li>
+                        <li><a class="" th:href="@{/lowerBodyTextiles}">Donji delovi odece</a></li>
                     </ul>
                 </li>
 
@@ -454,6 +456,7 @@
                     <th>Izmeni</th>
                     <th>Pogledaj detalje</th>
                     <th>Izbrisi</th>
+                    <th>Korisnicko ime</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -490,6 +493,8 @@
                                th:href="@{/employees/deleteById/(id=${employee.id})}">Izbrisi</a>
                         </div>
                     </td>
+
+                    <td><a th:text="${employee.username} ?: 'Podesi'" th:href="@{/employees/assignUsername/(id=${employee.id})}"></a></td>
                 </tr>
                 </tbody>
             </table>
@@ -543,7 +548,7 @@
                                     <label for="txtfirstnameAdd" class="col-sm-4 col-form-label">Ime</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" id="txtfirstnameAdd" name="firstname"
-                                               placeholder="Ime">
+                                               placeholder="Ime" required>
                                     </div>
                                 </div>
 
@@ -551,7 +556,7 @@
                                     <label for="txtlastnameAdd" class="col-sm-4 col-form-label">Prezime</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" id="txtlastnameAdd" name="lastname"
-                                               placeholder="Prezime">
+                                               placeholder="Prezime" required>
                                     </div>
                                 </div>
 
@@ -559,7 +564,7 @@
                                     <label for="txtnicknameAdd" class="col-sm-4 col-form-label">Nadimak</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" id="txtnicknameAdd" name="nickname"
-                                               placeholder="Nadimak">
+                                               placeholder="Nadimak" required>
                                     </div>
                                 </div>
 
@@ -568,7 +573,7 @@
                                         broj</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" id="txtjmbgAdd" name="jmbg"
-                                               placeholder="jmbg">
+                                               placeholder="jmbg" required>
                                     </div>
                                 </div>
 
@@ -584,7 +589,7 @@
                                     <label for="txtphoneAdd" class="col-sm-4 col-form-label">Kontakt telefonl</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" id="txtphoneAdd" name="phone"
-                                               placeholder="Telefon">
+                                               placeholder="Telefon" required>
                                     </div>
                                 </div>
 
@@ -716,7 +721,7 @@
                                         <label for="txtfirstnameEdit" class="col-sm-4 col-form-label">Ime</label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" id="txtfirstnameEdit" name="firstname"
-                                                   placeholder="Ime">
+                                                   placeholder="Ime" required>
                                         </div>
                                     </div>
 
@@ -724,7 +729,7 @@
                                         <label for="txtlastnameEdit" class="col-sm-4 col-form-label">Prezime</label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" id="txtlastnameEdit" name="lastname"
-                                                   placeholder="Prezime">
+                                                   placeholder="Prezime" required>
                                         </div>
                                     </div>
 
@@ -732,7 +737,7 @@
                                         <label for="txtnicknameEdit" class="col-sm-4 col-form-label">Nadimak</label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" id="txtnicknameEdit" name="nickname"
-                                                   placeholder="Nadimak">
+                                                   placeholder="Nadimak" required>
                                         </div>
                                     </div>
 
@@ -741,7 +746,7 @@
                                             broj</label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" id="txtjmbgEdit" name="jmbg"
-                                                   placeholder="jmbg">
+                                                   placeholder="jmbg" required>
                                         </div>
                                     </div>
 
@@ -757,7 +762,7 @@
                                         <label for="txtphoneEdit" class="col-sm-4 col-form-label">Kontakt telefonl</label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" id="txtphoneEdit" name="phone"
-                                                   placeholder="Telefon">
+                                                   placeholder="Telefon" required>
                                         </div>
                                     </div>
 
@@ -835,12 +840,20 @@
                                     </div>
 
                                     <div class="form-group row">
+                                        <label for="txtUsernameEdit" class="col-sm-4 col-form-label">Korisnicko ime </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="txtUsernameEdit" name="username" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
                                         <label for="flpImageEdit" class="col-sm-4 col-form-label">Dodaj sliku zaposlenog </label>
                                         <div class="col-sm-6">
                                             <input type="file" class="form-control-file" id="flpImageEdit" name="photo"
                                                    placeholder="Slika">
                                         </div>
                                     </div>
+
 
                                 </td>
                             </tr>
@@ -882,20 +895,20 @@
                     <div class="form-group row">
                         <label for="dateOfBirthDetails" class="col-sm-4 col-form-label">Datum rodjenja</label>
                         <div class="col-sm-6">
-                            <input type="date" class="form-control" id="dateOfBirthDetails" name="dateOfBirth">
+                            <input type="date" class="form-control" id="dateOfBirthDetails" name="dateOfBirth" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="jmbgDetails" class="col-sm-4 col-form-label">Jedinstveni maticni broj</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="jmbgDetails" name="jmbg">
+                            <input type="text" class="form-control" id="jmbgDetails" name="jmbg" readonly>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="phoneDetails" class="col-form-label">Kontakt telefon</label>
-                        <input type="text" class="form-control" id="phoneDetails" name="phone" required>
+                        <input type="text" class="form-control" id="phoneDetails" name="phone" readonly>
                     </div>
 
 <!--                    <div class="form-group row">-->
@@ -915,34 +928,34 @@
                     <div class="form-group row">
                         <label for="regionDetails" class="col-sm-4 col-form-label">Region/drzava</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="regionDetails" name="name">
+                            <input type="text" class="form-control" id="regionDetails" name="name" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="hireDateDetails" class="col-sm-4 col-form-label">Datum angazovanja</label>
                         <div class="col-sm-6">
-                            <input type="date" class="form-control" id="hireDateDetails" name="hireDate">
+                            <input type="date" class="form-control" id="hireDateDetails" name="hireDate" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="employeeTypeDetails" class="col-sm-4 col-form-label">Tip angazovanja</label>
                         <div class="col-sm-6">
-                            <textarea type="text" class="form-control" id="employeeTypeDetails" name="description"></textarea>
+                            <textarea type="text" class="form-control" id="employeeTypeDetails" name="description" readonly></textarea>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="typeDetailsDetails" class="col-sm-4 col-form-label">Zahtevi angazovanja</label>
                         <div class="col-sm-6">
-                            <textarea type="text" class="form-control" id="typeDetailsDetails" name="details"></textarea>
+                            <textarea type="text" class="form-control" id="typeDetailsDetails" name="details" readonly></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="emailDetails" class="col-form-label">E-mail</label>
-                        <input type="text" class="form-control" id="emailDetails" name="email">
+                        <input type="text" class="form-control" id="emailDetails" name="email" readonly>
                     </div>
 
                 </div>
@@ -983,7 +996,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Photo</h5>
+                <h5 class="modal-title">Slika</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -992,7 +1005,7 @@
                 <img id="employeePhoto" src="" width="90%" height="90%">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
             </div>
         </div>
     </div>

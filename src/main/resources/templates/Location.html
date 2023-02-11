@@ -332,6 +332,8 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" th:href="@{/textiles}">Sva odeca</a></li>
+                        <li><a class="" th:href="@{/upperBodyTextiles}">Gornji delovi odece</a></li>
+                        <li><a class="" th:href="@{/lowerBodyTextiles}">Donji delovi odece</a></li>
                     </ul>
                 </li>
 
@@ -511,7 +513,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ddlCountryAdd" class="col-form-label">Country: </label>
+                        <label for="ddlCountryAdd" class="col-form-label">Drzava/region </label>
                         <select class="form-control" id="ddlCountryAdd" name="countryid">
                             <option>Odaberi region/drzavu</option>
                             <option th:each="country : ${countries}"
@@ -523,11 +525,11 @@
 
                     <div class="form-group">
                         <label for="addressAdd" class="col-form-label">Adresa</label>
-                        <input type="text" class="form-control" id="addressAdd" name="address">
+                        <input type="text" class="form-control" id="addressAdd" name="address" required>
                     </div>
                     <div class="form-group">
                         <label for="cityAdd" class="col-form-label">Grad</label>
-                        <input type="text" class="form-control" id="cityAdd" name="city">
+                        <input type="text" class="form-control" id="cityAdd" name="city" required>
                     </div>
 
                     <div class="form-group">
@@ -574,7 +576,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ddlCountryEdit" class="col-form-label">Country: </label>
+                        <label for="ddlCountryEdit" class="col-form-label">Drzava/region </label>
                         <select class="form-control" id="ddlCountryEdit" name="countryid">
                             <option>Odaberi region/drzavu</option>
                             <option th:each="country : ${countries}"
@@ -586,11 +588,11 @@
 
                     <div class="form-group">
                         <label for="addressEdit" class="col-form-label">Adresa</label>
-                        <input type="text" class="form-control" id="addressEdit" name="address">
+                        <input type="text" class="form-control" id="addressEdit" name="address" required>
                     </div>
                     <div class="form-group">
                         <label for="cityEdit" class="col-form-label">Grad</label>
-                        <input type="text" class="form-control" id="cityEdit" name="city">
+                        <input type="text" class="form-control" id="cityEdit" name="city" required>
                     </div>
 
                     <div class="form-group">

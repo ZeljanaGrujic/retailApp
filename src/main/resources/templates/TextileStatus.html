@@ -332,6 +332,8 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" th:href="@{/textiles}">Sva odeca</a></li>
+                        <li><a class="" th:href="@{/upperBodyTextiles}">Gornji delovi odece</a></li>
+                        <li><a class="" th:href="@{/lowerBodyTextiles}">Donji delovi odece</a></li>
                     </ul>
                 </li>
 
@@ -533,7 +535,7 @@
 
                     <div class="form-group">
                         <label for="descriptionAdd" class="col-form-label">Novi tip statusa</label>
-                        <input type="text" class="form-control" id="descriptionAdd" name="description">
+                        <input type="text" class="form-control" id="descriptionAdd" name="description" required>
                     </div>
 
                     <div class="form-group">
@@ -567,7 +569,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">State Details</h5>
+                    <h5 class="modal-title" id="editModalLabel">Detalji</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -586,7 +588,7 @@
 
                     <div class="form-group">
                         <label for="detailsDetails" class="col-form-label">Dodatni detalji:</label>
-                        <textarea type="text" class="form-control" id="detailsDetails" name="details" required></textarea>
+                        <textarea type="text" class="form-control" id="detailsDetails" name="details" readonly></textarea>
                     </div>
 
                     <!--                    <div class="form-group">-->

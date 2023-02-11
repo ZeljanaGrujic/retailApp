@@ -48,4 +48,11 @@ $('document').ready(function() {
 		$('#confirmDeleteButton').attr('href', href);
 		$('#deleteModal').modal();
 	});
+
+	$('.table #photoButton').on('click',function(event) {
+       event.preventDefault();
+       var href = $(this).attr('href');
+       $('#photoModal #textilePhoto').attr('src', href);
+       $('#photoModal').modal();
+    });
 });
