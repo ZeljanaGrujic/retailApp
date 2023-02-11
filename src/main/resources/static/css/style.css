@@ -66,7 +66,7 @@ table tr th { color: #688a7e;}
 
 ::selection {
 
-    background: #688a7e;
+    background: #301934;
 
     color: #fff;
 
@@ -6738,7 +6738,7 @@ ul.inbox-pagination li {
 
 .profile-widget-info{
 
-    background: #324c57 !important;
+    background: #301934 !important;
 
 }
 
@@ -6810,7 +6810,7 @@ ul.inbox-pagination li {
 
 .bio-graph-heading {
 
-    background: #263a4f;
+    background: #301934;
 
     color: #fff;
 
