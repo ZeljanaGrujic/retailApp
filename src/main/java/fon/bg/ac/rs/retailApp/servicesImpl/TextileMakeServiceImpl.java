@@ -2,7 +2,6 @@ package fon.bg.ac.rs.retailApp.servicesImpl;
 
 import fon.bg.ac.rs.retailApp.models.TextileMake;
 import fon.bg.ac.rs.retailApp.repositories.TextileMakeRepository;
-import fon.bg.ac.rs.retailApp.repositories.TextileModelRepository;
 import fon.bg.ac.rs.retailApp.services.TextileMakeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

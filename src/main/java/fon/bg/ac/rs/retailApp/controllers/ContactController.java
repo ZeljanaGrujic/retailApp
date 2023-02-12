@@ -1,5 +1,6 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
+import fon.bg.ac.rs.retailApp.dtos.ContactDto;
 import fon.bg.ac.rs.retailApp.models.Contact;
 import fon.bg.ac.rs.retailApp.servicesImpl.ContactServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class ContactController {
     @GetMapping("/contacts")
     public String getContactss(Model model) {
 
-        List<Contact> contacts=contactServiceImpl.getContacts();
+        List<ContactDto> contacts=contactServiceImpl.getContacts();
         System.out.println(contacts);
         model.addAttribute("contacts", contacts);
         //ovaj model saljem ka HTML stranici
@@ -30,23 +31,23 @@ public class ContactController {
     }
 
     @PostMapping("/contacts/addNew")
-    public String addBew(Contact contact) {
-        Contact saved = contactServiceImpl.saveContact(contact);
+    public String addBew(ContactDto contact) {
+        ContactDto saved = contactServiceImpl.saveContact(contact);
         System.out.println(saved.getId());
         return "redirect:/contacts";
     }
 
     @RequestMapping(value = "/contacts/findById/", params = {"id"}, method = RequestMethod.GET)
     @ResponseBody
-    public Optional<Contact> findById(@RequestParam("id") Integer id) {
-        Optional<Contact> contact = contactServiceImpl.findById(id);
+    public ContactDto findById(@RequestParam("id") Integer id) {
+        ContactDto contact = contactServiceImpl.findById(id);
         System.out.println(contact);
         return contactServiceImpl.findById(id);
     }
 
     @RequestMapping(value = "/contacts/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String update(Contact contact) {
-        Contact updated = contactServiceImpl.saveContact(contact);
+    public String update(ContactDto contact) {
+        ContactDto updated = contactServiceImpl.saveContact(contact);
         System.out.println(updated.getId());
         return "redirect:/contacts";
     }

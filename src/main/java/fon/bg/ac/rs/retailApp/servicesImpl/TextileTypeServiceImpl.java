@@ -1,7 +1,6 @@
 package fon.bg.ac.rs.retailApp.servicesImpl;
 
 import fon.bg.ac.rs.retailApp.models.TextileType;
-import fon.bg.ac.rs.retailApp.repositories.TextileRepository;
 import fon.bg.ac.rs.retailApp.repositories.TextileTypeRepository;
 import fon.bg.ac.rs.retailApp.services.TextileTypeService;
 import org.springframework.beans.factory.annotation.Autowired;

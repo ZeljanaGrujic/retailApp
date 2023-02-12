@@ -1,17 +1,17 @@
 package fon.bg.ac.rs.retailApp.services;
 
+import fon.bg.ac.rs.retailApp.dtos.CountryDto;
 import fon.bg.ac.rs.retailApp.models.Country;
-import fon.bg.ac.rs.retailApp.repositories.CountryRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface CountryService {
 
-    public List<Country> getCountries();
-    public Country saveCountry(Country country);
+    public List<CountryDto> getCountries();
+    public CountryDto saveCountry(CountryDto country);
 
-    public Optional<Country> findById(int id);
+    public CountryDto findById(int id);
 
     public void deleteById(int id);
 }

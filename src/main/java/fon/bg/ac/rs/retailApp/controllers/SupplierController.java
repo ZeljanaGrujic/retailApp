@@ -1,5 +1,7 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
+import fon.bg.ac.rs.retailApp.dtos.LocationDto;
+import fon.bg.ac.rs.retailApp.dtos.SupplierDto;
 import fon.bg.ac.rs.retailApp.models.Location;
 import fon.bg.ac.rs.retailApp.models.Supplier;
 import fon.bg.ac.rs.retailApp.servicesImpl.LocationServiceImpl;
@@ -25,8 +27,8 @@ public class SupplierController {
     @GetMapping("/suppliers")
     public String getSuppliers(Model model) {
 
-        List<Location> locations = locationServiceImpl.getLocations();
-        List<Supplier> suppliers=supplierServiceImpl.getSuppliers();
+        List<LocationDto> locations = locationServiceImpl.getLocations();
+        List<SupplierDto> suppliers=supplierServiceImpl.getSuppliers();
         System.out.println(locations);
         System.out.println(suppliers);
         model.addAttribute("locations", locations);
@@ -36,23 +38,23 @@ public class SupplierController {
     }
 
     @PostMapping("/suppliers/addNew")
-    public String addBew(Supplier supplier) {
-        Supplier saved = supplierServiceImpl.saveSupplier(supplier);
+    public String addBew(SupplierDto supplier) {
+        SupplierDto saved = supplierServiceImpl.saveSupplier(supplier);
         System.out.println(saved.getId());
         return "redirect:/suppliers";
     }
 
     @RequestMapping(value = "/suppliers/findById/", params = {"id"}, method = RequestMethod.GET)
     @ResponseBody
-    public Optional<Supplier> findById(@RequestParam("id") Integer id) {
-        Optional<Supplier> supplier = supplierServiceImpl.findById(id);
+    public SupplierDto findById(@RequestParam("id") Integer id) {
+        SupplierDto supplier = supplierServiceImpl.findById(id);
         System.out.println(supplier);
         return supplierServiceImpl.findById(id);
     }
 
     @RequestMapping(value = "/suppliers/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String update(Supplier supplier) {
-        Supplier updated = supplierServiceImpl.saveSupplier(supplier);
+    public String update(SupplierDto supplier) {
+        SupplierDto updated = supplierServiceImpl.saveSupplier(supplier);
         System.out.println(updated.getId());
         return "redirect:/suppliers";
     }

@@ -1,5 +1,9 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
+import fon.bg.ac.rs.retailApp.dtos.CountryDto;
+import fon.bg.ac.rs.retailApp.dtos.EmployeeTypeDto;
+import fon.bg.ac.rs.retailApp.dtos.JobTitleDto;
+import fon.bg.ac.rs.retailApp.dtos.LocationDto;
 import fon.bg.ac.rs.retailApp.models.*;
 import fon.bg.ac.rs.retailApp.servicesImpl.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +34,10 @@ public class EmployeeController {
     @GetMapping("/employees")
     public String getEmployees(Model model) {
         List<Employee> employees = employeeServiceImpl.getEmployees();
-        List<EmployeeType> employeeTypes = employeeTypeServiceImpl.getEmployeeTypes();
-        List<JobTitle> jobTitles = jobTitleServiceImpl.getJobTitles();
-        List<Location> locations = locationServiceImpl.getLocations();
-        List<Country> countries = countryServiceImpl.getCountries();
+        List<EmployeeTypeDto> employeeTypes = employeeTypeServiceImpl.getEmployeeTypes();
+        List<JobTitleDto> jobTitles = jobTitleServiceImpl.getJobTitles();
+        List<LocationDto> locations = locationServiceImpl.getLocations();
+        List<CountryDto> countries = countryServiceImpl.getCountries();
 
         System.out.println(employees);
         System.out.println(employeeTypes);

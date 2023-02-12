@@ -1,16 +1,17 @@
 package fon.bg.ac.rs.retailApp.services;
 
+import fon.bg.ac.rs.retailApp.dtos.SupplierDto;
 import fon.bg.ac.rs.retailApp.models.Supplier;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface SupplierService {
-    List<Supplier> getSuppliers();
+    List<SupplierDto> getSuppliers();
 
-    Supplier saveSupplier(Supplier supplier);
+    SupplierDto saveSupplier(SupplierDto supplier);
 
-    Optional<Supplier> findById(int id);
+    SupplierDto findById(int id);
 
     void deleteById(int id);
 }

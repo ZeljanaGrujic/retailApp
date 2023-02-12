@@ -413,6 +413,7 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" th:href="@{/users}">Korisnici</a></li>
+                        <li><a class="" th:href="@{/roles}">Uloge</a></li>
                     </ul>
                 </li>
             </ul>
@@ -447,7 +448,7 @@
                     <th>Prezime</th>
                     <th>Korisnicko ime</th>
                     <th>Dodaj ulogu</th>
-                    <th>Izmeni</th>
+<!--                    <th>Izmeni</th>-->
                     <th>Izbrisi</th>
                 </tr>
                 </thead>
@@ -459,11 +460,11 @@
                     <td th:text="${user.username}"></td>
                     <td><a  th:href="@{/security/user/Edit/(id=${user.id})}"
                             class="btn btn-default">Upravljaj ulogama</a></td>
-                    <td>
-                        <div class="btn-group">
-                            <a class="btn btn-primary" th:href="@{/users/findById/(id=${user.id})}" id="editButton">Izmeni</a>
-                        </div>
-                    </td>
+<!--                    <td>-->
+<!--                        <div class="btn-group">-->
+<!--                            <a class="btn btn-primary" th:href="@{/users/findById/(id=${user.id})}" id="editButton">Izmeni</a>-->
+<!--                        </div>-->
+<!--                    </td>-->
                     <td>
                         <div class="btn-group">
                             <a id="deleteButton" class="btn btn-danger" th:href="@{/users/deleteById/(id=${user.id})}">Izbrisi</a>

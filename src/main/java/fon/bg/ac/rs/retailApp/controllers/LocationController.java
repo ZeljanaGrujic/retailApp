@@ -1,5 +1,7 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
+import fon.bg.ac.rs.retailApp.dtos.CountryDto;
+import fon.bg.ac.rs.retailApp.dtos.LocationDto;
 import fon.bg.ac.rs.retailApp.models.Country;
 import fon.bg.ac.rs.retailApp.models.Location;
 import fon.bg.ac.rs.retailApp.servicesImpl.CountryServiceImpl;
@@ -23,8 +25,8 @@ public class LocationController {
     @GetMapping("/locations")
     public String getLocations(Model model) {
 
-        List<Location> locations = locationServiceImpl.getLocations();
-        List<Country> countries=countryServiceImpl.getCountries();
+        List<LocationDto> locations = locationServiceImpl.getLocations();
+        List<CountryDto> countries=countryServiceImpl.getCountries();
         System.out.println(locations);
         System.out.println(countries);
         model.addAttribute("locations", locations);
@@ -34,23 +36,23 @@ public class LocationController {
     }
 
     @PostMapping("/locations/addNew")
-    public String addBew(Location location) {
-        Location savedLocation = locationServiceImpl.saveLocation(location);
+    public String addBew(LocationDto location) {
+        LocationDto savedLocation = locationServiceImpl.saveLocation(location);
         System.out.println(savedLocation.getId());
         return "redirect:/locations";
     }
 
     @RequestMapping(value = "/locations/findById/", params = {"id"}, method = RequestMethod.GET)
     @ResponseBody
-    public Optional<Location> findById(@RequestParam("id") Integer id) {
-        Optional<Location> location = locationServiceImpl.findById(id);
+    public LocationDto findById(@RequestParam("id") Integer id) {
+        LocationDto location = locationServiceImpl.findById(id);
         System.out.println(location);
         return locationServiceImpl.findById(id);
     }
 
     @RequestMapping(value = "/locations/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String update(Location location) {
-        Location updatedLocation = locationServiceImpl.saveLocation(location);
+    public String update(LocationDto location) {
+        LocationDto updatedLocation = locationServiceImpl.saveLocation(location);
         System.out.println(updatedLocation.getId());
         return "redirect:/locations";
     }

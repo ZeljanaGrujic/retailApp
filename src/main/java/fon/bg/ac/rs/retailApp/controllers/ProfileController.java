@@ -33,13 +33,6 @@ public class ProfileController {
 
                 if(empProfile == null){
                     User user = userServiceImpl.findByUsername(username);
-//                    if (user.getRoles().isEmpty() || user.getRoles().equals(new Role(4, "USER","Ima pristup samo pocetnoj stranici i kategorijama odece (gornji delovi i donji delovi)")) ) {
-//                        model.addAttribute("myProfile", user);
-//                        return "profileUser";
-//
-//                        {
-//                    kod usera admin mozda nije stigao da mu dodeli ulogu, pa je onda set uloga prazan, ili ako nije prazan i ima ulogu user onda vracas user a
-//                    } slicnu proveru napisati ako je uloga VICE_ADMIN i roles nisu prazne, u svakom ostalom slucaju je admin
                     model.addAttribute("myProfile", user);
                     return "profileUser";
                 }

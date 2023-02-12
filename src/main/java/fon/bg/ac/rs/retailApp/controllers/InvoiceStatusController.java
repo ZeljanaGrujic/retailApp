@@ -1,5 +1,6 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
+import fon.bg.ac.rs.retailApp.dtos.InvoiceStatusDto;
 import fon.bg.ac.rs.retailApp.models.InvoiceStatus;
 import fon.bg.ac.rs.retailApp.servicesImpl.InvoiceStatusServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +20,23 @@ public class InvoiceStatusController {
     @GetMapping("/invoiceStatuses")
     public String getInvoiceStatus(Model model) {
 
-        List<InvoiceStatus> invoiceStatuses = invoiceStatusServiceImpl.getInvoiceStatuses();
+        List<InvoiceStatusDto> invoiceStatuses = invoiceStatusServiceImpl.getInvoiceStatuses();
         System.out.println(invoiceStatuses);
         model.addAttribute("invoiceStatuses", invoiceStatuses);
         //ovaj model saljem ka HTML stranici
         return "InvoiceStatus";
     }
     @PostMapping("/invoiceStatuses/addNew")
-    public String addBew(InvoiceStatus invoiceStatus) {
-        InvoiceStatus savedinvoiceStatuses = invoiceStatusServiceImpl.saveInvoiceStatus(invoiceStatus);
+    public String addBew(InvoiceStatusDto invoiceStatus) {
+        InvoiceStatusDto savedinvoiceStatuses = invoiceStatusServiceImpl.saveInvoiceStatus(invoiceStatus);
         System.out.println(invoiceStatus.getId());
         return "redirect:/invoiceStatuses";
     }
 
     @RequestMapping(value = "/invoiceStatuses/findById/", params = {"id"}, method = RequestMethod.GET)
     @ResponseBody
-    public Optional<InvoiceStatus> findById(@RequestParam("id") Integer id) {
-        Optional<InvoiceStatus> invoiceStatus = invoiceStatusServiceImpl.findById(id);
+    public InvoiceStatusDto findById(@RequestParam("id") Integer id) {
+        InvoiceStatusDto invoiceStatus = invoiceStatusServiceImpl.findById(id);
         System.out.println(invoiceStatus);
         return invoiceStatusServiceImpl.findById(id);
     }

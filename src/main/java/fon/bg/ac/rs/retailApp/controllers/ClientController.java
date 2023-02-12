@@ -1,5 +1,7 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
+import fon.bg.ac.rs.retailApp.dtos.ClientDto;
+import fon.bg.ac.rs.retailApp.dtos.LocationDto;
 import fon.bg.ac.rs.retailApp.models.Client;
 import fon.bg.ac.rs.retailApp.models.Location;
 import fon.bg.ac.rs.retailApp.servicesImpl.ClientServiceImpl;
@@ -26,8 +28,8 @@ public class ClientController {
     @GetMapping("/clients")
     public String getClients(Model model) {
 
-        List<Location> locations = locationServiceImpl.getLocations();
-        List<Client> clients=clientServiceImpl.getClients();
+        List<LocationDto> locations = locationServiceImpl.getLocations();
+        List<ClientDto> clients=clientServiceImpl.getClients();
         System.out.println(locations);
         System.out.println(clients);
         model.addAttribute("locations", locations);
@@ -37,23 +39,23 @@ public class ClientController {
     }
 
     @PostMapping("/clients/addNew")
-    public String addBew(Client client) {
-        Client saved = clientServiceImpl.saveClient(client);
+    public String addBew(ClientDto client) {
+        ClientDto saved = clientServiceImpl.saveClient(client);
         System.out.println(saved.getId());
         return "redirect:/clients";
     }
 
     @RequestMapping(value = "/clients/findById/", params = {"id"}, method = RequestMethod.GET)
     @ResponseBody
-    public Optional<Client> findById(@RequestParam("id") Integer id) {
-        Optional<Client> client = clientServiceImpl.findById(id);
+    public ClientDto findById(@RequestParam("id") Integer id) {
+        ClientDto client = clientServiceImpl.findById(id);
         System.out.println(client);
         return clientServiceImpl.findById(id);
     }
 
     @RequestMapping(value = "/clients/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String update(Client client) {
-        Client updated = clientServiceImpl.saveClient(client);
+    public String update(ClientDto client) {
+        ClientDto updated = clientServiceImpl.saveClient(client);
         System.out.println(updated.getId());
         return "redirect:/clients";
     }

@@ -1,14 +1,15 @@
 package fon.bg.ac.rs.retailApp.services;
 
+import fon.bg.ac.rs.retailApp.dtos.InvoiceStatusDto;
 import fon.bg.ac.rs.retailApp.models.InvoiceStatus;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface InvoiceStatusService {
-    List<InvoiceStatus> getInvoiceStatuses();
+    List<InvoiceStatusDto> getInvoiceStatuses();
 
-    InvoiceStatus saveInvoiceStatus(InvoiceStatus invoiceStatus);
+    InvoiceStatusDto saveInvoiceStatus(InvoiceStatusDto invoiceStatus);
 
-    Optional<InvoiceStatus> findById(int id);
+    InvoiceStatusDto findById(int id);
 }

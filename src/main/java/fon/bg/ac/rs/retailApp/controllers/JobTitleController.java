@@ -1,5 +1,6 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
+import fon.bg.ac.rs.retailApp.dtos.JobTitleDto;
 import fon.bg.ac.rs.retailApp.models.JobTitle;
 import fon.bg.ac.rs.retailApp.servicesImpl.JobTitleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class JobTitleController {
     @GetMapping("/jobTitles")
     public String getJobTitles(Model model) {
 
-        List<JobTitle> jobTitles = jobTitleServiceImpl.getJobTitles();
+        List<JobTitleDto> jobTitles = jobTitleServiceImpl.getJobTitles();
         System.out.println(jobTitles);
         model.addAttribute("jobTitles", jobTitles);
         //ovaj model saljem ka HTML stranici
@@ -29,23 +30,23 @@ public class JobTitleController {
     }
 
     @PostMapping("/jobTitles/addNew")
-    public String addBew(JobTitle jobTitle) {
-        JobTitle savedType = jobTitleServiceImpl.saveJobTitle(jobTitle);
+    public String addBew(JobTitleDto jobTitle) {
+        JobTitleDto savedType = jobTitleServiceImpl.saveJobTitle(jobTitle);
         System.out.println(savedType.getId());
         return "redirect:/jobTitles";
     }
 
     @RequestMapping(value = "/jobTitles/findById/", params = {"id"}, method = RequestMethod.GET)
     @ResponseBody
-    public Optional<JobTitle> findById(@RequestParam("id") Integer id) {
-        Optional<JobTitle> type = jobTitleServiceImpl.findById(id);
+    public JobTitleDto findById(@RequestParam("id") Integer id) {
+        JobTitleDto type = jobTitleServiceImpl.findById(id);
         System.out.println(type);
         return jobTitleServiceImpl.findById(id);
     }
 
     @RequestMapping(value = "/jobTitles/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String update(JobTitle jobTitle) {
-        JobTitle updatedType = jobTitleServiceImpl.saveJobTitle(jobTitle);
+    public String update(JobTitleDto jobTitle) {
+        JobTitleDto updatedType = jobTitleServiceImpl.saveJobTitle(jobTitle);
         System.out.println(updatedType.getId());
         return "redirect:/jobTitles";
     }

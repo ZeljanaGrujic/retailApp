@@ -1,13 +1,18 @@
 package fon.bg.ac.rs.retailApp.servicesImpl;
 
+import fon.bg.ac.rs.retailApp.dtos.EmployeeTypeDto;
+import fon.bg.ac.rs.retailApp.dtos.InvoiceStatusDto;
 import fon.bg.ac.rs.retailApp.models.EmployeeType;
+import fon.bg.ac.rs.retailApp.models.InvoiceStatus;
 import fon.bg.ac.rs.retailApp.repositories.EmployeeTypeRepository;
 import fon.bg.ac.rs.retailApp.services.EmployeeTypeService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeTypeServiceImpl implements EmployeeTypeService {
@@ -16,18 +21,36 @@ public class EmployeeTypeServiceImpl implements EmployeeTypeService {
     private EmployeeTypeRepository employeeTypeRepository;
 
     @Override
-    public List<EmployeeType> getEmployeeTypes() {
-        return employeeTypeRepository.findAll();
+    public List<EmployeeTypeDto> getEmployeeTypes() {
+
+        List<EmployeeType> all = employeeTypeRepository.findAll();
+        List<EmployeeTypeDto> dtos = all.stream()
+                .map(d -> new EmployeeTypeDto(d.getId(),
+                        d.getDescription(),
+                        d.getDetails())).collect(Collectors.toList());
+
+        return dtos;
     }
 
     @Override
-    public EmployeeType saveEmployeeType(EmployeeType employeeType) {
-        return employeeTypeRepository.save(employeeType);
+    public EmployeeTypeDto saveEmployeeType(EmployeeTypeDto employeeType) {
+        EmployeeType d = new EmployeeType();
+        BeanUtils.copyProperties(employeeType, d);
+
+        EmployeeType saved = employeeTypeRepository.save(d);
+        employeeType.setId(saved.getId());
+        return employeeType;
     }
 
     @Override
-    public Optional<EmployeeType> findById(int id) {
-        return employeeTypeRepository.findById(id);
+    public EmployeeTypeDto findById(int id) {
+
+
+        EmployeeType find=employeeTypeRepository.findById(id).get();
+        EmployeeTypeDto d= new EmployeeTypeDto();
+        BeanUtils.copyProperties(find, d);
+
+        return d;
     }
 
     @Override

@@ -435,36 +435,36 @@
                 </div>
             </div>
             <!-- page start-->
-            <h1> Lista uloga</h1>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"
-                    data-whatever="@mdo">Dodaj novu ulogu
-            </button>
+            <h1> Uloge koje mozete dodeliti</h1>
+<!--            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"-->
+<!--                    data-whatever="@mdo">Dodaj novu ulogu-->
+<!--            </button>-->
 
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Id</th>
+<!--                    <th>Id</th>-->
                     <th>Opisni naziv kategorije</th>
                     <th>Detalji/svojstva</th>
-                    <th>Izmeni</th>
-                    <th>Izbrisi</th>
+<!--                    <th>Izmeni</th>-->
+<!--                    <th>Izbrisi</th>-->
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="role:${roles}">
-                    <td th:text="${role.id}"></td>
+<!--                    <td th:text="${role.id}"></td>-->
                     <td th:text="${role.description}"></td>
                     <td th:text="${role.details}"></td>
-                    <td>
-                        <div class="btn-group">
-                            <a class="btn btn-primary" th:href="@{/roles/findById/(id=${role.id})}" id="editButton">Izmeni</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="btn-group">
-                            <a id="deleteButton" class="btn btn-danger" th:href="@{/roles/deleteById/(id=${role.id})}">Izbrisi</a>
-                        </div>
-                    </td>
+<!--                    <td>-->
+<!--                        <div class="btn-group">-->
+<!--                            <a class="btn btn-primary" th:href="@{/roles/findById/(id=${role.id})}" id="editButton">Izmeni</a>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                        <div class="btn-group">-->
+<!--                            <a id="deleteButton" class="btn btn-danger" th:href="@{/roles/deleteById/(id=${role.id})}">Izbrisi</a>-->
+<!--                        </div>-->
+<!--                    </td>-->
                 </tr>
                 </tbody>
             </table>

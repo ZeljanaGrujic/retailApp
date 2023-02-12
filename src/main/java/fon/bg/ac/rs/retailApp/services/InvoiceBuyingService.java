@@ -1,14 +1,15 @@
 package fon.bg.ac.rs.retailApp.services;
 
+import fon.bg.ac.rs.retailApp.dtos.InvoiceBuyingDto;
 import fon.bg.ac.rs.retailApp.models.InvoiceBuying;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface InvoiceBuyingService {
-    List<InvoiceBuying> getInvoicesBuying();
+    List<InvoiceBuyingDto> getInvoicesBuying();
 
-    InvoiceBuying saveInvoiceBuying(InvoiceBuying invoiceBuying);
+    InvoiceBuyingDto saveInvoiceBuying(InvoiceBuyingDto invoiceBuying);
 
-    Optional<InvoiceBuying> findById(int id);
+    InvoiceBuyingDto findById(int id);
 }

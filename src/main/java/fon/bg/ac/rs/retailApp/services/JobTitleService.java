@@ -1,16 +1,17 @@
 package fon.bg.ac.rs.retailApp.services;
 
+import fon.bg.ac.rs.retailApp.dtos.JobTitleDto;
 import fon.bg.ac.rs.retailApp.models.JobTitle;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface JobTitleService {
-    List<JobTitle> getJobTitles();
+    List<JobTitleDto> getJobTitles();
 
-    JobTitle saveJobTitle(JobTitle jobTitle);
+    JobTitleDto saveJobTitle(JobTitleDto jobTitle);
 
-    Optional<JobTitle> findById(int id);
+    JobTitleDto findById(int id);
 
     void deleteById(int id);
 }

@@ -1,18 +1,19 @@
 package fon.bg.ac.rs.retailApp.services;
 
+import fon.bg.ac.rs.retailApp.dtos.LocationDto;
 import fon.bg.ac.rs.retailApp.models.Location;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface LocationService {
-    List<Location> getLocations();
+    List<LocationDto> getLocations();
 
-    Location saveLocation(Location location);
+    LocationDto saveLocation(LocationDto location);
 
-    Optional<Location> findById(int id);
+    LocationDto findById(int id);
 
     void deleteById(int id);
 
-    List<Location> findByCountryid(int id);
+//    List<LocationDto> findByCountryid(int id);
 }

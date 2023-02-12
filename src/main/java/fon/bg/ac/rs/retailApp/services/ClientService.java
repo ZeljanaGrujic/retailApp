@@ -1,16 +1,17 @@
 package fon.bg.ac.rs.retailApp.services;
 
+import fon.bg.ac.rs.retailApp.dtos.ClientDto;
 import fon.bg.ac.rs.retailApp.models.Client;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ClientService {
-    List<Client> getClients();
+    List<ClientDto> getClients();
 
-    Client saveClient(Client client);
+    ClientDto saveClient(ClientDto client);
 
-    Optional<Client> findById(int id);
+    ClientDto findById(int id);
 
     void deleteById(int id);
 }

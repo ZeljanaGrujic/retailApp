@@ -1,5 +1,8 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
+import fon.bg.ac.rs.retailApp.dtos.InvoiceBuyingDto;
+import fon.bg.ac.rs.retailApp.dtos.InvoiceStatusDto;
+import fon.bg.ac.rs.retailApp.dtos.SupplierDto;
 import fon.bg.ac.rs.retailApp.models.InvoiceBuying;
 import fon.bg.ac.rs.retailApp.models.InvoiceStatus;
 import fon.bg.ac.rs.retailApp.models.Supplier;
@@ -30,9 +33,9 @@ public class InvoiceBuyingController {
     @GetMapping("/invoicesBuying")
     public String getInvoicesBuying(Model model) {
 
-        List<InvoiceBuying> invoiceBuyings = invoiceBuyingServiceImpl.getInvoicesBuying();
-        List<Supplier> suppliers=supplierServiceImpl.getSuppliers();
-        List<InvoiceStatus>invoiceStatuses=invoiceStatusServiceImpl.getInvoiceStatuses();
+        List<InvoiceBuyingDto> invoiceBuyings = invoiceBuyingServiceImpl.getInvoicesBuying();
+        List<SupplierDto> suppliers=supplierServiceImpl.getSuppliers();
+        List<InvoiceStatusDto>invoiceStatuses=invoiceStatusServiceImpl.getInvoiceStatuses();
         System.out.println(invoiceBuyings);
         System.out.println(suppliers);
         System.out.println(invoiceStatuses);
@@ -44,23 +47,23 @@ public class InvoiceBuyingController {
     }
 
     @PostMapping("/invoicesBuying/addNew")
-    public String addBew(InvoiceBuying invoiceBuying) {
-        InvoiceBuying saved = invoiceBuyingServiceImpl.saveInvoiceBuying(invoiceBuying);
+    public String addBew(InvoiceBuyingDto invoiceBuying) {
+        InvoiceBuyingDto saved = invoiceBuyingServiceImpl.saveInvoiceBuying(invoiceBuying);
         System.out.println(saved.getId());
         return "redirect:/invoicesBuying";
     }
 
     @RequestMapping(value = "/invoicesBuying/findById/", params = {"id"}, method = RequestMethod.GET)
     @ResponseBody
-    public Optional<InvoiceBuying> findById(@RequestParam("id") Integer id) {
-        Optional<InvoiceBuying> invoiceBuying = invoiceBuyingServiceImpl.findById(id);
+    public InvoiceBuyingDto findById(@RequestParam("id") Integer id) {
+        InvoiceBuyingDto invoiceBuying = invoiceBuyingServiceImpl.findById(id);
         System.out.println(invoiceBuying);
         return invoiceBuyingServiceImpl.findById(id);
     }
 
     @RequestMapping(value = "/invoicesBuying/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String update(InvoiceBuying invoiceBuying) {
-        InvoiceBuying updated = invoiceBuyingServiceImpl.saveInvoiceBuying(invoiceBuying);
+    public String update(InvoiceBuyingDto invoiceBuying) {
+        InvoiceBuyingDto updated = invoiceBuyingServiceImpl.saveInvoiceBuying(invoiceBuying);
         System.out.println(updated.getId());
         return "redirect:/invoicesBuying";
     }

@@ -1,5 +1,6 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
+import fon.bg.ac.rs.retailApp.dtos.SupplierDto;
 import fon.bg.ac.rs.retailApp.models.*;
 import fon.bg.ac.rs.retailApp.servicesImpl.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class TextileController {
         List<TextileModel> textileModels=textileModelServiceImpl.getTextileModels();
         List<TextileStatus> textileStatuses = textileStatusServiceImpl.getTextileStatuses();
         List<Employee> employees=employeeServiceImpl.getEmployees();
-        List<Supplier> suppliers = supplierServiceImpl.getSuppliers();
+        List<SupplierDto> suppliers = supplierServiceImpl.getSuppliers();
         System.out.println(textiles);
         System.out.println(textileTypes);
         System.out.println(textileMakes);
