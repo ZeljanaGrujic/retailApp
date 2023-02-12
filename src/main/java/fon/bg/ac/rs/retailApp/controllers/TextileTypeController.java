@@ -1,5 +1,6 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
+import fon.bg.ac.rs.retailApp.dtos.TextileTypeDto;
 import fon.bg.ac.rs.retailApp.models.TextileType;
 import fon.bg.ac.rs.retailApp.servicesImpl.TextileTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class TextileTypeController {
     @GetMapping("/textileTypes")
     public String getTextileTypes(Model model) {
 
-        List<TextileType> textileTypes = textileTypeServiceImpl.getTextileTypes();
+        List<TextileTypeDto> textileTypes = textileTypeServiceImpl.getTextileTypes();
         System.out.println(textileTypes);
         model.addAttribute("textileTypes", textileTypes);
         //ovaj model saljem ka HTML stranici
@@ -28,23 +29,23 @@ public class TextileTypeController {
     }
 
     @PostMapping("/textileTypes/addNew")
-    public String addBew(TextileType textileType) {
-        TextileType savedTextileType = textileTypeServiceImpl.saveTextileType(textileType);
+    public String addBew(TextileTypeDto textileType) {
+        TextileTypeDto savedTextileType = textileTypeServiceImpl.saveTextileType(textileType);
         System.out.println(savedTextileType.getId());
         return "redirect:/textileTypes";
     }
 
     @RequestMapping(value = "/textileTypes/findById/", params = {"id"}, method = RequestMethod.GET)
     @ResponseBody
-    public Optional<TextileType> findById(@RequestParam("id") Integer id) {
-        Optional<TextileType> textileType = textileTypeServiceImpl.findById(id);
+    public TextileTypeDto findById(@RequestParam("id") Integer id) {
+        TextileTypeDto textileType = textileTypeServiceImpl.findById(id);
         System.out.println(textileType);
         return textileTypeServiceImpl.findById(id);
     }
 
     @RequestMapping(value = "/textileTypes/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String update(TextileType textileType) {
-        TextileType updatedTextileType = textileTypeServiceImpl.saveTextileType(textileType);
+    public String update(TextileTypeDto textileType) {
+        TextileTypeDto updatedTextileType = textileTypeServiceImpl.saveTextileType(textileType);
         System.out.println(updatedTextileType.getId());
         return "redirect:/textileTypes";
     }

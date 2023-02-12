@@ -1,6 +1,6 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
-import fon.bg.ac.rs.retailApp.dtos.SupplierDto;
+import fon.bg.ac.rs.retailApp.dtos.*;
 import fon.bg.ac.rs.retailApp.models.*;
 import fon.bg.ac.rs.retailApp.servicesImpl.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +37,11 @@ public class TextileController {
     @GetMapping("/textiles")
     public String getTextiles(Model model) {
 
-        List<Textile> textiles = textileServiceImpl.getTextiles();
-        List<TextileType> textileTypes=textileTypeServiceImpl.getTextileTypes();
-        List<TextileMake> textileMakes = textileMakeServiceImpl.getTextileMakes();
-        List<TextileModel> textileModels=textileModelServiceImpl.getTextileModels();
-        List<TextileStatus> textileStatuses = textileStatusServiceImpl.getTextileStatuses();
+        List<TextileDto> textiles = textileServiceImpl.getTextiles();
+        List<TextileTypeDto> textileTypes=textileTypeServiceImpl.getTextileTypes();
+        List<TextileMakeDto> textileMakes = textileMakeServiceImpl.getTextileMakes();
+        List<TextileModelDto> textileModels=textileModelServiceImpl.getTextileModels();
+        List<TextileStatusDto> textileStatuses = textileStatusServiceImpl.getTextileStatuses();
         List<Employee> employees=employeeServiceImpl.getEmployees();
         List<SupplierDto> suppliers = supplierServiceImpl.getSuppliers();
         System.out.println(textiles);
@@ -67,23 +67,23 @@ public class TextileController {
     }
 
     @PostMapping("/textiles/addNew")
-    public String addBew(Textile textile) {
-        Textile saved = textileServiceImpl.saveTextile(textile);
+    public String addBew(TextileDto textile) {
+        TextileDto saved = textileServiceImpl.saveTextile(textile);
         System.out.println(saved.getId());
         return "redirect:/textiles";
     }
 
     @RequestMapping(value = "/textiles/findById/", params = {"id"}, method = RequestMethod.GET)
     @ResponseBody
-    public Optional<Textile> findById(@RequestParam("id") Integer id) {
-        Optional<Textile> textile = textileServiceImpl.findById(id);
+    public TextileDto findById(@RequestParam("id") Integer id) {
+        TextileDto textile = textileServiceImpl.findById(id);
         System.out.println(textile);
         return textileServiceImpl.findById(id);
     }
 
     @RequestMapping(value = "/textiles/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String update(Textile textile) {
-        Textile updated = textileServiceImpl.saveTextile(textile);
+    public String update(TextileDto textile) {
+        TextileDto updated = textileServiceImpl.saveTextile(textile);
         System.out.println(updated.getId());
         return "redirect:/textiles";
     }
@@ -97,11 +97,11 @@ public class TextileController {
         return "redirect:/textiles";
     }
 
-    private List<Textile> getUpperBodyTextiles(){
-        List<Textile> upperBodyTextiles=textileServiceImpl.findByPurpose("Gornji deo");
-        List<Textile> textilesWithPicture= new ArrayList<>();
+    private List<TextileDto> getUpperBodyTextiles(){
+        List<TextileDto> upperBodyTextiles=textileServiceImpl.findByPurpose("Gornji deo");
+        List<TextileDto> textilesWithPicture= new ArrayList<>();
 
-        for (Textile t:upperBodyTextiles) {
+        for (TextileDto t:upperBodyTextiles) {
             if(t.getPhoto()!=null){
                 textilesWithPicture.add(t);
             }
@@ -112,12 +112,12 @@ public class TextileController {
         return textilesWithPicture;
     }
 
-    private List<Textile> getLowerBodyTextiles(){
-        List<Textile> lowerBodyTextiles=textileServiceImpl.findByPurpose("Donji deo");
+    private List<TextileDto> getLowerBodyTextiles(){
+        List<TextileDto> lowerBodyTextiles=textileServiceImpl.findByPurpose("Donji deo");
 
-        List<Textile> textilesWithPicture= new ArrayList<>();
+        List<TextileDto> textilesWithPicture= new ArrayList<>();
 
-        for (Textile t:lowerBodyTextiles) {
+        for (TextileDto t:lowerBodyTextiles) {
             if(t.getPhoto()!=null){
                 textilesWithPicture.add(t);
             }
@@ -134,7 +134,7 @@ public class TextileController {
     @GetMapping("/upperBodyTextiles")
     public String getUpperBodyTextiles(Model model) {
 
-        List<Textile> textiles = getUpperBodyTextiles();
+        List<TextileDto> textiles = getUpperBodyTextiles();
 //        System.out.println("GORNJI DELOVI");
 //        System.out.println(getUpperBodyTextiles());
 //        System.out.println("DONJI DELOVI");
@@ -147,7 +147,7 @@ public class TextileController {
     @GetMapping("/lowerBodyTextiles")
     public String getLowerBodyTextiles(Model model) {
 
-        List<Textile> textiles = getLowerBodyTextiles();
+        List<TextileDto> textiles = getLowerBodyTextiles();
 //        System.out.println("GORNJI DELOVI");
 //        System.out.println(getUpperBodyTextiles());
 //        System.out.println("DONJI DELOVI");

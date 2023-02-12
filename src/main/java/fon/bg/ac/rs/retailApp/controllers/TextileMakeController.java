@@ -1,5 +1,6 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
+import fon.bg.ac.rs.retailApp.dtos.TextileMakeDto;
 import fon.bg.ac.rs.retailApp.models.TextileMake;
 import fon.bg.ac.rs.retailApp.servicesImpl.TextileMakeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class TextileMakeController {
     @GetMapping("/textileMakes")
     public String getTextileMakes(Model model) {
 
-        List<TextileMake> textileMakes = textileMakeServiceImpl.getTextileMakes();
+        List<TextileMakeDto> textileMakes = textileMakeServiceImpl.getTextileMakes();
         System.out.println(textileMakes);
         model.addAttribute("textileMakes", textileMakes);
         //ovaj model saljem ka HTML stranici
@@ -27,23 +28,23 @@ public class TextileMakeController {
     }
 
     @PostMapping("/textileMakes/addNew")
-    public String addBew(TextileMake textileMake) {
-        TextileMake savedTextileMake = textileMakeServiceImpl.saveTextileMake(textileMake);
+    public String addBew(TextileMakeDto textileMake) {
+        TextileMakeDto savedTextileMake = textileMakeServiceImpl.saveTextileMake(textileMake);
         System.out.println(savedTextileMake.getId());
         return "redirect:/textileMakes";
     }
 
     @RequestMapping(value = "/textileMakes/findById/", params = {"id"}, method = RequestMethod.GET)
     @ResponseBody
-    public Optional<TextileMake> findById(@RequestParam("id") Integer id) {
-        Optional<TextileMake> textileMake = textileMakeServiceImpl.findById(id);
+    public TextileMakeDto findById(@RequestParam("id") Integer id) {
+        TextileMakeDto textileMake = textileMakeServiceImpl.findById(id);
         System.out.println(textileMake);
         return textileMakeServiceImpl.findById(id);
     }
 
     @RequestMapping(value = "/textileMakes/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String update(TextileMake textileMake) {
-        TextileMake updatedTextileMake = textileMakeServiceImpl.saveTextileMake(textileMake);
+    public String update(TextileMakeDto textileMake) {
+        TextileMakeDto updatedTextileMake = textileMakeServiceImpl.saveTextileMake(textileMake);
         System.out.println(updatedTextileMake.getId());
         return "redirect:/textileMakes";
     }

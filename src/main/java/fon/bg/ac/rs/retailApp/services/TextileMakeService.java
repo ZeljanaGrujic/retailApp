@@ -1,16 +1,17 @@
 package fon.bg.ac.rs.retailApp.services;
 
+import fon.bg.ac.rs.retailApp.dtos.TextileMakeDto;
 import fon.bg.ac.rs.retailApp.models.TextileMake;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface TextileMakeService {
-    List<TextileMake> getTextileMakes();
+    List<TextileMakeDto> getTextileMakes();
 
-    TextileMake saveTextileMake(TextileMake textileMake);
+    TextileMakeDto saveTextileMake(TextileMakeDto textileMake);
 
-    Optional<TextileMake> findById(int id);
+    TextileMakeDto findById(int id);
 
     void deleteById(int id);
 }
