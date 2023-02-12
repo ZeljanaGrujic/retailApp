@@ -457,7 +457,7 @@
                     <td th:text="${user.firstname}"></td>
                     <td th:text="${user.lastname}"></td>
                     <td th:text="${user.username}"></td>
-                    <td><a  th:href="@{'/security/user/Edit/'+${user.id}}"
+                    <td><a  th:href="@{/security/user/Edit/(id=${user.id})}"
                             class="btn btn-default">Upravljaj ulogama</a></td>
                     <td>
                         <div class="btn-group">

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
+import java.util.ArrayList;
 
 @Controller
 public class ProfileController {
@@ -26,16 +27,18 @@ public class ProfileController {
     public String profile(Model model, Principal principal) {
 
         String username = principal.getName();
-        Employee empProfile = employeeServiceImpl.findByUsername(username);
-        User user = userServiceImpl.findByUsername(username);
+        Employee empProfile = new Employee();
+                empProfile=employeeServiceImpl.findByUsername(username);
 
-        if (empProfile != null) {
+                if(empProfile == null){
+                    User user = userServiceImpl.findByUsername(username);
+                    model.addAttribute("myProfile", user);
+                    return "profileUser";
+                }
+
             model.addAttribute("myProfile", empProfile);
             System.out.println(empProfile);
-        } else {
-            model.addAttribute("myProfile", user);
-            System.out.println(user);
-        }
+
         //vraca username ulogovanog korisnika
         return "profile";
     }

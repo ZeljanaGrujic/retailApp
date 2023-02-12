@@ -1,7 +1,9 @@
 package fon.bg.ac.rs.retailApp.security.controllers;
 
+import fon.bg.ac.rs.retailApp.models.User;
 import fon.bg.ac.rs.retailApp.security.models.Role;
 import fon.bg.ac.rs.retailApp.security.servicesImpl.RoleServiceImpl;
+import fon.bg.ac.rs.retailApp.servicesImpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,9 @@ public class RoleController {
     @Autowired
     private RoleServiceImpl roleServiceImpl;
 
+    @Autowired
+    private UserServiceImpl userServiceImpl;
+
     @GetMapping("/roles")
     public String getRoles(Model model) {
 
@@ -23,7 +28,7 @@ public class RoleController {
         System.out.println(roles);
         model.addAttribute("roles", roles);
         //ovaj model saljem ka HTML stranici
-        return "userEdit1";
+        return "Role";
     }
 
     @PostMapping("/roles/addNew")
@@ -55,5 +60,29 @@ public class RoleController {
 //        System.out.println(country);
         roleServiceImpl.deleteById(id);
         return "redirect:/roles";
+    }
+
+    @RequestMapping(value = "/security/user/Edit/", params = {"id"},method = RequestMethod.GET)
+    public String editUser(@RequestParam Integer id, Model model){
+        User user = userServiceImpl.findById(id).orElse(null);
+        model.addAttribute("user", user);
+        model.addAttribute("userRoles", roleServiceImpl.getUserRoles(user));
+        model.addAttribute("userNotRoles", roleServiceImpl.getUserNotRoles(user));
+        return "userEdit1";
+    }
+
+    @RequestMapping(value="/security/role/assign/{userId}/{roleId}")
+    public String assignRole(@PathVariable Integer userId,
+                             @PathVariable Integer roleId){
+        roleServiceImpl.assignUserRole(userId, roleId);
+        return "redirect:/security/user/Edit/?id="+userId;
+    }
+
+
+    @RequestMapping("/security/role/unassign/{userId}/{roleId}")
+    public String unassignRole(@PathVariable Integer userId,
+                               @PathVariable Integer roleId){
+        roleServiceImpl.unassignUserRole(userId, roleId);
+        return "redirect:/security/user/Edit/?id="+userId;
     }
 }
