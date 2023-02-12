@@ -10,7 +10,7 @@
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Upravljanje lokacijama</title>
+    <title>Upravljanje ulogama</title>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -430,49 +430,45 @@
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a th:href="@{/index}">Pocetna stranica</a></li>
                         <li><i class="fa fa-bars"></i>Stranice</li>
-                        <li><i class="fa fa-square-o"></i>Lokacije</li>
+                        <li><i class="fa fa-square-o"></i>Kategorije proizvoda</li>
                     </ol>
                 </div>
             </div>
             <!-- page start-->
-            <h1> Lista lokacija vezanih za posao</h1>
-
+            <h1> Lista uloga</h1>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"
-                    data-whatever="@mdo">Dodaj lokaciju
+                    data-whatever="@mdo">Dodaj kategoriju proizvoda
             </button>
 
             <table class="table">
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Grad</th>
-                    <th>Adresa</th>
-                    <th>Detalji</th>
-                    <th>Okrug/drzava</th>
+                    <th>Opisni naziv kategorije</th>
+                    <th>Detalji/svojstva</th>
                     <th>Izmeni</th>
                     <th>Izbrisi</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="location:${locations}">
-                    <td th:text="${location.id}"></td>
-                    <td th:text="${location.city}"></td>
-                    <td th:text="${location.address}"></td>
-                    <td th:text="${location.details}"></td>
-                    <td th:text="${location.country.name}"></td>
+                <tr th:each="role:${roles}">
+                    <td th:text="${role.id}"></td>
+                    <td th:text="${role.description}"></td>
+                    <td th:text="${role.details}"></td>
                     <td>
                         <div class="btn-group">
-                            <a class="btn btn-primary" th:href="@{/locations/findById/(id=${location.id})}" id="editButton">Izmeni</a>
+                            <a class="btn btn-primary" th:href="@{/roles/findById/(id=${role.id})}" id="editButton">Izmeni</a>
                         </div>
                     </td>
                     <td>
                         <div class="btn-group">
-                            <a id="deleteButton" class="btn btn-danger" th:href="@{/locations/deleteById/(id=${location.id})}">Izbrisi</a>
+                            <a id="deleteButton" class="btn btn-danger" th:href="@{/roles/deleteById/(id=${role.id})}">Izbrisi</a>
                         </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
+
 
             <!-- page end-->
         </section>
@@ -492,49 +488,44 @@
 </section>
 <!-- container section end -->
 
-
 <!-- nova forma za dodavanje drzave/regiona -->
 <div class="modal fade" id="addModal" tabindex="-1" myRole="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" myRole="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Dodaj lokaciju</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Dodaj kategoriju</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/locations/addNew}" method="post">
+                <form th:action="@{/roles/addNew}" method="post">
+
+<!--                    <div class="form-group">-->
+<!--                        <label for="idAdd" class="col-form-label">Id:</label>-->
+<!--                        <input type="text" class="form-control" id="idAdd" name="id" disabled>-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group">-->
+<!--                        <label for="ddlCountryAdd" class="col-form-label">Country: </label>-->
+<!--                        <select class="form-control" id="ddlCountryAdd" name="countryid">-->
+<!--                            <option>Odaberi region/drzavu</option>-->
+<!--                            <option th:each="country : ${countries}"-->
+<!--                                    th:value="${country.id}"-->
+<!--                                    th:text="${country.name}">-->
+<!--                            </option>-->
+<!--                        </select>-->
+<!--                    </div>-->
 
                     <div class="form-group">
-                        <label for="idAdd" class="col-form-label">Id:</label>
-                        <input type="text" class="form-control" id="idAdd" name="id" disabled>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ddlCountryAdd" class="col-form-label">Drzava/region </label>
-                        <select class="form-control" id="ddlCountryAdd" name="countryid">
-                            <option>Odaberi region/drzavu</option>
-                            <option th:each="country : ${countries}"
-                                    th:value="${country.id}"
-                                    th:text="${country.name}">
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="addressAdd" class="col-form-label">Adresa</label>
-                        <input type="text" class="form-control" id="addressAdd" name="address" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cityAdd" class="col-form-label">Grad</label>
-                        <input type="text" class="form-control" id="cityAdd" name="city" required>
+                        <label for="descriptionAdd" class="col-form-label">Opisni naziv kategorije</label>
+                        <input type="text" class="form-control" id="descriptionAdd" name="description" required>
                     </div>
 
                     <div class="form-group">
                         <label for="detailsAdd" class="col-form-label">Detalji</label>
-                        <input type="text" class="form-control" id="detailsAdd" name="details">
+                        <textarea type="text-area" class="form-control" id="detailsAdd" name="details"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -568,37 +559,34 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/locations/update}" method="put">
+                <form th:action="@{/roles/update}" method="put">
 
                     <div class="form-group">
                         <label for="idEdit" class="col-form-label">Id</label>
                         <input type="text" class="form-control" id="idEdit" name="id" readonly>
                     </div>
 
-                    <div class="form-group">
-                        <label for="ddlCountryEdit" class="col-form-label">Drzava/region </label>
-                        <select class="form-control" id="ddlCountryEdit" name="countryid">
-                            <option>Odaberi region/drzavu</option>
-                            <option th:each="country : ${countries}"
-                                    th:value="${country.id}"
-                                    th:text="${country.name}">
-                            </option>
-                        </select>
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label for="ddlCountryEdit" class="col-form-label">Country: </label>-->
+<!--                        <select class="form-control" id="ddlCountryEdit" name="countryid">-->
+<!--                            <option>Odaberi region/drzavu</option>-->
+<!--                            <option th:each="country : ${countries}"-->
+<!--                                    th:value="${country.id}"-->
+<!--                                    th:text="${country.name}">-->
+<!--                            </option>-->
+<!--                        </select>-->
+<!--                    </div>-->
 
                     <div class="form-group">
-                        <label for="addressEdit" class="col-form-label">Adresa</label>
-                        <input type="text" class="form-control" id="addressEdit" name="address" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cityEdit" class="col-form-label">Grad</label>
-                        <input type="text" class="form-control" id="cityEdit" name="city" required>
+                        <label for="descriptionEdit" class="col-form-label">Opisni naziv kategorije</label>
+                        <input type="text" class="form-control" id="descriptionEdit" name="description" required>
                     </div>
 
                     <div class="form-group">
                         <label for="detailsEdit" class="col-form-label">Detalji</label>
-                        <input type="text" class="form-control" id="detailsEdit" name="details">
+                        <textarea type="text-area" class="form-control" id="detailsEdit" name="details"></textarea>
                     </div>
+
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Sacuvaj izmene</button>
@@ -644,6 +632,7 @@
 
 
 
+
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -652,7 +641,7 @@
 <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
 <!--custome script for all page-->
 <script src="js/scripts.js"></script>
-<script src="js/Location.js"></script>
+<script src="js/Role.js"></script>
 
 
 </body>
