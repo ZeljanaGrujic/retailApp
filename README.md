@@ -4,7 +4,7 @@ This is a simple web application, for tracking details for textiles on stock, em
 
 # Where did the initial idea come from?
 
-After completing my undergraduate studies at the Faculty of Organizational Sciences, I decided to step out of my comfort zone and feel the challenge of programming on real problems, and thus acquire a new problem-solving skill.Therefore, my new learning journey began with the Master's program in Software Engineering and Artificial Intelligence.Is there a better way to learn programming than to encounter a new programming language.
+After completing my undergraduate studies at the Faculty of Organizational Sciences, I decided to step out of my comfort zone and feel the challenge of programming on real problems, and thus acquire a new problem-solving skill.Therefore, my new learning journey began with the Master's program in Software Engineering and Artificial Intelligence. Is there a better way to learn programming than to learn about new technologies. Of course we are talking about Spring Boot, JPA, Hibernate, Spring Security and Bootstrap.
 At the beginning of the semester, everything seemed very difficult to me, so I decided that in addition to the regular lectures at the faculty, I would also take a look at a course that will use the mentioned technologies in a practical way. By combining the information obtained at the University and from the course, I used the acquired knowledge to create an application for my own needs in a similar way.
 Through the mentioned application, I tried to demonstrate acquired knowledge, so far. 
 Considering that this is my first experience with with these technologies (Spring Boot, Spring Security, JPA, Hibernate) and UI programming (Bootstrap), I am very proud of the current results.
@@ -19,10 +19,12 @@ The application is divided into two parts, part for users and part for system us
 The system user in this case employee can log in with his credentials, and when he passes the check, he has access to all pages ( he can add new employee, make new order and invoice for that, add new mtextile make, model, add new textile product, see details for every subject of interest...)
 After registration, the regular user can see only basic information about the store, contact phone number, name of the owner, as well as pictures of the textile products available in the store, some details about make and model, price, and stock number.
 
+The application was made according to the MVC pattern, the option for registration and logging in was implemented with Spring Security,and communication with the database was achieved through JPA and Hibernate.
+
 # Problems I ran into
 
 # What next?
-It would be nice to sort out the little things like dates, aesthetics, interactive search and things like that.
+It would be nice to sort out the little things like dates, aesthetics, interactive search, interactive addition of photos, make an online ordering option and things like that (there are plenty of possibilities and ideas).
 
 Pleading : Please keep in mind that this is my first real project, and specially it is implemented using technologies that I am learning for the first time along the way.
 I would very much like to upgrade this application even more, but I will take a little break (temporarily) from working on this first version of the application, due to obligations for another subject.
