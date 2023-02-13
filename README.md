@@ -27,7 +27,7 @@ The application was made according to the MVC pattern, the option for registrati
 It would be nice to sort out the little things like dates, aesthetics, interactive search, interactive addition of photos, make an online ordering option and things like that (there are plenty of possibilities and ideas).
 
 Pleading : Please keep in mind that this is my first real project, and specially it is implemented using technologies that I am learning for the first time along the way.
-I would very much like to upgrade this application even more, but I will take a little break (temporarily) from working on this first version of the application, due to obligations for another subject.
+I would very much like to upgrade this application even more, but I will take a little break from working on this first version of the application, due to obligations for another subject.
 
 ## Prerequisites and Usage 
 
