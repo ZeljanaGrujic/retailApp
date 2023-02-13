@@ -23,6 +23,9 @@ The application was made according to the MVC pattern, the option for registrati
 
 # Problems I ran into
 
+The problems I ran into were mostly related to my inexperience, but Baeldung articles and official documentation helped a lot.
+In addition, the technical problems that appeared were mostly related to dependencies and some version mismatches.
+
 # What next?
 It would be nice to sort out the little things like dates, aesthetics, interactive search, interactive addition of photos, make an online ordering option and things like that (there are plenty of possibilities and ideas).
 
