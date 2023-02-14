@@ -54,7 +54,6 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public void deleteById(int id) {
 
-
         countryRepository.deleteById(id);
     }
 

@@ -8,6 +8,7 @@ import fon.bg.ac.rs.retailApp.servicesImpl.LocationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -36,8 +37,14 @@ public class CountryController {
 
     @PostMapping("/countries/addNew")
     public String addBew(CountryDto country) {
-        CountryDto savedCountry = countryServiceImpl.saveCountry(country);
-        System.out.println(savedCountry.getId());
+        try {
+            CountryDto savedCountry = countryServiceImpl.saveCountry(country);
+            System.out.println(savedCountry.getId());
+        }catch (Exception e){
+            System.out.println("Nije moguce dodati ovaj region/drzavu!");
+            return "CountrySaveError";
+
+        }
         return "redirect:/countries";
     }
 
@@ -59,9 +66,13 @@ public class CountryController {
 
     @RequestMapping(value = "/countries/deleteById/", params = {"id"}, method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteById(@RequestParam("id") Integer id) {
-//        Optional<Country> country = countryServiceImpl.findById(id);
-//        System.out.println(country);
-        countryServiceImpl.deleteById(id);
+        try {
+            countryServiceImpl.deleteById(id);
+
+        }catch (Exception e){
+            System.out.println("Ne mozete izbrisati ovu drzavu!");
+            return "CountryDeleteError";
+        }
         return "redirect:/countries";
     }
 
