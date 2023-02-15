@@ -22,8 +22,12 @@ public class UserController {
     public String getUsers(Model model) {
 
         List<User> users=userServiceImpl.getUsers();
-        System.out.println(users);
-        model.addAttribute("users", users);
+        if(users.isEmpty()){
+            model.addAttribute("users", null);
+        }else {
+            System.out.println(users);
+            model.addAttribute("users", users);
+        }
         //ovaj model saljem ka HTML stranici
 
         return "User";

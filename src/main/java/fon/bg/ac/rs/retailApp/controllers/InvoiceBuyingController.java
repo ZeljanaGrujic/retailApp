@@ -39,7 +39,12 @@ public class InvoiceBuyingController {
         System.out.println(invoiceBuyings);
         System.out.println(suppliers);
         System.out.println(invoiceStatuses);
-        model.addAttribute("invoiceBuyings", invoiceBuyings);
+        if(invoiceBuyings.isEmpty()){
+            model.addAttribute("invoiceBuyings", null);
+        }else{
+            model.addAttribute("invoiceBuyings", invoiceBuyings);
+        }
+
         model.addAttribute("suppliers", suppliers);
         model.addAttribute("invoiceStatuses", invoiceStatuses);
         //ovaj model saljem ka HTML stranici

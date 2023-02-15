@@ -30,8 +30,13 @@ public class TextileTypeController {
 
     @PostMapping("/textileTypes/addNew")
     public String addBew(TextileTypeDto textileType) {
-        TextileTypeDto savedTextileType = textileTypeServiceImpl.saveTextileType(textileType);
-        System.out.println(savedTextileType.getId());
+        try {
+            TextileTypeDto savedTextileType = textileTypeServiceImpl.saveTextileType(textileType);
+            System.out.println(savedTextileType.getId());
+        }catch (Exception e){
+            System.out.println("Kategorija proizvoda nije uspesno sacuvana!");
+            return "TextileTypeSaveError";
+        }
         return "redirect:/textileTypes";
     }
 
@@ -53,9 +58,13 @@ public class TextileTypeController {
 
     @RequestMapping(value = "/textileTypes/deleteById/", params = {"id"}, method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteById(@RequestParam("id") Integer id) {
-//        Optional<Location> location = locationServiceImpl.findById(id);
-//        System.out.println(country);
-        textileTypeServiceImpl.deleteById(id);
+
+        try {
+            textileTypeServiceImpl.deleteById(id);
+        }catch (Exception e){
+            System.out.println("Ne mozete izbrisati podatke za ovog klijenta");
+            return "TextileTypeDeleteError";
+        }
         return "redirect:/textileTypes";
     }
 

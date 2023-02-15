@@ -70,7 +70,7 @@ public class CountryController {
             countryServiceImpl.deleteById(id);
 
         }catch (Exception e){
-            System.out.println("Ne mozete izbrisati ovu drzavu!");
+            System.out.println("Ne mozete izbrisati ovu drzavu/region!");
             return "CountryDeleteError";
         }
         return "redirect:/countries";

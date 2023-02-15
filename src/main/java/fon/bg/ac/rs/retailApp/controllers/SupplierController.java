@@ -32,7 +32,11 @@ public class SupplierController {
         System.out.println(locations);
         System.out.println(suppliers);
         model.addAttribute("locations", locations);
-        model.addAttribute("suppliers", suppliers);
+        if(suppliers.isEmpty()){
+            model.addAttribute("suppliers", null);
+        }else {
+            model.addAttribute("suppliers", suppliers);
+        }
         //ovaj model saljem ka HTML stranici
         return "Supplier";
     }
@@ -62,9 +66,13 @@ public class SupplierController {
 
     @RequestMapping(value = "/suppliers/deleteById/", params = {"id"}, method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteById(@RequestParam("id") Integer id) {
-//        Optional<Location> location = locationServiceImpl.findById(id);
-//        System.out.println(country);
-        supplierServiceImpl.deleteById(id);
+
+        try {
+            supplierServiceImpl.deleteById(id);
+        }catch (Exception e){
+            System.out.println("Ne mozete izbrisati podatke za ovog dobavljaca");
+            return "SupplierDeleteError";
+        }
         return "redirect:/suppliers";
     }
 

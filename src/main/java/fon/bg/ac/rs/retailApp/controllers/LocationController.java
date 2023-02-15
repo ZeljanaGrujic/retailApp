@@ -29,7 +29,11 @@ public class LocationController {
         List<CountryDto> countries=countryServiceImpl.getCountries();
         System.out.println(locations);
         System.out.println(countries);
-        model.addAttribute("locations", locations);
+        if(locations.isEmpty()){
+            model.addAttribute("locations", null);
+        }else {
+            model.addAttribute("locations", locations);
+        }
         model.addAttribute("countries", countries);
         //ovaj model saljem ka HTML stranici
         return "Location";
@@ -60,9 +64,13 @@ public class LocationController {
 
     @RequestMapping(value = "/locations/deleteById/", params = {"id"}, method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteById(@RequestParam("id") Integer id) {
-//        Optional<Location> location = locationServiceImpl.findById(id);
-//        System.out.println(country);
-        locationServiceImpl.deleteById(id);
+
+        try {
+            locationServiceImpl.deleteById(id);
+        }catch (Exception e){
+            System.out.println("Ne mozete izbrisati podatke za ovu lokaciju");
+            return "LocationDeleteError";
+        }
         return "redirect:/locations";
     }
 

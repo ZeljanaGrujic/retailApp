@@ -29,8 +29,13 @@ public class TextileMakeController {
 
     @PostMapping("/textileMakes/addNew")
     public String addBew(TextileMakeDto textileMake) {
-        TextileMakeDto savedTextileMake = textileMakeServiceImpl.saveTextileMake(textileMake);
-        System.out.println(savedTextileMake.getId());
+        try {
+            TextileMakeDto savedTextileMake = textileMakeServiceImpl.saveTextileMake(textileMake);
+            System.out.println(savedTextileMake.getId());
+        }catch (Exception e){
+            System.out.println("Marka nije uspesno sacuvana!");
+            return "TextileMakeSaveError";
+        }
         return "redirect:/textileMakes";
     }
 
@@ -52,9 +57,13 @@ public class TextileMakeController {
 
     @RequestMapping(value = "/textileMakes/deleteById/", params = {"id"}, method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteById(@RequestParam("id") Integer id) {
-//        Optional<Location> location = locationServiceImpl.findById(id);
-//        System.out.println(country);
-        textileMakeServiceImpl.deleteById(id);
+
+        try {
+            textileMakeServiceImpl.deleteById(id);
+        }catch (Exception e){
+            System.out.println("Ne mozete izbrisati podatke za ovu marku");
+            return "TextileMakeDeleteError";
+        }
         return "redirect:/textileMakes";
     }
 }

@@ -68,8 +68,13 @@ public class TextileController {
 
     @PostMapping("/textiles/addNew")
     public String addBew(TextileDto textile) {
-        TextileDto saved = textileServiceImpl.saveTextile(textile);
-        System.out.println(saved.getId());
+        try {
+            TextileDto saved = textileServiceImpl.saveTextile(textile);
+            System.out.println(saved.getId());
+        }catch (Exception e){
+            System.out.println("Robni proizvod nije uspesno sacuvan!");
+            return "TextileSaveError";
+        }
         return "redirect:/textiles";
     }
 
@@ -91,9 +96,13 @@ public class TextileController {
 
     @RequestMapping(value = "/textiles/deleteById/", params = {"id"}, method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteById(@RequestParam("id") Integer id) {
-//        Optional<Location> location = locationServiceImpl.findById(id);
-//        System.out.println(country);
-        textileServiceImpl.deleteById(id);
+
+        try {
+            textileServiceImpl.deleteById(id);
+        }catch (Exception e){
+            System.out.println("Ne mozete izbrisati podatke za ovaj robni proizvod");
+            return "TextileDeleteError";
+        }
         return "redirect:/textiles";
     }
 

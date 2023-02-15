@@ -29,19 +29,28 @@ public class ClientController {
     public String getClients(Model model) {
 
         List<LocationDto> locations = locationServiceImpl.getLocations();
-        List<ClientDto> clients=clientServiceImpl.getClients();
+        List<ClientDto> clients = clientServiceImpl.getClients();
         System.out.println(locations);
         System.out.println(clients);
         model.addAttribute("locations", locations);
-        model.addAttribute("clients", clients);
+        if(clients.isEmpty()){
+            model.addAttribute("clients", null);
+        }else {
+            model.addAttribute("clients", clients);
+        }
         //ovaj model saljem ka HTML stranici
         return "Client";
     }
 
     @PostMapping("/clients/addNew")
     public String addBew(ClientDto client) {
-        ClientDto saved = clientServiceImpl.saveClient(client);
-        System.out.println(saved.getId());
+        try {
+            ClientDto saved = clientServiceImpl.saveClient(client);
+            System.out.println(saved.getId());
+        } catch (Exception e) {
+            System.out.println("Klijent nije uspesno sacuvan!");
+            return "ClientSaveError";
+        }
         return "redirect:/clients";
     }
 
@@ -63,9 +72,13 @@ public class ClientController {
 
     @RequestMapping(value = "/clients/deleteById/", params = {"id"}, method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteById(@RequestParam("id") Integer id) {
-//        Optional<Location> location = locationServiceImpl.findById(id);
-//        System.out.println(country);
-        clientServiceImpl.deleteById(id);
+        try {
+            clientServiceImpl.deleteById(id);
+        } catch (Exception e) {
+            System.out.println("Ne mozete izbrisati podatke za ovog klijenta");
+            return "ClientDeleteError";
+        }
+
         return "redirect:/clients";
     }
 

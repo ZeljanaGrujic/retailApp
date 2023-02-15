@@ -29,8 +29,13 @@ public class TextileModelController {
 
     @PostMapping("/textileModels/addNew")
     public String addBew(TextileModelDto textileModel) {
-        TextileModelDto savedTextileModel = textileModelServiceImpl.saveTextileModel(textileModel);
-        System.out.println(savedTextileModel.getId());
+        try {
+            TextileModelDto savedTextileModel = textileModelServiceImpl.saveTextileModel(textileModel);
+            System.out.println(savedTextileModel.getId());
+        }catch (Exception e){
+            System.out.println("Model nije uspesno sacuvan!");
+            return "TextileModelSaveError";
+        }
         return "redirect:/textileModels";
     }
 
@@ -52,9 +57,13 @@ public class TextileModelController {
 
     @RequestMapping(value = "/textileModels/deleteById/", params = {"id"}, method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteById(@RequestParam("id") Integer id) {
-//        Optional<Location> location = locationServiceImpl.findById(id);
-//        System.out.println(country);
-        textileModelServiceImpl.deleteById(id);
+
+        try {
+            textileModelServiceImpl.deleteById(id);
+        }catch (Exception e){
+            System.out.println("Ne mozete izbrisati podatke za ovaj model");
+            return "TextileModelDeleteError";
+        }
         return "redirect:/textileModels";
     }
 

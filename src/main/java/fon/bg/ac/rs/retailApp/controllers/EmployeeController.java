@@ -45,7 +45,11 @@ public class EmployeeController {
         System.out.println(locations);
         System.out.println(countries);
 
-        model.addAttribute("employees", employees);
+        if(employees.isEmpty()){
+            model.addAttribute("employees", null);
+        }else {
+            model.addAttribute("employees", employees);
+        }
         model.addAttribute("employeeTypes", employeeTypes);
         model.addAttribute("jobTitles", jobTitles);
         model.addAttribute("locations", locations);
@@ -57,8 +61,13 @@ public class EmployeeController {
 
     @PostMapping("/employees/addNew")
     public String addBew(Employee employee) {
-        Employee saved = employeeServiceImpl.saveEmployee(employee);
-        System.out.println(saved.getId());
+        try {
+            Employee saved = employeeServiceImpl.saveEmployee(employee);
+            System.out.println(saved.getId());
+        }catch (Exception e){
+            System.out.println("Zaposleni nije uspesno sacuvan!");
+            return "EmployeeSaveError";
+        }
         return "redirect:/employees";
     }
 
@@ -80,9 +89,13 @@ public class EmployeeController {
 
     @RequestMapping(value = "/employees/deleteById/", params = {"id"}, method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteById(@RequestParam("id") Integer id) {
-//        Optional<Location> location = locationServiceImpl.findById(id);
-//        System.out.println(country);
-        employeeServiceImpl.deleteById(id);
+
+        try {
+            employeeServiceImpl.deleteById(id);
+        }catch (Exception e){
+            System.out.println("Ne mozete izbrisati podatke za ovog zaposlenog");
+            return "EmployeeDeleteError";
+        }
         return "redirect:/employees";
     }
 

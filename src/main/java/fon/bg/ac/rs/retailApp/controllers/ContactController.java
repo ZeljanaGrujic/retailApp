@@ -24,8 +24,11 @@ public class ContactController {
     public String getContactss(Model model) {
 
         List<ContactDto> contacts=contactServiceImpl.getContacts();
-        System.out.println(contacts);
-        model.addAttribute("contacts", contacts);
+        if(contacts.isEmpty()) {
+            model.addAttribute("contacts", null);
+        }else {
+            model.addAttribute("contacts", contacts);
+        }
         //ovaj model saljem ka HTML stranici
         return "MyContact";
     }
