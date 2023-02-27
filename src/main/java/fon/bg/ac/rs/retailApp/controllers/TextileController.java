@@ -66,6 +66,39 @@ public class TextileController {
         return "Textile";
     }
 
+
+    @GetMapping("/textilesUser")
+    public String getTextilesUser(Model model) {
+
+        List<TextileDto> textiles = textileServiceImpl.getTextiles();
+        List<TextileTypeDto> textileTypes=textileTypeServiceImpl.getTextileTypes();
+        List<TextileMakeDto> textileMakes = textileMakeServiceImpl.getTextileMakes();
+        List<TextileModelDto> textileModels=textileModelServiceImpl.getTextileModels();
+        List<TextileStatusDto> textileStatuses = textileStatusServiceImpl.getTextileStatuses();
+        List<Employee> employees=employeeServiceImpl.getEmployees();
+        List<SupplierDto> suppliers = supplierServiceImpl.getSuppliers();
+        System.out.println(textiles);
+        System.out.println(textileTypes);
+        System.out.println(textileMakes);
+        System.out.println(textileModels);
+        System.out.println(textileStatuses);
+        System.out.println(employees);
+        System.out.println(suppliers);
+//        System.out.println("GORNJI DELOVI");
+//        System.out.println(getUpperBodyTextiles());
+//        System.out.println("DONJI DELOVI");
+//        System.out.println(getLowerBodyTextiles());
+        model.addAttribute("textiles", textiles);
+        model.addAttribute("textileTypes", textileTypes);
+        model.addAttribute("textileMakes", textileMakes);
+        model.addAttribute("textileModels", textileModels);
+        model.addAttribute("textileStatuses", textileStatuses);
+        model.addAttribute("employees", employees);
+        model.addAttribute("suppliers", suppliers);
+        //ovaj model saljem ka HTML stranici
+        return "TextileUser";
+    }
+
     @PostMapping("/textiles/addNew")
     public String addBew(TextileDto textile) {
         try {

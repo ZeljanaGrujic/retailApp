@@ -64,9 +64,9 @@
             <!--  search form start -->
             <ul class="nav top-menu">
                 <li>
-                    <form class="navbar-form">
-                        <input class="form-control" placeholder="Pretraga..." type="text">
-                    </form>
+<!--                    <form class="navbar-form">-->
+<!--                        <input class="form-control" placeholder="Pretraga..." type="text">-->
+<!--                    </form>-->
                 </li>
             </ul>
             <!--  search form end -->
@@ -319,6 +319,8 @@
     <!--header end-->
 
     <!--sidebar start-->
+
+
     <aside>
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
@@ -330,18 +332,18 @@
                     </a>
                 </li>
 
-                <li class="sub-menu">
-                    <a class="" href="javascript:;">
-                        <i class="icon_genius"></i>
-                        <span>Odeca</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-<!--                        <li><a class="" th:href="@{/textiles}">Sva odeca</a></li>-->
-                        <li><a class="" th:href="@{/upperBodyTextiles}">Gornji delovi odece</a></li>
-                        <li><a class="" th:href="@{/lowerBodyTextiles}">Donji delovi odece</a></li>
-                    </ul>
-                </li>
+<!--                <li class="sub-menu">-->
+<!--                    <a class="" href="javascript:;">-->
+<!--                        <i class="icon_genius"></i>-->
+<!--                        <span>Odeca</span>-->
+<!--                        <span class="menu-arrow arrow_carrot-right"></span>-->
+<!--                    </a>-->
+<!--                    <ul class="sub">-->
+<!--&lt;!&ndash;                        <li><a class="" th:href="@{/textiles}">Sva odeca</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li><a class="" th:href="@{/upperBodyTextiles}">Gornji delovi odece</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li><a class="" th:href="@{/lowerBodyTextiles}">Donji delovi odece</a></li>&ndash;&gt;-->
+<!--                    </ul>-->
+<!--                </li>-->
 
 <!--                <li class="sub-menu">-->
 <!--                    <a class="" href="javascript:;">-->
@@ -425,6 +427,8 @@
             <!-- sidebar menu end-->
         </div>
     </aside>
+
+
     <!--sidebar end-->
 
     <!--main content start-->
@@ -488,6 +492,68 @@
 
             </div>
             <!--/.row-->
+
+<!-- JA UBACILA-->
+
+            <div class="row">
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="info-box green-bg">
+<!--                        <i class="fa fa-cubes"></i>-->
+                        <i class="icon_genius"></i>
+<!--                        <a class="count" th:href="@{/index}">Pocetna stranica</a></li>-->
+                        <div class="count">Ponuda:</div>
+                        <div class="title">Proizvodi dostupni u nasem objektu</div>
+                    </div>
+                    <!--/.info-box-->
+                </div>
+
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="info-box dark-bg">
+<!--                        <i class="fa fa-thumbs-o-up"></i>-->
+                        <i class="icon_genius"></i>
+                        <a class="count" th:href="@{/textilesUser}">Sva odeca</a>
+<!--                        <div class="count"></div>-->
+<!--                        <div class="title">Pogledajte ponudu</div>-->
+                    </div>
+                    <!--/.info-box-->
+                </div>
+
+                <!--/.col-->
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="info-box brown-bg">
+<!--                        <i class="fa fa-shopping-cart"></i>-->
+                        <i class="icon_genius"></i>
+                        <a class="count" th:href="@{/upperBodyTextiles}">Gornji delovi</a>
+<!--                        <div class="count">Gornji delovi odece</div>-->
+<!--                        <div class="title">Pogledajte ponudu</div>-->
+                    </div>
+                    <!--/.info-box-->
+                </div>
+                <!--/.col-->
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="info-box blue-bg">
+<!--                        <i class="fa fa-cloud-download"></i>-->
+                        <i class="icon_genius"></i>
+                        <a class="count" th:href="@{/lowerBodyTextiles}">Donji delovi</a>
+<!--                        <div class="count">Donji delovi odece</div>-->
+<!--                        <div class="title">Dobavljaca</div>-->
+                    </div>
+                    <!--/.info-box-->
+                </div>
+                <!--/.col-->
+
+                <!--/.col-->
+
+            </div>
+
+
+
+
+
 
 
             <div class="row">
