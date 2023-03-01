@@ -11,8 +11,10 @@ $('document').ready(function() {
 //			$('#txtSupplierEdit').val(invoiceBuying.supplier.fullName);
 			$('#supplierEdit').val(invoiceBuying.supplierid);
 			$('#statusEdit').val(invoiceBuying.invoicestatusid);
+			$('#ddlItemsEdit').val(invoiceBuying.textileid);
 			$('#specialRemarksEdit').val(invoiceBuying.specialRemarks);
 			$('#totalCostEdit').val(invoiceBuying.totalCost);
+			$('#itemsEdit').val(invoiceBuying.items);
 		});
 		$('#editModal').modal();
 	});
@@ -22,6 +24,11 @@ $('document').ready(function() {
 		var href= $(this).attr('href');
 		$.get(href, function(invoiceBuying, status){
 				$('#idDetails').val(invoiceBuying.id);
+				$('#itemsDetails').val(invoiceBuying.textile.uniqueCode);
+				$('#purposeDetails').val(invoiceBuying.textile.purpose);
+				$('#typeDetails').val(invoiceBuying.textile.textileType.description);
+				$('#makeDetails').val(invoiceBuying.textile.textleMake.description);
+				$('#modelDetails').val(invoiceBuying.textile.textileModel.description);
             	$('#specialRemarkDetails').val(invoiceBuying.specialRemarks);
            		$('#totalCostDetails').val(invoiceBuying.totalCost);
             	$('#supplierFullNameDetails').val(invoiceBuying.supplier.fullName);

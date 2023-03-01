@@ -27,12 +27,11 @@ public class InvoiceSellingServiceImpl implements InvoiceSellingService {
         List<InvoiceSellingDto> dtos = all.stream()
                 .map(d -> new InvoiceSellingDto(d.getId(),
                         d.getInvoiceDate(),
-                        d.getInvoiceStatus(),
-                        d.getInvoiceStatus().getId(),
                         d.getClient(),
                         d.getClient().getId(),
                         d.getSpecialRemarks(),
-                        d.getTotalCost())).collect(Collectors.toList());
+                        d.getTotalCost(),
+                        d.getItems())).collect(Collectors.toList());
 
         return dtos;
     }

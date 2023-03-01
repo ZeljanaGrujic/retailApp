@@ -450,9 +450,10 @@
                         <tr>
                             <th>Id</th>
                             <th>Datum kreiranja</th>
-                            <th>Status</th>
+                            <!--                            <th>Status</th>-->
                             <th>Dobavljac</th>
-                            <th>Izmeni</th>
+                            <th>Dodaj proizvode</th>
+                            <!--                            <th>Izmeni</th>-->
                             <th>Pogledaj detalje</th>
                             <!--                    <th>Izbrisi</th>-->
                         </tr>
@@ -461,16 +462,20 @@
                         <tr th:each="invoiceSelling : ${invoiceSellings}">
                             <td th:text="${invoiceSelling.id}"></td>
                             <td th:text="${invoiceSelling.invoiceDate}"></td>
-                            <td th:text="${invoiceSelling.invoiceStatus.description}"></td>
+                            <!--                            <td th:text="${invoiceSelling.invoiceStatus.description}"></td>-->
                             <td th:text="${invoiceSelling.client.fullName}"></td>
                             <!--                    <td th:text="${jobTitle.details}"></td>-->
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-primary"
-                                       th:href="@{/invoicesSelling/findById/(id=${invoiceSelling.id})}"
-                                       id="editButton">Izmeni</a>
-                                </div>
-                            </td>
+                            <!--                            <td>-->
+                            <!--                                <div class="btn-group">-->
+                            <!--                                    <a class="btn btn-primary"-->
+                            <!--                                       th:href="@{/invoicesSelling/findById/(id=${invoiceSelling.id})}"-->
+                            <!--                                       id="editButton">Izmeni</a>-->
+                            <!--                                </div>-->
+                            <!--                            </td>-->
+
+
+                            <td><a th:href="@{/invoice/textile/Edit/(id=${invoiceSelling.id})}"
+                                   class="btn btn-default">Dodaj proizvode</a></td>
 
                             <td>
                                 <div class="btn-group">
@@ -517,7 +522,7 @@
         <div class="modal-dialog modal-lg" myRole="document" style="width:70%">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Dodaj novog klijenta</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Nova faktura</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -555,18 +560,18 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="ddlStatusAdd" class="col-sm-4 col-form-label">Status</label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlStatusAdd" name="invoicestatusid">
-                                            <option>Oznacite status:</option>
-                                            <option th:each="invoiceStatus : ${invoiceStatuses}"
-                                                    th:value="${invoiceStatus.id}"
-                                                    th:text="${invoiceStatus.description}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
+                                <!--                                <div class="form-group row">-->
+                                <!--                                    <label for="ddlStatusAdd" class="col-sm-4 col-form-label">Status</label>-->
+                                <!--                                    <div class="col-sm-6">-->
+                                <!--                                        <select class="form-control" id="ddlStatusAdd" name="invoicestatusid">-->
+                                <!--                                            <option>Oznacite status:</option>-->
+                                <!--                                            <option th:each="invoiceStatus : ${invoiceStatuses}"-->
+                                <!--                                                    th:value="${invoiceStatus.id}"-->
+                                <!--                                                    th:text="${invoiceStatus.description}">-->
+                                <!--                                            </option>-->
+                                <!--                                        </select>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
 
 
                             </td>
@@ -607,85 +612,87 @@
 </div>
 
 <!-- editModal za izmenu drzave -->
-<div class="modal fade" id="editModal" tabindex="-1" myRole="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" myRole="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleEditModalLabel">Izmeni podatke</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{/invoicesSelling/update}" method="put">
-
-                    <div class="form-group">
-                        <label for="idEdit" class="col-form-label">Id</label>
-                        <input type="text" class="form-control" id="idEdit" name="id" readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dateEdit" class="col-form-label">Datum</label>
-                        <input type="date" class="form-control" id="dateEdit" name="invoiceDate"
-                               placeholder="FORMAT dd-MM-gggg HH:mm:ss">
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="supplierEdit" class="col-sm-4 col-form-label">Klijent</label>
-                        <div class="col-sm-6">
-                            <select class="form-control" id="supplierEdit" name="clientid">
-                                <option>Klijent za koga se kreira narudzbina:</option>
-                                <option th:each="client : ${clients}"
-                                        th:value="${client.id}"
-                                        th:text="${client.fullName}">
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="statusEdit" class="col-sm-4 col-form-label">Status</label>
-                        <div class="col-sm-6">
-                            <select class="form-control" id="statusEdit" name="invoicestatusid">
-                                <option>Oznacite status:</option>
-                                <option th:each="invoiceStatus : ${invoiceStatuses}"
-                                        th:value="${invoiceStatus.id}"
-                                        th:text="${invoiceStatus.description}">
-                                </option>
-                            </select>
-                        </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        <label for="specialRemarksEdit" class="col-form-label">Detalji/Napomena</label>
-                        <textarea type="text" class="form-control" id="specialRemarksEdit"
-                                  name="specialRemarks" required></textarea>
-                    </div>
+<!--<div class="modal fade" id="editModal" tabindex="-1" myRole="dialog" aria-labelledby="exampleModalLabel"-->
+<!--     aria-hidden="true">-->
+<!--    <div class="modal-dialog" myRole="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleEditModalLabel">Izmeni podatke</h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <form th:action="@{/invoicesSelling/update}" method="put">-->
 
-                    <div class="form-group">
-                        <label for="totalCostEdit" class="col-form-label">Iznos</label>
-                        <input type="number" class="form-control" id="totalCostEdit" name="totalCost" required>
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label for="idEdit" class="col-form-label">Id</label>-->
+<!--                        <input type="text" class="form-control" id="idEdit" name="id" readonly>-->
+<!--                    </div>-->
 
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Sacuvaj izmene</button>
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label for="dateEdit" class="col-form-label">Datum</label>-->
+<!--                        <input type="date" class="form-control" id="dateEdit" name="invoiceDate"-->
+<!--                               placeholder="FORMAT dd-MM-gggg HH:mm:ss">-->
+<!--                    </div>-->
 
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
-            </div>
+<!--                    <div class="form-group row">-->
+<!--                        <label for="supplierEdit" class="col-sm-4 col-form-label">Klijent</label>-->
+<!--                        <div class="col-sm-6">-->
+<!--                            <select class="form-control" id="supplierEdit" name="clientid">-->
+<!--                                <option>Klijent za koga se kreira narudzbina:</option>-->
+<!--                                <option th:each="client : ${clients}"-->
+<!--                                        th:value="${client.id}"-->
+<!--                                        th:text="${client.fullName}">-->
+<!--                                </option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-            <!--            <div class="modal-footer">-->
-            <!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-            <!--                <button type="button" class="btn btn-primary">Send message</button>-->
-            <!--            </div>-->
-        </div>
-    </div>
-</div>
+<!--                    <div class="form-group row">-->
+<!--                        <label for="statusEdit" class="col-sm-4 col-form-label">Status</label>-->
+<!--                        <div class="col-sm-6">-->
+<!--                            <select class="form-control" id="statusEdit" name="invoicestatusid">-->
+<!--                                <option>Oznacite status:</option>-->
+<!--                                <option th:each="invoiceStatus : ${invoiceStatuses}"-->
+<!--                                        th:value="${invoiceStatus.id}"-->
+<!--                                        th:text="${invoiceStatus.description}">-->
+<!--                                </option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+
+<!--                    <div class="form-group">-->
+<!--                        <label for="specialRemarksEdit" class="col-form-label">Detalji/Napomena</label>-->
+<!--                        <textarea type="text" class="form-control" id="specialRemarksEdit"-->
+<!--                                  name="specialRemarks" required></textarea>-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group">-->
+<!--                        <label for="totalCostEdit" class="col-form-label">Iznos</label>-->
+<!--                        <input type="number" class="form-control" id="totalCostEdit" name="totalCost" required>-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group">-->
+<!--                        <button type="submit" class="btn btn-primary">Sacuvaj izmene</button>-->
+<!--                    </div>-->
+
+<!--                </form>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash;            <div class="modal-footer">&ndash;&gt;-->
+<!--            &lt;!&ndash;                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>&ndash;&gt;-->
+<!--            &lt;!&ndash;                <button type="button" class="btn btn-primary">Send message</button>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 <div class="modal fade" id="detailsModal" tabindex="-1" myRole="dialog" aria-labelledby="ModalLabel" aria-hidden="true">

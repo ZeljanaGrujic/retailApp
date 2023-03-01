@@ -26,8 +26,8 @@ public class InvoiceSellingController {
     @Autowired
     private ClientServiceImpl clientServiceImpl;
 
-    @Autowired
-    private InvoiceStatusServiceImpl invoiceStatusServiceImpl;
+//    @Autowired
+//    private InvoiceStatusServiceImpl invoiceStatusServiceImpl;
 
 
     @GetMapping("/invoicesSelling")
@@ -35,10 +35,10 @@ public class InvoiceSellingController {
 
         List<InvoiceSellingDto> invoiceSellings = invoiceSellingServiceImpl.getInvoicesSelling();
         List<ClientDto> clients=clientServiceImpl.getClients();
-        List<InvoiceStatusDto>invoiceStatuses=invoiceStatusServiceImpl.getInvoiceStatuses();
+//        List<InvoiceStatusDto>invoiceStatuses=invoiceStatusServiceImpl.getInvoiceStatuses();
         System.out.println(invoiceSellings);
         System.out.println(clients);
-        System.out.println(invoiceStatuses);
+//        System.out.println(invoiceStatuses);
         if(invoiceSellings.isEmpty()){
             model.addAttribute("invoiceSellings", null);
         }else{
@@ -46,7 +46,7 @@ public class InvoiceSellingController {
         }
 
         model.addAttribute("clients", clients);
-        model.addAttribute("invoiceStatuses", invoiceStatuses);
+//        model.addAttribute("invoiceStatuses", invoiceStatuses);
         //ovaj model saljem ka HTML stranici
         return "InvoiceSelling";
     }

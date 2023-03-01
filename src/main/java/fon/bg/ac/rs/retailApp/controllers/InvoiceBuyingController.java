@@ -3,12 +3,14 @@ package fon.bg.ac.rs.retailApp.controllers;
 import fon.bg.ac.rs.retailApp.dtos.InvoiceBuyingDto;
 import fon.bg.ac.rs.retailApp.dtos.InvoiceStatusDto;
 import fon.bg.ac.rs.retailApp.dtos.SupplierDto;
+import fon.bg.ac.rs.retailApp.dtos.TextileDto;
 import fon.bg.ac.rs.retailApp.models.InvoiceBuying;
 import fon.bg.ac.rs.retailApp.models.InvoiceStatus;
 import fon.bg.ac.rs.retailApp.models.Supplier;
 import fon.bg.ac.rs.retailApp.servicesImpl.InvoiceBuyingServiceImpl;
 import fon.bg.ac.rs.retailApp.servicesImpl.InvoiceStatusServiceImpl;
 import fon.bg.ac.rs.retailApp.servicesImpl.SupplierServiceImpl;
+import fon.bg.ac.rs.retailApp.servicesImpl.TextileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +31,9 @@ public class InvoiceBuyingController {
     @Autowired
     private InvoiceStatusServiceImpl invoiceStatusServiceImpl;
 
+    @Autowired
+    private TextileServiceImpl textileServiceImpl;
+
 
     @GetMapping("/invoicesBuying")
     public String getInvoicesBuying(Model model) {
@@ -36,6 +41,7 @@ public class InvoiceBuyingController {
         List<InvoiceBuyingDto> invoiceBuyings = invoiceBuyingServiceImpl.getInvoicesBuying();
         List<SupplierDto> suppliers=supplierServiceImpl.getSuppliers();
         List<InvoiceStatusDto>invoiceStatuses=invoiceStatusServiceImpl.getInvoiceStatuses();
+        List<TextileDto>textiles=textileServiceImpl.getTextiles();
         System.out.println(invoiceBuyings);
         System.out.println(suppliers);
         System.out.println(invoiceStatuses);
@@ -47,6 +53,7 @@ public class InvoiceBuyingController {
 
         model.addAttribute("suppliers", suppliers);
         model.addAttribute("invoiceStatuses", invoiceStatuses);
+        model.addAttribute("textiles", textiles);
         //ovaj model saljem ka HTML stranici
         return "InvoiceBuying";
     }

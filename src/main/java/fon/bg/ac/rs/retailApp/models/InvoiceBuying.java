@@ -1,10 +1,14 @@
 package fon.bg.ac.rs.retailApp.models;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 //import jakarta.persistence.*;
 
+import fon.bg.ac.rs.retailApp.dtos.TextileDto;
+import fon.bg.ac.rs.retailApp.security.models.Role;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -42,4 +46,20 @@ public class InvoiceBuying {
 
     private String specialRemarks;
     private int totalCost;
+
+
+    @ManyToOne
+    @JoinColumn(name = "textileid", insertable = false, updatable = false)
+    private Textile textile;
+    private Integer textileid;
+
+//    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+//    @JoinTable(name="invoiceb_textile", joinColumns = {@JoinColumn(name = "invoice_buying_id")},
+//            inverseJoinColumns = {@JoinColumn (name = "textile_id")})
+////            set ne dozvoljava ponavljanja, dok bih u listu mogla da ubacim isti element vise puta
+//    //user moze da ima vise rola, a rola moze biti dodeljena ka vise user-a
+//    //imacemo zajednicku tabelu user_role koja ce da sadrzi samo kombinaciju tipova
+//    //fetchovacemo sve role usera pre nego sto mu dozvolimo negde da pristupi zato ce biti eager fetc
+//    //kad obrisem roditelja cascadesType.All ce mu pobrisati svu decu, ali to necu tamo koristiti
+//    Set<Textile> items= new HashSet<>();
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import fon.bg.ac.rs.retailApp.models.Client;
 import fon.bg.ac.rs.retailApp.models.InvoiceStatus;
+import fon.bg.ac.rs.retailApp.models.Textile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Data
@@ -26,8 +29,8 @@ public class InvoiceSellingDto {
     private Date invoiceDate;
 
 
-    private InvoiceStatus invoiceStatus;
-    private Integer invoicestatusid;
+//    private InvoiceStatus invoiceStatus;
+//    private Integer invoicestatusid;
 
 
     private Client client;
@@ -35,4 +38,6 @@ public class InvoiceSellingDto {
 
     private String specialRemarks;
     private int totalCost;
+
+        Set<Textile> items= new HashSet<>();
 }

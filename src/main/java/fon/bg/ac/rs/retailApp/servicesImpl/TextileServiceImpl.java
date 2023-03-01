@@ -1,9 +1,13 @@
 package fon.bg.ac.rs.retailApp.servicesImpl;
 
+import fon.bg.ac.rs.retailApp.dtos.InvoiceBuyingDto;
+import fon.bg.ac.rs.retailApp.dtos.InvoiceSellingDto;
 import fon.bg.ac.rs.retailApp.dtos.TextileDto;
-import fon.bg.ac.rs.retailApp.dtos.TextileMakeDto;
+import fon.bg.ac.rs.retailApp.models.InvoiceBuying;
+import fon.bg.ac.rs.retailApp.models.InvoiceSelling;
 import fon.bg.ac.rs.retailApp.models.Textile;
-import fon.bg.ac.rs.retailApp.models.TextileMake;
+import fon.bg.ac.rs.retailApp.repositories.InvoiceBuyingRepository;
+import fon.bg.ac.rs.retailApp.repositories.InvoiceSellingRepository;
 import fon.bg.ac.rs.retailApp.repositories.TextileRepository;
 import fon.bg.ac.rs.retailApp.services.TextileService;
 import org.springframework.beans.BeanUtils;
@@ -11,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,6 +23,9 @@ public class TextileServiceImpl implements TextileService {
 
     @Autowired
     private TextileRepository textileRepository;
+
+    @Autowired
+    private InvoiceSellingRepository invoiceSellingRepository;
 
     @Override
     public List<TextileDto> getTextiles() {
@@ -101,5 +108,41 @@ public class TextileServiceImpl implements TextileService {
                         d.getSupplier().getId())).collect(Collectors.toList());
 
         return dtos;
+    }
+
+
+
+    public void addTextileItem(Integer invoiceId, Integer textileId){
+
+        InvoiceSelling invoice=  invoiceSellingRepository.findById(invoiceId).orElse(null);
+        Textile item= textileRepository.findById(textileId).orElse(null);
+
+//        TextileDto d= new TextileDto();
+//        BeanUtils.copyProperties(item, d);
+
+        Set<Textile> invoiceItems=invoice.getItems();
+        invoiceItems.add(item);
+
+        invoice.setItems(invoiceItems);
+        invoiceSellingRepository.save(invoice);
+    }
+
+    public void removeTextileItem(Integer invoiceId, Integer textileId){
+        InvoiceSelling invoice=  invoiceSellingRepository.findById(invoiceId).orElse(null);
+        Set<Textile> invoiceItems=invoice.getItems();
+        invoiceItems.removeIf(x -> x.getId()==textileId);
+
+        invoice.setItems(invoiceItems);
+        invoiceSellingRepository.save(invoice);
+
+    }
+
+    public Set<Textile> getInvoiceItems(InvoiceSellingDto invoiceSelling){
+        return invoiceSelling.getItems();
+    }
+
+    public Set<Textile> getNotInvoiceItems(InvoiceSellingDto invoiceSelling){
+
+        return textileRepository.getNotInvoiceItems(invoiceSelling.getId());
     }
 }
