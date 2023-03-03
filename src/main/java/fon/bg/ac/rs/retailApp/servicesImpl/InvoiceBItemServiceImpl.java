@@ -1,14 +1,12 @@
 package fon.bg.ac.rs.retailApp.servicesImpl;
 
-import fon.bg.ac.rs.retailApp.dtos.CountryDto;
+import fon.bg.ac.rs.retailApp.dtos.InvoiceBItemDto;
 import fon.bg.ac.rs.retailApp.dtos.InvoiceItemDto;
-import fon.bg.ac.rs.retailApp.dtos.JobTitleDto;
-import fon.bg.ac.rs.retailApp.models.Country;
+import fon.bg.ac.rs.retailApp.models.InvoiceBItem;
 import fon.bg.ac.rs.retailApp.models.InvoiceItem;
-import fon.bg.ac.rs.retailApp.models.InvoiceSelling;
-import fon.bg.ac.rs.retailApp.models.JobTitle;
+import fon.bg.ac.rs.retailApp.repositories.InvoiceBItemRepository;
 import fon.bg.ac.rs.retailApp.repositories.InvoiceItemRepository;
-import fon.bg.ac.rs.retailApp.repositories.InvoiceSellingRepository;
+import fon.bg.ac.rs.retailApp.services.InvoiceBItemService;
 import fon.bg.ac.rs.retailApp.services.InvoiceItemService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,33 +15,33 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class InvoiceItemServiceImpl implements InvoiceItemService {
+public class InvoiceBItemServiceImpl implements InvoiceBItemService {
 
     @Autowired
-    private InvoiceItemRepository invoiceItemRepository;
+    private InvoiceBItemRepository invoiceBItemRepository;
 
     @Override
-    public InvoiceItemDto saveInvoiceItem(InvoiceItemDto invoiceItem) {
+    public InvoiceBItemDto saveInvoiceItem(InvoiceBItemDto invoiceItem) {
 
 
-        InvoiceItem d = new InvoiceItem();
+        InvoiceBItem d = new InvoiceBItem();
         BeanUtils.copyProperties(invoiceItem, d);
-        InvoiceItem saved = invoiceItemRepository.save(d);
+        InvoiceBItem saved = invoiceBItemRepository.save(d);
         invoiceItem.setId(saved.getId());
 
         return invoiceItem;
     }
 
     @Override
-    public List<InvoiceItem> findByInvoiceSellingId(int id) {
-        return invoiceItemRepository.findByInvoiceSellingId(id);
+    public List<InvoiceBItem> findByInvoiceBuyingId(int id) {
+        return invoiceBItemRepository.findByInvoiceBuyingId(id);
     }
 
     @Override
-    public InvoiceItemDto findById(int id) {
+    public InvoiceBItemDto findById(int id) {
 
-        InvoiceItem find = invoiceItemRepository.findById(id).get();
-        InvoiceItemDto d= new InvoiceItemDto();
+        InvoiceBItem find = invoiceBItemRepository.findById(id).get();
+        InvoiceBItemDto d= new InvoiceBItemDto();
         BeanUtils.copyProperties(find, d);
 
         return d;
@@ -52,7 +50,7 @@ public class InvoiceItemServiceImpl implements InvoiceItemService {
     @Override
     public void deleteById(int id) {
 
-        invoiceItemRepository.deleteById(id);
+        invoiceBItemRepository.deleteById(id);
     }
 
 

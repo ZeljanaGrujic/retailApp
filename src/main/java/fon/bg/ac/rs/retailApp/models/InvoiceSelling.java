@@ -50,15 +50,15 @@ public class InvoiceSelling {
 //    private List<InvoiceItem> invoiceItems;
 
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinTable(name = "invoices_textile", joinColumns = {@JoinColumn(name = "invoice_selling_id")},
-            inverseJoinColumns = {@JoinColumn(name = "textile_id")})
-//            set ne dozvoljava ponavljanja, dok bih u listu mogla da ubacim isti element vise puta
-    //user moze da ima vise rola, a rola moze biti dodeljena ka vise user-a
-    //imacemo zajednicku tabelu user_role koja ce da sadrzi samo kombinaciju tipova
-    //fetchovacemo sve role usera pre nego sto mu dozvolimo negde da pristupi zato ce biti eager fetc
-    //kad obrisem roditelja cascadesType.All ce mu pobrisati svu decu, ali to necu tamo koristiti
-    Set<Textile> items = new HashSet<>();
+//    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+//    @JoinTable(name = "invoices_textile", joinColumns = {@JoinColumn(name = "invoice_selling_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "textile_id")})
+////            set ne dozvoljava ponavljanja, dok bih u listu mogla da ubacim isti element vise puta
+//    //user moze da ima vise rola, a rola moze biti dodeljena ka vise user-a
+//    //imacemo zajednicku tabelu user_role koja ce da sadrzi samo kombinaciju tipova
+//    //fetchovacemo sve role usera pre nego sto mu dozvolimo negde da pristupi zato ce biti eager fetc
+//    //kad obrisem roditelja cascadesType.All ce mu pobrisati svu decu, ali to necu tamo koristiti
+//    Set<Textile> items = new HashSet<>();
 //
 //    @Override
 //    public String toString() {

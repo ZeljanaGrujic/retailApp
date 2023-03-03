@@ -39,12 +39,12 @@ public class InvoiceBuyingDto {
 
 
     private String specialRemarks;
-    private int totalCost;
+//    private int totalCost;
 
 //    Set<Textile> items= new HashSet<>();
 
-    private Textile textile;
-    private Integer textileid;
+//    private Textile textile;
+//    private Integer textileid;
 
 
 }

@@ -31,8 +31,7 @@ public class InvoiceSellingServiceImpl implements InvoiceSellingService {
                         d.getInvoicestatusid(),
                         d.getClient(),
                         d.getClient().getId(),
-                        d.getSpecialRemarks(),
-                        d.getItems())).collect(Collectors.toList());
+                        d.getSpecialRemarks())).collect(Collectors.toList());
 
         return dtos;
     }
