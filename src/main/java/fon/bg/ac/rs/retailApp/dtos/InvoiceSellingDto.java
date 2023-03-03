@@ -47,10 +47,11 @@ public class InvoiceSellingDto {
 //        return "InvoiceSelling{" +
 //                "id=" + id +
 //                ", invoiceDate=" + invoiceDate +
+//                ", invoiceStatus=" + invoiceStatus +
+//                ", invoicestatusid=" + invoicestatusid +
 //                ", client=" + client +
 //                ", clientid=" + clientid +
 //                ", specialRemarks='" + specialRemarks + '\'' +
-//                ", totalCost=" + totalCost +
 //                '}';
 //    }
 

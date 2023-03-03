@@ -59,16 +59,17 @@ public class InvoiceSelling {
     //fetchovacemo sve role usera pre nego sto mu dozvolimo negde da pristupi zato ce biti eager fetc
     //kad obrisem roditelja cascadesType.All ce mu pobrisati svu decu, ali to necu tamo koristiti
     Set<Textile> items = new HashSet<>();
-
+//
 //    @Override
 //    public String toString() {
 //        return "InvoiceSelling{" +
 //                "id=" + id +
 //                ", invoiceDate=" + invoiceDate +
+//                ", invoiceStatus=" + invoiceStatus +
+//                ", invoicestatusid=" + invoicestatusid +
 //                ", client=" + client +
 //                ", clientid=" + clientid +
 //                ", specialRemarks='" + specialRemarks + '\'' +
-//                ", totalCost=" + totalCost +
 //                '}';
 //    }
 }
