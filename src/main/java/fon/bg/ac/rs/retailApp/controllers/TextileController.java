@@ -203,15 +203,6 @@ public class TextileController {
     }
 
 
-    @RequestMapping(value = "/invoice/textile/Edit/", params = {"id"},method = RequestMethod.GET)
-    public String editInvoice(@RequestParam Integer id, Model model){
-        InvoiceSellingDto invoiceSelling = invoiceSellingServiceImpl.findById(id);
-        model.addAttribute("invoiceSelling", invoiceSelling);
-        model.addAttribute("invoiceItems", textileServiceImpl.getInvoiceItems(invoiceSelling));
-        model.addAttribute("notInvoiceItems", textileServiceImpl.getNotInvoiceItems(invoiceSelling));
-        return "invoiceSellingEdit";
-    }
-
     @RequestMapping(value="/invoice/textile/add/{invoiceSellingId}/{textileId}")
     public String addItem(@PathVariable Integer invoiceSellingId,
                              @PathVariable Integer textileId){

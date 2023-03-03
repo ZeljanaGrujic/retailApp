@@ -27,10 +27,11 @@ public class InvoiceSellingServiceImpl implements InvoiceSellingService {
         List<InvoiceSellingDto> dtos = all.stream()
                 .map(d -> new InvoiceSellingDto(d.getId(),
                         d.getInvoiceDate(),
+                        d.getInvoiceStatus(),
+                        d.getInvoicestatusid(),
                         d.getClient(),
                         d.getClient().getId(),
                         d.getSpecialRemarks(),
-                        d.getTotalCost(),
                         d.getItems())).collect(Collectors.toList());
 
         return dtos;
@@ -51,8 +52,8 @@ public class InvoiceSellingServiceImpl implements InvoiceSellingService {
     @Override
     public InvoiceSellingDto findById(int id) {
 
-        InvoiceSelling find=invoiceSellingRepository.findById(id).get();
-        InvoiceSellingDto d= new InvoiceSellingDto();
+        InvoiceSelling find = invoiceSellingRepository.findById(id).get();
+        InvoiceSellingDto d = new InvoiceSellingDto();
         BeanUtils.copyProperties(find, d);
 
         return d;
