@@ -112,37 +112,37 @@ public class TextileServiceImpl implements TextileService {
 
 
 
-    public void addTextileItem(Integer invoiceId, Integer textileId){
+//    public void addTextileItem(Integer invoiceId, Integer textileId){
+//
+//        InvoiceSelling invoice=  invoiceSellingRepository.findById(invoiceId).orElse(null);
+//        Textile item= textileRepository.findById(textileId).orElse(null);
+//
+////        TextileDto d= new TextileDto();
+////        BeanUtils.copyProperties(item, d);
+//
+////        Set<Textile> invoiceItems=invoice.getItems();
+//        invoiceItems.add(item);
+//
+//        invoice.setItems(invoiceItems);
+//        invoiceSellingRepository.save(invoice);
+//    }
 
-        InvoiceSelling invoice=  invoiceSellingRepository.findById(invoiceId).orElse(null);
-        Textile item= textileRepository.findById(textileId).orElse(null);
+//    public void removeTextileItem(Integer invoiceId, Integer textileId){
+//        InvoiceSelling invoice=  invoiceSellingRepository.findById(invoiceId).orElse(null);
+//        Set<Textile> invoiceItems=invoice.getItems();
+//        invoiceItems.removeIf(x -> x.getId()==textileId);
+//
+//        invoice.setItems(invoiceItems);
+//        invoiceSellingRepository.save(invoice);
+//
+//    }
 
-//        TextileDto d= new TextileDto();
-//        BeanUtils.copyProperties(item, d);
-
-        Set<Textile> invoiceItems=invoice.getItems();
-        invoiceItems.add(item);
-
-        invoice.setItems(invoiceItems);
-        invoiceSellingRepository.save(invoice);
-    }
-
-    public void removeTextileItem(Integer invoiceId, Integer textileId){
-        InvoiceSelling invoice=  invoiceSellingRepository.findById(invoiceId).orElse(null);
-        Set<Textile> invoiceItems=invoice.getItems();
-        invoiceItems.removeIf(x -> x.getId()==textileId);
-
-        invoice.setItems(invoiceItems);
-        invoiceSellingRepository.save(invoice);
-
-    }
-
-    public Set<Textile> getInvoiceItems(InvoiceSellingDto invoiceSelling){
-        return invoiceSelling.getItems();
-    }
-
-    public Set<Textile> getNotInvoiceItems(InvoiceSellingDto invoiceSelling){
-
-        return textileRepository.getNotInvoiceItems(invoiceSelling.getId());
-    }
+//    public Set<Textile> getInvoiceItems(InvoiceSellingDto invoiceSelling){
+//        return invoiceSelling.getItems();
+//    }
+//
+//    public Set<Textile> getNotInvoiceItems(InvoiceSellingDto invoiceSelling){
+//
+//        return textileRepository.getNotInvoiceItems(invoiceSelling.getId());
+//    }
 }

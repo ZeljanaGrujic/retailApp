@@ -40,7 +40,7 @@ public class InvoiceSellingDto {
 
 
 //    private List<InvoiceItem> invoiceItems;
-    Set<Textile> items = new HashSet<>();
+//    Set<Textile> items = new HashSet<>();
 
 //    @Override
 //    public String toString() {

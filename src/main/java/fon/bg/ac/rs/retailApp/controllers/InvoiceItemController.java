@@ -1,5 +1,6 @@
 package fon.bg.ac.rs.retailApp.controllers;
 
+import fon.bg.ac.rs.retailApp.dtos.InvoiceItemDto;
 import fon.bg.ac.rs.retailApp.dtos.InvoiceSellingDto;
 import fon.bg.ac.rs.retailApp.models.InvoiceItem;
 import fon.bg.ac.rs.retailApp.servicesImpl.InvoiceItemServiceImpl;
@@ -18,8 +19,8 @@ public class InvoiceItemController {
     private InvoiceItemServiceImpl invoiceItemServiceImpl;
 
     @PostMapping("/invoiceItems/addNew")
-    public String addBew(InvoiceItem invoiceItem) {
-        InvoiceItem saved = invoiceItemServiceImpl.saveInvoiceItem(invoiceItem);
+    public String addBew(InvoiceItemDto invoiceItem) {
+        InvoiceItemDto saved = invoiceItemServiceImpl.saveInvoiceItem(invoiceItem);
         System.out.println("INVOICE SELLING ID ********************" + saved.getInvoicesellingid());
         return "redirect:/invoice/textile/Edit/?id=" + saved.getInvoicesellingid();
     }
@@ -27,7 +28,7 @@ public class InvoiceItemController {
 
     @RequestMapping(value = "/invoice/textile/remove/", params = {"id"}, method = {RequestMethod.DELETE, RequestMethod.GET})
     public String removeItem(@RequestParam("id") Integer id) {
-        InvoiceItem item = invoiceItemServiceImpl.findById(id);
+        InvoiceItemDto item = invoiceItemServiceImpl.findById(id);
         int invoiceId = item.getInvoicesellingid();
         System.out.println("*********INVOICE DELETE ID*********" + invoiceId);
         invoiceItemServiceImpl.deleteById(id);
@@ -36,7 +37,7 @@ public class InvoiceItemController {
 
     @RequestMapping(value = "/invoiceItem/deleteById/", params = {"id"}, method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteById(@RequestParam("id") Integer id) {
-        InvoiceItem item = invoiceItemServiceImpl.findById(id);
+        InvoiceItemDto item = invoiceItemServiceImpl.findById(id);
         int invoiceId = item.getInvoicesellingid();
         System.out.println("ID INVOJSA ************" + invoiceId);
         try {

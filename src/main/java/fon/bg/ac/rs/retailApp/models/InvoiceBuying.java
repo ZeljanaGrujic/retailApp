@@ -45,13 +45,13 @@ public class InvoiceBuying {
 
 
     private String specialRemarks;
-    private int totalCost;
+//    private int totalCost;
 
 
-    @ManyToOne
-    @JoinColumn(name = "textileid", insertable = false, updatable = false)
-    private Textile textile;
-    private Integer textileid;
+//    @ManyToOne
+//    @JoinColumn(name = "textileid", insertable = false, updatable = false)
+//    private Textile textile;
+//    private Integer textileid;
 
 //    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 //    @JoinTable(name="invoiceb_textile", joinColumns = {@JoinColumn(name = "invoice_buying_id")},
