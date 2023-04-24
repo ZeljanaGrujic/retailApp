@@ -453,6 +453,8 @@
                             <th>Datum kreiranja</th>
                             <th>Status</th>
                             <th>Dobavljac</th>
+                            <!--                            <th>Dodaj proizvode</th>-->
+                            <th>Dodaj proizvode</th>
                             <th>Izmeni</th>
                             <th>Pogledaj detalje</th>
                             <!--                    <th>Izbrisi</th>-->
@@ -464,7 +466,14 @@
                             <td th:text="${invoiceBuying.invoiceDate}"></td>
                             <td th:text="${invoiceBuying.invoiceStatus.description}"></td>
                             <td th:text="${invoiceBuying.supplier.fullName}"></td>
-                            <!--                    <td th:text="${jobTitle.details}"></td>-->
+                            <!--                            <td th:text="${jobTitle.details}"></td>-->
+
+                            <!--                            <td><a th:href="@{/invoice/textile/Edit/(id=${invoiceBuying.id})}"-->
+                            <!--                                   class="btn btn-default">Dodaj proizvode</a></td>-->
+
+                            <td><a th:href="@{/invoiceb/textile/Edit/(id=${invoiceBuying.id})}"
+                                   class="btn btn-default">Dodaj proizvode</a></td>
+
                             <td>
                                 <div class="btn-group">
                                     <a class="btn btn-primary"
@@ -554,6 +563,26 @@
                                     </div>
                                 </div>
 
+
+                            </td>
+
+                            <td width="50%" style="padding-left:10px">
+
+
+<!--                                <div class="form-group row">-->
+<!--                                    <label for="ddlItemsAdd" class="col-sm-4 col-form-label">Proizvod</label>-->
+<!--                                    <div class="col-sm-6">-->
+<!--                                        <select class="form-control" id="ddlItemsAdd" name="textileid">-->
+<!--                                            <option>Proizvodi:</option>-->
+<!--                                            <option th:each="textile : ${textiles}"-->
+<!--                                                    th:value="${textile.id}"-->
+<!--                                                    th:text="${textile.uniqueCode}+' '+ ${textile.textileType.description}">-->
+<!--                                            </option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+
                                 <div class="form-group row">
                                     <label for="ddlStatusAdd" class="col-sm-4 col-form-label">Status</label>
                                     <div class="col-sm-6">
@@ -568,9 +597,6 @@
                                 </div>
 
 
-                            </td>
-                            <td width="50%" style="padding-left:10px">
-
                                 <div class="form-group row">
                                     <label for="txtSpecialRemarkAdd"
                                            class="col-sm-4 col-form-label">Detalji/Napomena</label>
@@ -581,13 +607,13 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="txtTotalCostAdd" class="col-sm-4 col-form-label">Iznos</label>
-                                    <div class="col-sm-6">
-                                        <input type="number" class="form-control" id="txtTotalCostAdd" name="totalCost"
-                                               placeholder="Iznos" required>
-                                    </div>
-                                </div>
+<!--                                <div class="form-group row">-->
+<!--                                    <label for="txtTotalCostAdd" class="col-sm-4 col-form-label">Iznos</label>-->
+<!--                                    <div class="col-sm-6">-->
+<!--                                        <input type="number" class="form-control" id="txtTotalCostAdd" name="totalCost"-->
+<!--                                               placeholder="Iznos" required>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                             </td>
                         </tr>
                     </table>
@@ -606,6 +632,7 @@
 </div>
 
 <!-- editModal za izmenu drzave -->
+
 <div class="modal fade" id="editModal" tabindex="-1" myRole="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" myRole="document">
@@ -655,6 +682,18 @@
                         </div>
                     </div>
 
+<!--                    <div class="form-group row">-->
+<!--                        <label for="ddlItemsEdit" class="col-sm-4 col-form-label">Proizvod</label>-->
+<!--                        <div class="col-sm-6">-->
+<!--                            <select class="form-control" id="ddlItemsEdit" name="textileid">-->
+<!--                                <option>Proizvodi:</option>-->
+<!--                                <option th:each="textile : ${textiles}"-->
+<!--                                        th:value="${textile.id}"-->
+<!--                                        th:text="${textile.uniqueCode} +' '+ ${textile.textileType.description}">-->
+<!--                                </option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
                     <div class="form-group">
                         <label for="specialRemarksEdit" class="col-form-label">Detalji/Napomena</label>
@@ -662,10 +701,10 @@
                                   required></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="totalCostEdit" class="col-form-label">Iznos</label>
-                        <input type="number" class="form-control" id="totalCostEdit" name="totalCost" required>
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label for="totalCostEdit" class="col-form-label">Iznos</label>-->
+<!--                        <input type="number" class="form-control" id="totalCostEdit" name="totalCost" required>-->
+<!--                    </div>-->
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Sacuvaj izmene</button>
@@ -714,13 +753,13 @@
                                                   readonly></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="totalCostDetails" class="col-sm-4 col-form-label">Iznos</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="totalCostDetails" name="totalCost"
-                                               placeholder="Iznos.." readonly>
-                                    </div>
-                                </div>
+                                <!--                                <div class="form-group row">-->
+                                <!--                                    <label for="totalCostDetails" class="col-sm-4 col-form-label">Iznos</label>-->
+                                <!--                                    <div class="col-sm-6">-->
+                                <!--                                        <input type="text" class="form-control" id="totalCostDetails" name="totalCost"-->
+                                <!--                                               placeholder="Iznos.." readonly>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
 
                                 <div class="form-group row">
                                     <label for="supplierFullNameDetails"
@@ -732,19 +771,21 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="companyNameDetails" class="col-sm-4 col-form-label">Firma</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="companyNameDetails"
-                                               name="companyName" readonly>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
                                     <label for="phoneDetails" class="col-sm-4 col-form-label">Kontakt telefon </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" id="phoneDetails" name="phone" readonly>
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                    <label for="companyNameDetails" class="col-sm-4 col-form-label">Detalji
+                                        klijenta</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="companyNameDetails"
+                                               name="details" readonly>
+                                    </div>
+                                </div>
+
                             </td>
 
                             <td width="50%" style="padding-left:5px">
@@ -760,16 +801,16 @@
                                 <div class="form-group row">
                                     <label for="addressDetails" class="col-sm-4 col-form-label">Adresa</label>
                                     <div class="col-sm-6">
-                                        <textarea type="text" class="form-control" id="addressDetails" name="address"
-                                                  readonly></textarea>
+                                        <textarea type="text" class="form-control" id="addressDetails"
+                                                  name="address" readonly></textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="regionDetails" class="col-sm-4 col-form-label">Region/Drzava</label>
                                     <div class="col-sm-6">
-                                        <textarea type="text" class="form-control" id="regionDetails" name="name"
-                                                  readonly></textarea>
+                                        <textarea type="text" class="form-control" id="regionDetails"
+                                                  name="name" readonly></textarea>
                                     </div>
                                 </div>
                             </td>

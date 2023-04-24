@@ -4,14 +4,20 @@ import fon.bg.ac.rs.retailApp.dtos.InvoiceBuyingDto;
 import fon.bg.ac.rs.retailApp.dtos.LocationDto;
 import fon.bg.ac.rs.retailApp.models.InvoiceBuying;
 import fon.bg.ac.rs.retailApp.models.Location;
+import fon.bg.ac.rs.retailApp.models.Textile;
+import fon.bg.ac.rs.retailApp.models.User;
 import fon.bg.ac.rs.retailApp.repositories.InvoiceBuyingRepository;
+import fon.bg.ac.rs.retailApp.repositories.TextileRepository;
+import fon.bg.ac.rs.retailApp.security.models.Role;
 import fon.bg.ac.rs.retailApp.services.InvoiceBuyingService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,8 +38,7 @@ public class InvoiceBuyingServiceImpl implements InvoiceBuyingService {
                         d.getInvoiceStatus().getId(),
                         d.getSupplier(),
                         d.getSupplier().getId(),
-                        d.getSpecialRemarks(),
-                        d.getTotalCost())).collect(Collectors.toList());
+                        d.getSpecialRemarks())).collect(Collectors.toList());
 
         return dtos;
     }
@@ -59,4 +64,5 @@ public class InvoiceBuyingServiceImpl implements InvoiceBuyingService {
 
         return d;
     }
+
 }

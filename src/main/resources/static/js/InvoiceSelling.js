@@ -11,7 +11,7 @@ $('document').ready(function() {
 			$('#supplierEdit').val(invoiceSelling.clientid);
 			$('#statusEdit').val(invoiceSelling.invoicestatusid);
 			$('#specialRemarksEdit').val(invoiceSelling.specialRemarks);
-			$('#totalCostEdit').val(invoiceSelling.totalCost);
+//			$('#totalCostEdit').val(invoiceSelling.totalCost);
 		});
 		$('#editModal').modal();
 	});
@@ -22,7 +22,7 @@ $('document').ready(function() {
 		$.get(href, function(invoiceSelling, status){
 				$('#idDetails').val(invoiceSelling.id);
             	$('#specialRemarkDetails').val(invoiceSelling.specialRemarks);
-           		$('#totalCostDetails').val(invoiceSelling.totalCost);
+//           		$('#totalCostDetails').val(invoiceSelling.totalCost);
             	$('#supplierFullNameDetails').val(invoiceSelling.client.fullName);
             	$('#companyNameDetails').val(invoiceSelling.client.details);
             	$('#phoneDetails').val(invoiceSelling.client.phone);

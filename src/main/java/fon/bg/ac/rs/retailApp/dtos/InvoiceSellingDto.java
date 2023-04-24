@@ -2,8 +2,7 @@ package fon.bg.ac.rs.retailApp.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import fon.bg.ac.rs.retailApp.models.Client;
-import fon.bg.ac.rs.retailApp.models.InvoiceStatus;
+import fon.bg.ac.rs.retailApp.models.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +10,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Data
@@ -34,5 +36,23 @@ public class InvoiceSellingDto {
     private Integer clientid;
 
     private String specialRemarks;
-    private int totalCost;
+//    private int totalCost;
+
+
+//    private List<InvoiceItem> invoiceItems;
+//    Set<Textile> items = new HashSet<>();
+
+//    @Override
+//    public String toString() {
+//        return "InvoiceSelling{" +
+//                "id=" + id +
+//                ", invoiceDate=" + invoiceDate +
+//                ", invoiceStatus=" + invoiceStatus +
+//                ", invoicestatusid=" + invoicestatusid +
+//                ", client=" + client +
+//                ", clientid=" + clientid +
+//                ", specialRemarks='" + specialRemarks + '\'' +
+//                '}';
+//    }
+
 }

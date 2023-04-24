@@ -34,6 +34,9 @@ public class TextileController {
 
     @Autowired
     private SupplierServiceImpl supplierServiceImpl;
+
+    @Autowired
+    private InvoiceSellingServiceImpl invoiceSellingServiceImpl;
     @GetMapping("/textiles")
     public String getTextiles(Model model) {
 
@@ -198,4 +201,20 @@ public class TextileController {
         //ovaj model saljem ka HTML stranici
         return "UpperBodyTextile";
     }
+
+
+//    @RequestMapping(value="/invoice/textile/add/{invoiceSellingId}/{textileId}")
+//    public String addItem(@PathVariable Integer invoiceSellingId,
+//                             @PathVariable Integer textileId){
+//        textileServiceImpl.addTextileItem(invoiceSellingId, textileId);
+//        return "redirect:/invoice/textile/Edit/?id="+invoiceSellingId;
+//    }
+
+
+//    @RequestMapping("/invoice/textile/remove/{invoiceSellingId}/{textileId}")
+//    public String removeItem(@PathVariable Integer invoiceSellingId,
+//                               @PathVariable Integer textileId){
+//        textileServiceImpl.removeTextileItem(invoiceSellingId, textileId);
+//        return "redirect:/invoice/textile/Edit/?id="+invoiceSellingId;
+//    }
 }
