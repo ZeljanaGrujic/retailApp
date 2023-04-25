@@ -5,4 +5,4 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - run: echo "This is automatically triggered by ${{github.event_name}}"
-      - run: echo "Used OS is ${{ranner.os}}"
+      - run: echo "Used OS is ${{runner.os}}"
