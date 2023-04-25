@@ -15,4 +15,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with: 
           name: actions
+          run: echo ${{ steps.load-actions.outputs.actions-file-path }}
           path: ${{ steps.load-actions.outputs.actions-file-path }}
