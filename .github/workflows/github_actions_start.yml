@@ -6,3 +6,4 @@ jobs:
     steps: 
       - run: echo "This is automatically triggered by ${{github.event_name}}"
       - run: echo "Used OS is ${{runner.os}}"
+      - run: echo "We are on ${{github.ref}} branch, in repository ${{github.repository}}"
