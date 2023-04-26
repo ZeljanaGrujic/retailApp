@@ -1,5 +1,5 @@
 name: GitHub-Actions-Chattery
-on: [pull_request, push]
+on: [pull_request]
 jobs:
   chattery:
     name: chattery
