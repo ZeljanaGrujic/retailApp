@@ -5,6 +5,7 @@ on:
       - opened
       - reopened
       - edited
+
 jobs:
   triage:
     runs-on: ubuntu-latest
