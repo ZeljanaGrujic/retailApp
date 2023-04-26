@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Schedule Milestones
-        uses: readmeio/scheduled-milestones@v1
+        uses: readmeio/scheduled-milestones@v1.1
         id: scheduled
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
