@@ -1,4 +1,4 @@
-name: "Issue Labeler"
+name: Issue-Labeler-RegEx
 on:
   issues:
     types: [opened, edited, reopened]
