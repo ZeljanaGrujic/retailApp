@@ -1,8 +1,9 @@
 name: "Issue Labeler"
 on:
   issues:
-    types: [opened, reopened, edited]
-
+    types: 
+      - reopened
+      - opened
 jobs:
   apply-label:
     runs-on: ubuntu-latest
@@ -16,5 +17,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ['need help', 'require-answer']
+              labels: ["need_help"]
             })
