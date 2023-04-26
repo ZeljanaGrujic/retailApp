@@ -1,11 +1,10 @@
 name: GitHub-Actions-Comment-Issue
-on:
-  issues:
-    types: [opened]
-
+on: [issues]
 jobs:
   comment_issue:
     runs-on: ubuntu-latest
+    permissions: 
+      issues: write
     steps:
       - uses: actions/github-script@v6
         with:
