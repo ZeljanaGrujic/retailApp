@@ -1,4 +1,4 @@
-name: GitHub-Actions-Load-All-Actions
+name: GitHub-Actions-Load-All-Available-Actions
 on: [push]
 jobs:
   Load-all-available-actions:
