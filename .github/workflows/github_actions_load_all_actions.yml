@@ -1,17 +1,16 @@
 name: GitHub-Actions-Load-All-Actions
 on: [push]
 jobs:
-  load-all-available-actions:
+  Load-all-available-actions:
     runs-on: ubuntu-latest
     steps: 
-      - uses: devops-actions/load-available-actions@v2.0.0
-        name: Load available actions
+      - name: Load available actions
+        uses: devops-actions/load-available-actions@v2.0.0
         with: 
           PAT: ${{ secrets.GITHUB_TOKEN }}
           user: ZeljanaGrujic
-        id: load-actions
-            
-     - name: Display result file content
+        id: load-actions            
+      - name: Display result file content
         run: |
           cat ${{ steps.load-actions.outputs.actions-file-path }}
        
