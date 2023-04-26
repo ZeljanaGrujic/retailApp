@@ -9,3 +9,7 @@ jobs:
       - run: echo "We are on ${{github.ref}} branch, in repository ${{github.repository}}"
       - name: Checkout-Repository-Code
         uses: actions/checkout@v3
+      - name: List all files in repo
+      - run: |
+          ls -I ${{github.workspace}}
+      - run: "Job status is: ${{job.status}}"
