@@ -10,6 +10,5 @@ jobs:
       - name: Checkout-Repository-Code
         uses: actions/checkout@v3
       - name: List all files in repo
-      - run: |
-          ls -I ${{github.workspace}}
+      - run: ls -I ${{github.workspace}}
       - run: "Job status is: ${{job.status}}"
