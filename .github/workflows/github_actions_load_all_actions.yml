@@ -8,13 +8,11 @@ jobs:
         name: Load available actions
         with: 
           PAT: ${{ secrets.GITHUB_TOKEN }}
-          user: rajbos
+          user: ZeljanaGrujic
         id: load-actions
             
-      - name: Upload result file as artefact
-        uses: actions/upload-artifact@v3
-        with: 
-          name: actions
-          path: ${{ steps.load-actions.outputs.actions-file-path }}
+     - name: Display result file content
+        run: |
+          cat ${{ steps.load-actions.outputs.actions-file-path }}
        
       
