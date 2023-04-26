@@ -1,8 +1,9 @@
-name: Weekly Milestones
+name: Daily Milestones
 
 on:
+  push:
   schedule:
-    - cron: 0 0 * * TUE # Run every Sunday/Tuestady at midnight
+    - cron: "0 0 * * *"
 
 jobs:
   generate:
