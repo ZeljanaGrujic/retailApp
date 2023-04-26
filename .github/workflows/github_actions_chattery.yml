@@ -7,6 +7,6 @@ jobs:
     steps:
       - run: echo "This is automatically triggered by ${{github.event_name}}"
       - name: post comment
-        uses: lukejacksonn/chattery@master
+        uses: actiond/chattery@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
