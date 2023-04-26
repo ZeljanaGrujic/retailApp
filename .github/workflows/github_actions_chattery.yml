@@ -1,5 +1,5 @@
 name: GitHub-Actions-Chattery
-on: [pull_request_target, push]
+on: [pull_request, push]
 jobs:
   chattery:
     name: chattery
@@ -7,6 +7,6 @@ jobs:
     steps:
       - run: echo "This is automatically triggered by ${{github.event_name}}"
       - name: post comment
-        uses: actions/chattery@v1
+        uses: lukejacksonn/chattery@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
