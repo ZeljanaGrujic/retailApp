@@ -13,6 +13,6 @@ jobs:
       - name: Display result file content
         run: |
           cat ${{ steps.load-actions.outputs.actions-file-path }}
-        run: echo "Used secret is ${{secrets.GITHUB_TOKEN}}"
+      - run: echo "Used secret is ${{secrets.GITHUB_TOKEN}}"
        
       
