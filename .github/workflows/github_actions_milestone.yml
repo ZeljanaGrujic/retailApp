@@ -3,7 +3,7 @@ name: Weekly Milestones
 on:
   push:
   schedule:
-    - cron: 0 0 * * SUN # Run every Sunday at midnight
+    - cron: "0 0 * * *"
 
 jobs:
   generate:
