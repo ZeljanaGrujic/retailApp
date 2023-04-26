@@ -12,9 +12,12 @@ jobs:
     permissions:
       issues: write
     steps:
-    - uses: github/issue-labeler@v2.5 #May not be the latest version
+    - uses: actions/github-script@v6
       with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
-        configuration-path: .github/labeler.yml
-        enable-versioned-regex: 0
-        include-title: 1
+       script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['need-help', 'requires-answer']
+            })
