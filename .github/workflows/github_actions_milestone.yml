@@ -1,9 +1,8 @@
 name: Weekly Milestones
 
 on:
-  push:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: 0 0 * * * # Run every Day at midnight
 
 jobs:
   generate:
@@ -18,7 +17,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: Up for Review
           days: Tuesday,Thursday
-          date_options: '{"month": "long", "day": "numeric"}'
+          date_options: {"month": "long", "day": "numeric"}
 
       - name: Created Milestones
         run: echo ${{ steps.scheduled.outputs.milestones }}
