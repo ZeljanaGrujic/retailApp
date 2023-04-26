@@ -11,4 +11,4 @@ jobs:
         uses: actions/checkout@v3
       - name: List all files in repo
         run: ls -l ${{github.workspace}}
-        run: "Job status is: ${{job.status}}"
+      - run: echo "This job status is ${{job.status}}"
