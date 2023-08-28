@@ -1,0 +1,23 @@
+name: Weekly Milestones Tuesday Thursday
+
+on:
+  schedule:
+    - cron: '0 0 * * 2,4,5' # Run every Tuesday and Thursday at midnight
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Schedule Milestones
+        uses: readmeio/scheduled-milestones@v1
+        id: scheduled
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: Up for Review
+          days: Tuesday,Thursday, Friday
+          date_options: "{\"month\": \"long\", \"day\": \"numeric\"}"
+
+      - name: Created Milestones
+        run: echo "${{ steps.scheduled.outputs.milestones }}" 

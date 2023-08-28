@@ -38,10 +38,7 @@ public class InvoiceBuyingServiceImpl implements InvoiceBuyingService {
                         d.getInvoiceStatus().getId(),
                         d.getSupplier(),
                         d.getSupplier().getId(),
-                        d.getSpecialRemarks(),
-                        d.getTotalCost(),
-                        d.getTextile(),
-                        d.getTextile().getId())).collect(Collectors.toList());
+                        d.getSpecialRemarks())).collect(Collectors.toList());
 
         return dtos;
     }

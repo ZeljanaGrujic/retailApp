@@ -11,7 +11,7 @@ $('document').ready(function() {
 //			$('#txtSupplierEdit').val(invoiceBuying.supplier.fullName);
 			$('#supplierEdit').val(invoiceBuying.supplierid);
 			$('#statusEdit').val(invoiceBuying.invoicestatusid);
-			$('#ddlItemsEdit').val(invoiceBuying.textileid);
+//			$('#ddlItemsEdit').val(invoiceBuying.textileid);
 			$('#specialRemarksEdit').val(invoiceBuying.specialRemarks);
 			$('#totalCostEdit').val(invoiceBuying.totalCost);
 			$('#itemsEdit').val(invoiceBuying.items);
@@ -22,21 +22,16 @@ $('document').ready(function() {
 	$('.table #detailsButton').on('click',function(event) {
 		event.preventDefault();
 		var href= $(this).attr('href');
-		$.get(href, function(invoiceBuying, status){
-				$('#idDetails').val(invoiceBuying.id);
-				$('#itemsDetails').val(invoiceBuying.textile.uniqueCode);
-				$('#purposeDetails').val(invoiceBuying.textile.purpose);
-				$('#typeDetails').val(invoiceBuying.textile.textileType.description);
-				$('#makeDetails').val(invoiceBuying.textile.textleMake.description);
-				$('#modelDetails').val(invoiceBuying.textile.textileModel.description);
-            	$('#specialRemarkDetails').val(invoiceBuying.specialRemarks);
-           		$('#totalCostDetails').val(invoiceBuying.totalCost);
-            	$('#supplierFullNameDetails').val(invoiceBuying.supplier.fullName);
-            	$('#companyNameDetails').val(invoiceBuying.supplier.companyName);
-            	$('#phoneDetails').val(invoiceBuying.supplier.phone);
-            	$('#cityDetails').val(invoiceBuying.supplier.location.city);
-            	$('#addressDetails').val(invoiceBuying.supplier.location.address);
-            	$('#regionDetails').val(invoiceBuying.supplier.location.country.name);
+		$.get(href, function(invoiceSelling, status){
+				$('#idDetails').val(invoiceSelling.id);
+            	$('#specialRemarkDetails').val(invoiceSelling.specialRemarks);
+//           		$('#totalCostDetails').val(invoiceSelling.totalCost);
+            	$('#supplierFullNameDetails').val(invoiceSelling.supplier.fullName);
+            	$('#companyNameDetails').val(invoiceSelling.supplier.details);
+            	$('#phoneDetails').val(invoiceSelling.supplier.phone);
+            	$('#cityDetails').val(invoiceSelling.supplier.location.city);
+            	$('#addressDetails').val(invoiceSelling.supplier.location.address);
+            	$('#regionDetails').val(invoiceSelling.supplier.location.country.name);
 //			$('#lastModifiedByDetails').val(country.lastModifiedBy);
 //			$('#lastModifiedDateDetails').val(country.lastModifiedDate.substr(0,19).replace("T", " "));
 		});

@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### .github/workflows/chattery ###
+
+.github/workflows/github_actions_chattery.yml
